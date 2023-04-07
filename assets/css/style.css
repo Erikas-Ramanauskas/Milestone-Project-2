@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+
+/* google fonts */
+
+@import url("https://fonts.googleapis.com/css2?family=Archivo&family=Quicksand&family=Roboto&family=Saira&display=swap");
+
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+#game-screen {
+    background-color: grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#game-board {
+    background-color: red;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: none;
+}
+
+#game-shapes {
+    background-color: blue;
+}
