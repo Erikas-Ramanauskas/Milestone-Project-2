@@ -1,6 +1,6 @@
 //Variables
 
-// list of all shapes to use
+// list of all shapes to use for the game
 const shapesArray = {
   easy: [
     [true],
@@ -40,25 +40,48 @@ const shapesArray = {
   ],
 };
 
+// Temporary variables
+
+const temporaryShapesNo = 3;
+
+// DOM elements
 const gameScreen = $(`#game-screen`);
 const gameBoard = $(`#game-board`);
 const gameShapes = $(`#game-shapes`);
+
+console.log(gameScreen);
+console.log(gameShapes);
 
 // Functions to call once the game loads
 gameScreenDimentions();
 gameBoardAndScreenDimentions();
 newGameBoardGrid();
+fillShapesContainer(temporaryShapesNo);
+setShapesContainerSize();
+
+// Temporar
+
+// Three diferent shape dificulities are set for the start of the game, then adjusted as a game progresses
+// To set up game procentage using thousands instead of hundreds to be more precice on procentages
+
+const gameDificulitySettings = {
+  easyShapesProcentage: 955,
+  mediumShapesProcentage: 30,
+  hardShapesProcentage: 15,
+  startingMediumShapesIncrece: 0.9, // 90%
+  startingMediumShapesIncrece: 0.99, // 99%
+};
 
 //-------- End of Functions to call on load-------
 
 //-------------------------------------FUNCTIONS---------------------------
 function gameScreenDimentions() {
-  let viewRatio = 3 / 4;
+  const viewRatio = 3 / 4;
   let height;
   let width;
 
-  // Determines if height is bigger and with and decides witch way to set up 3x4 ratio.
-  // after making this decition it checks for highest proportions to fit 3x4 ratio box
+  // Determines if height is bigger or with and decides witch way to set up 3x4 ratio.
+  // after making this decition it check's for largest proportions to fit 3x4 ratio box
   if (window.innerWidth < window.innerHeight) {
     if (window.innerWidth / viewRatio < window.innerHeight) {
       width = `100%`;
@@ -76,8 +99,7 @@ function gameScreenDimentions() {
       height = `${window.innerWidth * viewRatio}px`;
     }
   }
-  gameScreen.css(`width`, width);
-  gameScreen.css(`height`, height);
+  gameScreen.css(`width`, width).css(`height`, height);
 }
 
 function gameBoardAndScreenDimentions() {
@@ -114,11 +136,16 @@ function newGameBoardGrid() {
   }
 }
 
+// random rounded number generator, "barowed" from JS Course
+const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
 // Shapes array rearanging function to create new shapes by fliping it clockwise
+// Fliping the shape 3x times will flip the shape anticlockwise
 function flipTile(array, timesToFlip) {
-  // determening if the shape firsin 1x1 , 2x2, 3x3, or 4x4
+  // determening if the shape is 1x1 , 2x2, 3x3, or 4x4
   const shapeDimentionlenght = Math.sqrt(array.length);
 
+  // all changes are added to newArray and not effecting finalArray untill the loop cycle is completed.
   let finalArray = [...array];
   let newArray = [];
 
@@ -165,12 +192,44 @@ function flipTile(array, timesToFlip) {
         ];
         break;
       default:
-        throw new Error("shape found");
+        throw new Error(`shape size not found`);
     }
+    // finalArray is replaced with new completed array and ready for next loop cycle
     finalArray = [...newArray];
     i++;
   }
   return finalArray;
+}
+
+// Game shapes function for start of the game and restarting the game
+function fillShapesContainer(numSquares) {
+  // Clear any existing content in the container
+  gameShapes.html(``);
+  for (let i = 0; i < numSquares; i++) {
+    gameShapes.append(`<div class="shape-window"></div>`);
+  }
+}
+
+// -------------------------------------------------------------------------------------
+
+function setShapesContainerSize() {
+  let shapeAspectRatios;
+  let shapeWindowMargin;
+  let shapeDirection;
+
+  if (window.innerWidth < window.innerHeight) {
+    shapeAspectRatios = (gameShapes.outerWidth() / temporaryShapesNo) * 0.7;
+    shapeWindowMargin = (gameShapes.outerWidth() / temporaryShapesNo) * 0.15;
+    shapeDirection = `row`;
+  } else {
+    shapeAspectRatios = (gameShapes.outerHeight() / temporaryShapesNo) * 0.7;
+    shapeWindowMargin = (gameShapes.outerHeight() / temporaryShapesNo) * 0.15;
+    shapeDirection = `column`;
+  }
+  // sets css for all shape window figures
+  $(`.shape-window`).css(`width`, shapeAspectRatios).css(`height`, shapeAspectRatios).css(`margin`, shapeWindowMargin);
+
+  gameShapes.css(`flex-direction`, shapeDirection);
 }
 
 //--------------------------------END OF FUNCTIONS--------------------------------
@@ -178,3 +237,4 @@ function flipTile(array, timesToFlip) {
 // Event listeners to call if screen dimentions change
 window.addEventListener(`resize`, gameScreenDimentions);
 window.addEventListener(`resize`, gameBoardAndScreenDimentions);
+window.addEventListener(`resize`, setShapesContainerSize);

@@ -27,7 +27,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: row;
 }
 
 #game-board {
@@ -37,7 +36,7 @@ body {
     left: 0;
     right: 0;
     margin: none;
-    
+    /* Game Grid */
     display: grid;
   grid-template-columns: auto auto auto;
   background-color: #2196F3;
@@ -47,6 +46,10 @@ body {
 
 #game-shapes {
     background-color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .grid-cell {
@@ -56,5 +59,9 @@ body {
 
 .grid-square-0, .grid-square-2, .grid-square-4, .grid-square-6, .grid-square-8{
     background-color: rgb(255, 218, 171);
+}
+
+.shape-window{
+    background-color: blueviolet;
 }
 
