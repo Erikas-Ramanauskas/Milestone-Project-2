@@ -19,6 +19,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: black;
+    margin: 0;
 }
 
 #game-screen {
@@ -36,8 +37,24 @@ body {
     left: 0;
     right: 0;
     margin: none;
+    
+    display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: #2196F3;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
 }
 
 #game-shapes {
     background-color: blue;
 }
+
+.grid-cell {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+}
+
+.grid-square-0, .grid-square-2, .grid-square-4, .grid-square-6, .grid-square-8{
+    background-color: rgb(255, 218, 171);
+}
+
