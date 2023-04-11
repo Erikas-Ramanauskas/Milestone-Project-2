@@ -49,17 +49,13 @@ const gameScreen = $(`#game-screen`);
 const gameBoard = $(`#game-board`);
 const gameShapes = $(`#game-shapes`);
 
-console.log(gameScreen);
-console.log(gameShapes);
+// Custom variables
 
-// Functions to call once the game loads
-gameScreenDimentions();
-gameBoardAndScreenDimentions();
-newGameBoardGrid();
-fillShapesContainer(temporaryShapesNo);
-setShapesContainerSize();
-
-// Temporar
+const gameScores = {
+  turns: 0,
+  totalScore: 0,
+  shapeNumber: 0,
+};
 
 // Three diferent shape dificulities are set for the start of the game, then adjusted as a game progresses
 // To set up game procentage using thousands instead of hundreds to be more precice on procentages
@@ -68,9 +64,23 @@ const gameDificulitySettings = {
   easyShapesProcentage: 955,
   mediumShapesProcentage: 30,
   hardShapesProcentage: 15,
-  startingMediumShapesIncrece: 0.9, // 90%
-  startingMediumShapesIncrece: 0.99, // 99%
+  // the game
+  mediumShapeMultiplier: 0.9, // 90%
+  hardShapeMultiplier: 0.99, // 99%
 };
+
+//determines if screen is horizontal or vertical and this function used for many others as a variable.
+function horizontalOrVertical() {
+  return window.innerWidth < window.innerHeight; //true for vertical, false for horizontal
+}
+
+// Functions to call once the game loads
+gameScreenDimentions();
+gameBoardAndScreenDimentions();
+newGameBoardGrid();
+fillShapesContainer(temporaryShapesNo);
+addRotationIcons();
+setShapesContainerSize();
 
 //-------- End of Functions to call on load-------
 
@@ -82,7 +92,7 @@ function gameScreenDimentions() {
 
   // Determines if height is bigger or with and decides witch way to set up 3x4 ratio.
   // after making this decition it check's for largest proportions to fit 3x4 ratio box
-  if (window.innerWidth < window.innerHeight) {
+  if (horizontalOrVertical()) {
     if (window.innerWidth / viewRatio < window.innerHeight) {
       width = `100%`;
       height = `${window.innerWidth / viewRatio}px`;
@@ -110,7 +120,7 @@ function gameBoardAndScreenDimentions() {
   gameBoard.css(`width`, maxDimension + `px`);
   gameBoard.css(`height`, maxDimension + `px`);
 
-  if (window.innerWidth < window.innerHeight) {
+  if (horizontalOrVertical()) {
     gameShapes.css(`width`, maxDimension + `px`);
     gameShapes.css(`height`, maxDimension / 3 + `px`);
     gameScreen.css(`flex-direction`, `column`);
@@ -136,12 +146,92 @@ function newGameBoardGrid() {
   }
 }
 
-// random rounded number generator, "barowed" from JS Course
+// random rounded number generator, *"barowed" from JS Course*
 const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-// Shapes array rearanging function to create new shapes by fliping it clockwise
-// Fliping the shape 3x times will flip the shape anticlockwise
-function flipTile(array, timesToFlip) {
+// Game shapes function for start of the game and restarting the game
+function fillShapesContainer(numSquares) {
+  // Clear any existing content in the container
+  gameShapes.html(``);
+  for (let i = 0; i < numSquares; i++) {
+    gameShapes.append(`<div class="shape-window"></div>`);
+  }
+}
+
+function addRotationIcons() {
+  gameShapes.prepend(
+    `<div id="game-icons">
+    <div class="game-icon" id="rotate-left" draggable="true"><i class="fa-solid fa-rotate-left"></i></div>
+    <div class="game-icon" id="rotate-right" draggable="true"><i class="fa-solid fa-rotate-right"></i></div>
+    <div class="game-icon" id="menu-icon"><i class="fa-solid fa-power-off"></i></div>
+    </div>`
+  );
+}
+
+// -------------------------------------------------------------------------------------
+
+function setShapesContainerSize() {
+  let shapeAspectRatios;
+  let shapeWindowMargin;
+  let shapeDirection;
+  let iconsDirection;
+
+  if (horizontalOrVertical()) {
+    // if screen is horizontal
+    shapeAspectRatios = (gameShapes.outerWidth() / temporaryShapesNo) * 0.7;
+    shapeWindowMargin = (gameShapes.outerWidth() / temporaryShapesNo) * 0.1;
+    shapeDirection = `row`;
+    iconsDirection = [`column`, `height`, `width`];
+  } else {
+    // if screen is vertical
+    shapeAspectRatios = (gameShapes.outerHeight() / temporaryShapesNo) * 0.7;
+    shapeWindowMargin = (gameShapes.outerHeight() / temporaryShapesNo) * 0.1;
+    shapeDirection = `column`;
+    iconsDirection = [`row`, `width`, `height`];
+  }
+
+  // sets css for all shape window figures
+  $(`.shape-window`).css(`width`, shapeAspectRatios).css(`height`, shapeAspectRatios).css(`margin`, shapeWindowMargin);
+  gameShapes.css(`flex-direction`, shapeDirection);
+  $(`#game-icons`)
+    .css(`flex-direction`, iconsDirection[0])
+    .css(iconsDirection[1], shapeAspectRatios)
+    .css(iconsDirection[2], `auto`);
+  $(`.game-icon`)
+    .css(`height`, shapeAspectRatios / 3)
+    .css(`width`, shapeAspectRatios / 3);
+}
+
+//-------------------------------------- Shapes formulas ------------------------------------------------------
+
+// Choses between easy/medium/or hard shape based on the procentages at the current stage
+// this helps to control games progresive dificulity.
+function choseRandomShapeDificulity() {
+  const easyShapeChance = gameDificulitySettings.easyShapesProcentage; // the number will be highest number roled starting(0-955) (95.5%)
+  const mediumShapeChance = gameDificulitySettings.mediumShapesProcentage + easyShapeChance;
+  const chance = randomInt(0, 1000);
+
+  //depending on the number roll we check first if it is higher than easy range (starting at 0 to 955)
+  // then if its higher we check if it is not higher than medium (easy+medium)
+  // the remaining is hard
+  if (chance <= easyShapeChance) {
+    return shapesArray.easy;
+  } else if (chance <= mediumShapeChance) {
+    return shapesArray.medium;
+  } else {
+    return shapesArray.hard;
+  }
+}
+
+// Shapes array rearanging function to create new shapes by rotating it clockwise
+// rotating the shape 3x times will rotate the shape anticlockwise
+/**
+ * Takes array for game tile and returns array of rotated shape clockwise
+ * @param {array} array
+ * @param {number} timesToFlip
+ * @returns array
+ */
+function rotateTile(array, timesToFlip) {
   // determening if the shape is 1x1 , 2x2, 3x3, or 4x4
   const shapeDimentionlenght = Math.sqrt(array.length);
 
@@ -201,36 +291,20 @@ function flipTile(array, timesToFlip) {
   return finalArray;
 }
 
-// Game shapes function for start of the game and restarting the game
-function fillShapesContainer(numSquares) {
-  // Clear any existing content in the container
-  gameShapes.html(``);
-  for (let i = 0; i < numSquares; i++) {
-    gameShapes.append(`<div class="shape-window"></div>`);
-  }
+// takes choseRandomShapeDificulity() array which has 10 differnet shapes and choses one at random.
+function choseRandomShape() {
+  let array = choseRandomShapeDificulity()[randomInt(0, 9)];
+  return rotateTile(array, randomInt(0, 3));
 }
 
-// -------------------------------------------------------------------------------------
-
-function setShapesContainerSize() {
-  let shapeAspectRatios;
-  let shapeWindowMargin;
-  let shapeDirection;
-
-  if (window.innerWidth < window.innerHeight) {
-    shapeAspectRatios = (gameShapes.outerWidth() / temporaryShapesNo) * 0.7;
-    shapeWindowMargin = (gameShapes.outerWidth() / temporaryShapesNo) * 0.15;
-    shapeDirection = `row`;
-  } else {
-    shapeAspectRatios = (gameShapes.outerHeight() / temporaryShapesNo) * 0.7;
-    shapeWindowMargin = (gameShapes.outerHeight() / temporaryShapesNo) * 0.15;
-    shapeDirection = `column`;
-  }
-  // sets css for all shape window figures
-  $(`.shape-window`).css(`width`, shapeAspectRatios).css(`height`, shapeAspectRatios).css(`margin`, shapeWindowMargin);
-
-  gameShapes.css(`flex-direction`, shapeDirection);
+// Create shape HTML for a single window out of given shape array
+function crateGameShapeHTML(shapeArray) {
+  let shapeHTML = "";
+  shapeArray.forEach((e) => (shapeHTML += e ? `<div class="shape-block-on">` : `<div class="shape-block-off">`));
+  return shapeHTML;
 }
+
+// take given shape window, clear it out and fill it up with new shape details.
 
 //--------------------------------END OF FUNCTIONS--------------------------------
 
