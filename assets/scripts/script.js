@@ -1,42 +1,40 @@
+// const pick = document.querySelectorAll(`.pick`);
+const drop = document.querySelectorAll(`.drop`);
 
+// for (let i = 0; i < pick.length; i++) {
+//   pick[i].addEventListener(`dragstart`, dragStart);
 
-const draggables = document.querySelectorAll(`.draggable`);
-const containers = document.querySelectorAll(`.drag-and-drop`);
+//   pick[i].addEventListener(`dragend`, dragEnd);
+// }
 
-draggables.forEach(draggable =>{
-    draggable.addEventListener(`dragstart`, () =>{
-        draggable.classList.add(`dragging`)
-    })
-    draggable.addEventListener(`dragend`, () =>{
-        draggable.classList.remove(`dragging`)
-    })
-})
+// function dragStart() {
+//   this.className += ` hold`;
+//   setTimeout(() => (this.className = `invisible`), 0);
+// }
 
-containers.forEach(container => {
-    container.addEventListener(`dragover`, e => {
-        e.preventDefault()
-        const afterElement = getDragAfterElement(container, e.clientY)
-        const dragable = document.querySelector(`.dragging`)
-        if (afterElement == null){
-            container.appendChild(dragable)
-        } else{
-            container.insertBefore(dragable,afterElement)
-        }
-       
-    })
-})
+// function dragEnd() {
+//   this.className = `dropbox pick`;
+// }
 
+const pickElements = document.querySelectorAll(".pick");
+const pickElements2 = document.querySelectorAll(".pick2");
 
+pickElements.forEach((square) => {
+  square.addEventListener("dragstart", (event) => {
+    // Remove the active class from all buttons
+    pickElements.forEach((square) => {
+      square.classList.remove("pick");
+    });
 
-function getDragAfterElement(container, y){
-    const draggableElements = [...container.querySelectorAll(`.draggable:not(.dragging)`)]
-    return draggableElements.reduce((closest , child)=>{
-        const box = child.getBoundingClientRect()
-        const offset = y - box.top - box.height / 2
-        if(offset < 0 && offset > closest.offset){
-            return {offset: offset, element: child}
-        } else {
-            return closest
-        }
-    }, { offset: Number.NEGATIVE_INFINITY}).element
-}
+    // Add the active class to the clicked button
+    const pickedSquare = event.target;
+    pickedSquare.classList.add(".pick");
+
+    // Simulate a click event on all the other buttons
+    pickElements2.forEach((square) => {
+      if (square !== pickedSquare) {
+        square.dispatchEvent(new Event("dragstart"));
+      }
+    });
+  });
+});

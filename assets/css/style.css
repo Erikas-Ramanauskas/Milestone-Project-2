@@ -1,11 +1,11 @@
 @charset "utf-8";
 
 * {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    box-sizing: border-box;
-    font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 
 /* google fonts */
@@ -13,44 +13,44 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo&family=Quicksand&family=Roboto&family=Saira&display=swap");
 
 body {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-    margin: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  margin: 0;
 }
 
 #game-screen {
-    background-color: grey;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background-color: grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #game-board {
-    background-color: red;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: none;
-    /* Game Grid */
-    display: grid;
+  background-color: red;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: none;
+  /* Game Grid */
+  display: grid;
   grid-template-columns: auto auto auto;
-  background-color: #2196F3;
+  background-color: #2196f3;
   grid-template-columns: repeat(9, 1fr);
   grid-template-rows: repeat(9, 1fr);
 }
 
 #game-shapes {
-    display: inline;
-    background-color: blue;
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    flex-direction: column;
+  display: inline;
+  background-color: blue;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  flex-direction: column;
 }
 
 .grid-cell {
@@ -59,29 +59,70 @@ body {
   border-radius: 7%;
 }
 
-.grid-square-0, .grid-square-2, .grid-square-4, .grid-square-6, .grid-square-8{
-    background-color: #c7c7c7
-    ;
+.grid-square-0,
+.grid-square-2,
+.grid-square-4,
+.grid-square-6,
+.grid-square-8 {
+  background-color: #c7c7c7;
 }
 
-.shape-window{
-    background-color: blueviolet;
+.shape-window {
+  background-color: blueviolet;
 }
 
-#game-icons{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    background-color: aliceblue;
+#game-icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: aliceblue;
 }
 
-
-
-.game-icon{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3.5vw
+.game-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5vw;
 }
 
+/* -------------------------------------------------   Drag and d rop testing ---------------------------------------------*/
 
+.content {
+  border: 1px solid white;
+  width: 300px;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.drag-and-drop {
+  height: 100px;
+  width: 100px;
+  border: 1px solid red;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.dropbox {
+  box-sizing: border-box;
+  margin: 0;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 7%;
+  width: 49px;
+  height: 49px;
+  text-align: center;
+  color: white;
+}
+
+.drag-from {
+  background-color: blueviolet;
+}
+
+.drag-to {
+  background-color: red;
+}
+
+/* Js related */
