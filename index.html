@@ -16,18 +16,52 @@
   </head>
   <body>
     <div class="content">
-      <div class="drop drag-and-drop">
-        <div class="dropbox fill" draggable="true">1</div>
-        <div class="dropbox fill" draggable="true">2</div>
-        <div class="dropbox fill" draggable="true">3</div>
-        <div class="dropbox fill" draggable="true">4</div>
+      <div class="drag-box-container">
+        <div class="drag-box">
+          <div class="draggable" draggable="true">
+            <div class="fill box-1">1</div>
+            <div class="fill box-2">2</div>
+            <div class="fill box-3">3</div>
+            <div class="fill box-4">4</div>
+          </div>
+        </div>
+
+        <div class="drag-box">
+          <div class="draggable" draggable="true">
+            <div class="fill box-1">1</div>
+            <div class="fill box-2">2</div>
+            <div class="fill box-3">3</div>
+            <div class="fill box-4">4</div>
+          </div>
+        </div>
+
+        <div class="drag-box">
+          <div class="draggable" draggable="true">
+            <div class="fill box-1">1</div>
+            <div class="fill box-2">2</div>
+            <div class="fill box-3">3</div>
+            <div class="fill box-4">4</div>
+          </div>
+        </div>
       </div>
 
-      <div class="drag drag-and-drop">
-        <div class="dropbox empty">1</div>
-        <div class="dropbox empty">2</div>
-        <div class="dropbox empty">3</div>
-        <div class="dropbox empty">4</div>
+      <div class="drag-target">
+        <div class="game-box empty" id="game-box-1">1</div>
+        <div class="game-box empty" id="game-box-2">2</div>
+        <div class="game-box filled" id="game-box-3">3</div>
+        <div class="game-box empty" id="game-box-4">4</div>
+        <div class="game-box empty" id="game-box-5">5</div>
+        <div class="game-box empty" id="game-box-6">6</div>
+        <div class="game-box empty" id="game-box-7">7</div>
+        <div class="game-box empty" id="game-box-8">8</div>
+        <div class="game-box filled" id="game-box-9">9</div>
+        <div class="game-box empty" id="game-box-10">10</div>
+        <div class="game-box empty" id="game-box-11">11</div>
+        <div class="game-box empty" id="game-box-12">12</div>
+        <div class="game-box empty" id="game-box-13">13</div>
+        <div class="game-box empty" id="game-box-14">14</div>
+        <div class="game-box empty" id="game-box-15">15</div>
+        <div class="game-box empty" id="game-box-16">16</div>
       </div>
     </div>
 
@@ -35,6 +69,12 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
       integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
       crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"
+      integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     ></script>
     <script
       defer

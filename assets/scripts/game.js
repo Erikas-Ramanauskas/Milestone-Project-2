@@ -1,3 +1,5 @@
+"use strict";
+
 //Variables
 
 // list of all shapes to use for the game
@@ -42,7 +44,7 @@ const shapesArray = {
 
 // Temporary variables
 
-const temporaryShapesNo = 3;
+const temporaryShapesNo = 4;
 
 // DOM elements
 const gameScreen = $(`#game-screen`);
