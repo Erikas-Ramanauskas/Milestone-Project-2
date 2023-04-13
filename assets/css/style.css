@@ -95,6 +95,7 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+
 .drag-box-container {
   height: 500px;
   width: 100px;
@@ -129,24 +130,22 @@ body {
   grid-template-rows: repeat(4, 50px);
 }
 
-.fill {
-  background-color: #c27ba0ff;
-  border-top: 10px solid #ce95b3ff;
-  border-right: 10px solid #744a60ff;
-  border-bottom: 10px solid #9b6280ff;
-  border-left: 10px solid #dab0c6ff;
+.shape-box {
   position: relative;
   height: 49px;
   width: 49px;
-  border-radius: 15%;
   cursor: pointer;
   text-align: center;
   color: white;
 }
 
-.hold {
-  border: solid 1px #f80099;
-  cursor: pointer;
+.filled-box {
+  background-color: #c27ba0ff;
+  border-top: 10px solid #ce95b3ff;
+  border-right: 10px solid #744a60ff;
+  border-bottom: 10px solid #9b6280ff;
+  border-left: 10px solid #dab0c6ff;
+  border-radius: 15%;
 }
 
 .game-box {
@@ -161,12 +160,16 @@ body {
   color: white;
 }
 
-.filled {
+.filled-field {
   background-color: #c27ba0ff;
   border-top: 10px solid #ce95b3ff;
   border-right: 10px solid #744a60ff;
   border-bottom: 10px solid #9b6280ff;
   border-left: 10px solid #dab0c6ff;
+}
+
+.highlighted-square{
+  background-color: purple;
 }
 
 /* Js related */
