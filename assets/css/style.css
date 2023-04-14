@@ -113,6 +113,8 @@ body {
 
 .draggable {
   display: grid;
+  max-width: 150px;
+  max-height: 150px;
   /* grid-template-columns: auto auto auto auto; */
   grid-template-columns: repeat(2, 50px);
   grid-template-rows: repeat(2, 50px);
@@ -168,7 +170,7 @@ body {
   border-left: 10px solid #dab0c6ff;
 }
 
-.highlighted-square{
+.highlighted-square {
   background-color: purple;
 }
 

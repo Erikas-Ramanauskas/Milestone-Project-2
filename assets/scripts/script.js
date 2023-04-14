@@ -6,7 +6,7 @@ const screen = document.querySelector(".content");
 
 let shapesBoxesCoordinates = {};
 
-const dropBoxesCenters = [];
+let dropBoxesCenters = [];
 
 findDropBoxesCenters();
 
@@ -23,6 +23,8 @@ function onMouseDown(e) {
   shapesBoxesCoordinates.mouseDownX = e.pageX;
   shapesBoxesCoordinates.mouseDownY = e.pageY;
   shapesBoxesCoordinates.boxArray = [];
+  e.target.parentElement.style.position = "absolute";
+  e.target.parentElement.style.maxwidth = "absolute";
 
   const siblings = [...e.target.parentElement.children];
 
@@ -72,8 +74,24 @@ function dragOver(e) {
   const mouseX = e.pageX;
   const mouseY = e.pageY;
 
-  // setting up array of squares that is hovered on
-  let activeSquares = [];
+  const mactchedActiveSquares = findingMacthingSquares(mouseX, mouseY);
+
+  if (mactchedActiveSquares[1]) {
+    mactchedActiveSquares[0].forEach((element) => {
+      element.classList.add(`highlighted-square`);
+    });
+  }
+}
+
+/**
+ * Test dragable squares center location against dropboxes area to see which ones are maching
+ * @param {number} mouseX Mouse X coordinates
+ * @param {number} mouseY Mouse Y coordinates
+ * @returns array of elements macthed, and true or false if all elements maches and the shape can be placed.
+ */
+
+function findingMacthingSquares(mouseX, mouseY) {
+  let mactchedActiveSquares = [];
 
   // looping thought dragable boxes
   shapesBoxesCoordinates.boxArray.forEach((element) => {
@@ -81,37 +99,51 @@ function dragOver(e) {
     const boxCenterY = mouseY + element.distanceY;
 
     dropBoxesCenters.forEach((e) => {
-      // checkign ib the dragable box center coordinates are within a square
+      // checkign if the dragable box center coordinates are within a dropbox square
       const condition1 = boxCenterX > e.left;
       const condition2 = boxCenterX < e.right;
       const condition3 = boxCenterY > e.top;
       const condition4 = boxCenterY < e.bottom;
 
       if (condition1 && condition2 && condition3 && condition4) {
-        activeSquares.push(e.element);
+        mactchedActiveSquares.push(e.element);
       }
     });
   });
 
-  if (activeSquares.length === shapesBoxesCoordinates.boxArray.length) {
-    activeSquares.forEach((element) => {
-      element.classList.add(`highlighted-square`);
-    });
-  }
+  // checks mached active squares agains the dragable shape box array, if the mount maches this meanst the shape can be droped there.
+  const dropableOrNot = mactchedActiveSquares.length === shapesBoxesCoordinates.boxArray.length;
+
+  return [mactchedActiveSquares, dropableOrNot];
 }
 
 //Drag end works like onMouseUp and does all events right after.
+// used this instead of mouse up because while using draggable property mouse events dont triger.
 function dragEnd(e) {
   this.classList.remove("invisible");
-
-  // cleaning up data after drag ended
-  shapesBoxesCoordinates = {};
 
   gameBoxes.forEach((element) => {
     element.classList.remove(`highlighted-square`);
   });
 
-  // draging cordinates calculation
+  // getting mosue cordinates during the drop
+  const mouseX = e.pageX;
+  const mouseY = e.pageY;
+
+  const mactchedActiveSquares = findingMacthingSquares(mouseX, mouseY);
+
+  if (mactchedActiveSquares[1]) {
+    mactchedActiveSquares[0].forEach((element) => {
+      element.classList.remove(`empty-field`);
+      element.classList.add(`filled-field`);
+    });
+
+    // clears out draggable box
+    this.innerHTML = "";
+  }
+
+  // cleaning up data after drag ended
+  shapesBoxesCoordinates = {};
 }
 
 // DragStart starst all events right after mouse event listeners and prevents mouse event listeners from hapening
@@ -119,16 +151,23 @@ function dragStart(e) {
   setTimeout(() => this.classList.add("invisible"), 0);
 }
 
-//array containing information of all drop box centers
-
+/**
+ * Records all drop boxes outer edges in to "dropBoxesCenters" array for later use to match with dragable boxes
+ * should be only use at the begining of the game and when the screen is being resized
+ */
 function findDropBoxesCenters() {
+  // clears old information
+  dropBoxesCenters = [];
+
+  // loops though all boxes to return information
   gameBoxes.forEach((element) => {
     // creating object for each of the the elements
     if (element.classList.contains(`empty-field`)) {
       const info = {};
 
+      info.empty = element.classList[1] == "empty-field" ? true : false;
+
       const rect = element.getBoundingClientRect();
-      console.log(rect);
 
       // recording square dimention coordinates
       info.left = rect.left;
@@ -136,7 +175,7 @@ function findDropBoxesCenters() {
       info.top = rect.top;
       info.bottom = rect.bottom;
 
-      // takign id for the element
+      // taking id for the element
       info.id = parseInt(element.id.split("-")[2]);
 
       info.element = element;
@@ -145,3 +184,5 @@ function findDropBoxesCenters() {
     }
   });
 }
+
+console.log(dropBoxesCenters);
