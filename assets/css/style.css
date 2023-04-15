@@ -25,8 +25,8 @@ body {
 #game-screen {
   background-color: grey;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: end;
+  justify-content: end;
 }
 
 #game-board {
@@ -44,18 +44,22 @@ body {
   grid-template-rows: repeat(9, 1fr);
 }
 
-#game-shapes {
-  display: inline;
-  background-color: blue;
+#game-controls {
   display: flex;
-  align-items: center;
-  justify-content: end;
-  flex-direction: column;
 }
 
-.grid-cell {
+#game-shapes {
+  background-color: blue;
+  display: flex;
+  justify-content: space-between;
+}
+
+.game-box {
   background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.8);
+  display: inline-block;
+  margin: 0;
+  background: white;
   border-radius: 7%;
 }
 
@@ -69,6 +73,39 @@ body {
 
 .shape-window {
   background-color: blueviolet;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* dragable sizes */
+.draggable-one {
+  width: 25%;
+  height: 25%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+}
+.draggable-two {
+  width: 50%;
+  height: 50%;
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+  grid-template-rows: repeat(2, 2fr);
+}
+.draggable-three {
+  width: 75%;
+  height: 75%;
+  display: grid;
+  grid-template-columns: repeat(3, 3fr);
+  grid-template-rows: repeat(3, 3fr);
+}
+.draggable-four {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 4fr);
+  grid-template-rows: repeat(4, 4fr);
 }
 
 #game-icons {
@@ -112,12 +149,6 @@ body {
 }
 
 .draggable {
-  display: grid;
-  max-width: 150px;
-  max-height: 150px;
-  /* grid-template-columns: auto auto auto auto; */
-  grid-template-columns: repeat(2, 50px);
-  grid-template-rows: repeat(2, 50px);
   cursor: pointer;
 }
 
@@ -150,18 +181,6 @@ body {
   border-radius: 15%;
 }
 
-.game-box {
-  display: inline-block;
-  height: 49px;
-  width: 49px;
-  margin: 0;
-  border: solid 1px rgb(249, 3, 175);
-  background: white;
-  border-radius: 7%;
-  text-align: center;
-  color: white;
-}
-
 .filled-field {
   background-color: #c27ba0ff;
   border-top: 10px solid #ce95b3ff;
@@ -173,5 +192,3 @@ body {
 .highlighted-square {
   background-color: purple;
 }
-
-/* Js related */

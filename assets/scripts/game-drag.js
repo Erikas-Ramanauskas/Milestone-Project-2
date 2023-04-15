@@ -2,7 +2,7 @@
 
 const draggables = [...document.querySelectorAll(".draggable")];
 const gameBoxes = document.querySelectorAll(".game-box");
-const screen = document.querySelector(".content");
+const screen = document.querySelector("#game-screen");
 
 let shapesBoxesCoordinates = {};
 
@@ -136,6 +136,7 @@ function dragEnd(e) {
     mactchedActiveSquares[0].forEach((element) => {
       element.classList.remove(`empty-field`);
       element.classList.add(`filled-field`);
+      findDropBoxesCenters();
     });
 
     // clears out draggable box
@@ -184,5 +185,3 @@ function findDropBoxesCenters() {
     }
   });
 }
-
-console.log(dropBoxesCenters);
