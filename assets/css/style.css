@@ -8,6 +8,26 @@
   font-family: "Roboto", sans-serif;
 }
 
+/* colour variables */
+:root {
+  --dark-color: #242b28;
+  --cream-dark: #d9b09c;
+  --cream-light: #ffcb9a;
+  --light-color: #d1e8e2;
+  /* tile colour */
+  --primary-color: #116466;
+  --border-top: #418385ff;
+  --border-right: #0a3c3dff;
+  --border-bottom: #0e5052ff;
+  --border-left: #70a2a3ff;
+
+  --highlight-primary: #74f4f7;
+  --hightlight-border-top: #90f6f9ff;
+  --hightlight-border-right: #469294ff;
+  --hightlight-border-bottom: #5dc3c6ff;
+  --hightlight-border-left: #acf8faff;
+}
+
 /* google fonts */
 
 @import url("https://fonts.googleapis.com/css2?family=Archivo&family=Quicksand&family=Roboto&family=Saira&display=swap");
@@ -18,19 +38,18 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
+  background-color: var(--dark-color);
   margin: 0;
 }
 
 #game-screen {
-  background-color: grey;
   display: flex;
   align-items: end;
   justify-content: end;
 }
 
 #game-board {
-  background-color: red;
+  background-color: var(--cream-dark);
   top: 0;
   bottom: 0;
   left: 0;
@@ -39,7 +58,6 @@ body {
   /* Game Grid */
   display: grid;
   grid-template-columns: auto auto auto;
-  background-color: #2196f3;
   grid-template-columns: repeat(9, 1fr);
   grid-template-rows: repeat(9, 1fr);
 }
@@ -49,17 +67,15 @@ body {
 }
 
 #game-shapes {
-  background-color: blue;
   display: flex;
   justify-content: space-between;
 }
 
 .game-box {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(0, 0, 0, 1);
   display: inline-block;
   margin: 0;
-  background: white;
+  background: var(--light-color);
   border-radius: 7%;
 }
 
@@ -68,14 +84,18 @@ body {
 .grid-square-4,
 .grid-square-6,
 .grid-square-8 {
-  background-color: #c7c7c7;
+  background-color: var(--cream-light);
 }
 
 .shape-window {
-  background-color: blueviolet;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.draggable {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0) !important;
 }
 
 /* dragable sizes */
@@ -112,7 +132,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: aliceblue;
+  background-color: var(--light-color);
 }
 
 .game-icon {
@@ -124,71 +144,57 @@ body {
 
 /* -------------------------------------------------   Drag and d rop testing ---------------------------------------------*/
 
-.content {
-  border: 1px solid white;
-  width: 500px;
-  height: 500px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.drag-box-container {
-  height: 500px;
-  width: 100px;
-  border: 1px solid greenyellow;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.drag-box {
-  height: 100px;
-  width: 100px;
-  border: 1px solid red;
-}
-
-.draggable {
-  cursor: pointer;
-}
-
-.drag-target {
-  box-sizing: border-box;
-  height: 200px;
-  width: 200px;
-  border: 1px solid red;
-  display: grid;
-  /* grid-template-columns: auto auto auto auto; */
-  grid-template-columns: repeat(4, 50px);
-  grid-template-rows: repeat(4, 50px);
-}
-
-.shape-box {
-  position: relative;
-  height: 49px;
-  width: 49px;
-  cursor: pointer;
-  text-align: center;
-  color: white;
-}
-
 .filled-box {
-  background-color: #c27ba0ff;
-  border-top: 10px solid #ce95b3ff;
-  border-right: 10px solid #744a60ff;
-  border-bottom: 10px solid #9b6280ff;
-  border-left: 10px solid #dab0c6ff;
+  background-color: var(--primary-color);
+  border-top: 0.5rem solid var(--border-top);
+  border-right: 0.5rem solid var(--border-right);
+  border-bottom: 0.5rem solid var(--border-bottom);
+  border-left: 0.5rem solid var(--border-left);
   border-radius: 15%;
 }
 
 .filled-field {
-  background-color: #c27ba0ff;
-  border-top: 10px solid #ce95b3ff;
-  border-right: 10px solid #744a60ff;
-  border-bottom: 10px solid #9b6280ff;
-  border-left: 10px solid #dab0c6ff;
+  background-color: var(--primary-color);
+  border-top: 0.5rem solid var(--border-top);
+  border-right: 0.5rem solid var(--border-right);
+  border-bottom: 0.5rem solid var(--border-bottom);
+  border-left: 0.5rem solid var(--border-left);
 }
 
 .highlighted-square {
-  background-color: purple;
+  background-color: var(--highlight-primary);
+  border-top: 0.5rem solid var(--hightlight-border-top);
+  border-right: 0.5rem solid var(--hightlight-border-right);
+  border-bottom: 0.5rem solid var(--hightlight-border-bottom);
+  border-left: 0.5rem solid var(--hightlight-border-left);
+}
+/* 
+#game-screen-body {
+  height: 100%;
+  width: 100%;
+} */
+
+#game-screen-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+@media only screen and (min-width: 1140px) {
+  #game-screen-container {
+    width: 960px;
+    height: 540px;
+  }
+}
+
+.modal-body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.dificulity-choice {
+  margin-bottom: 2rem;
 }

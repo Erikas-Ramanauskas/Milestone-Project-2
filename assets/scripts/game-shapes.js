@@ -41,18 +41,8 @@ const shapesArray = {
 };
 
 //-------------------------------------- Shapes formulas ------------------------------------------------------
-const shapeWindows = document.getElementsByClassName(`shape-window`);
+let shapeWindows = document.getElementsByClassName(`shape-window`);
 const shapeWindows2 = document.querySelectorAll(`.shape-window`);
-
-console.log(`dqs`, shapeWindows);
-console.log(`dqs2`, shapeWindows2);
-console.log(`dqs[0]`, shapeWindows[0]);
-
-const testing1 = Array.from(shapeWindows);
-const testing2 = [...shapeWindows];
-
-console.log(`testing1`, testing1);
-console.log(`testing2`, testing2);
 
 // Three diferent shape dificulities are set for the start of the game, then adjusted as a game progresses
 // To set up game procentage using thousands instead of hundreds to be more precice on procentages
@@ -167,19 +157,25 @@ function choseRandomShape() {
 
 // Create shape HTML for a single window out of given shape array
 function crateGameShapeHTML(shapeArray) {
-  let shapeHTMLinner;
+  let shapeHTMLinner = ``;
   shapeArray.forEach(
-    (e) => (shapeHTMLinner += e ? `<div class="shape-box filled-box">` : `<div class="shape-box empty-box">`)
+    (e) =>
+      (shapeHTMLinner += e ? `<div class="shape-box filled-box"></div>` : `<div class="shape-box empty-box"></div>`)
   );
   return shapeHTMLinner;
 }
 
+// clears
 function fillGameShape(shapeWindow) {
+  shapeWindow.innerHTML = ``;
+
   // picking random shape and creating its HTML
   const randomShapeArray = choseRandomShape();
+
   const draggableHTML = crateGameShapeHTML(randomShapeArray);
+
   // finding out if it is 1x1, 2x2, 3x3, 4x4
-  const multiplier = Math.sqrt(randomShapeArray);
+  const multiplier = Math.sqrt(randomShapeArray.length);
 
   let dragClass;
 
@@ -197,9 +193,13 @@ function fillGameShape(shapeWindow) {
       dragClass = "draggable-four";
       break;
   }
-  let shapeHTML = `<div class="draggable ${dragClass}" draggable="true">` + draggableHTML + `</div>`;
+  let elementDiv = document.createElement("div");
+  elementDiv.innerHTML = draggableHTML;
+  elementDiv.classList.add("draggable");
+  elementDiv.classList.add(dragClass);
+  elementDiv.setAttribute("draggable", "true");
 
-  shapeWindow.innerHtml = shapeHTML;
+  shapeWindow.append(elementDiv);
 }
 
 // take given shape window, clear it out and fill it up with new shape details.

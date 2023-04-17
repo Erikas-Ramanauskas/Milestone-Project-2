@@ -1,30 +1,43 @@
 "use strict";
 
-const draggables = [...document.querySelectorAll(".draggable")];
-const gameBoxes = document.querySelectorAll(".game-box");
+const draggables = document.getElementsByClassName("draggable");
+const gameBoxes = document.getElementsByClassName("game-box");
 const screen = document.querySelector("#game-screen");
 
 let shapesBoxesCoordinates = {};
 
 let dropBoxesCenters = [];
 
-findDropBoxesCenters();
+// runs when dificulity is selected and starts event listeners and fills the shapes
+function gameStart() {
+  gameStartShapesFill();
+  findDropBoxesCenters();
 
-draggables.forEach((element) => {
-  element.addEventListener("mousedown", onMouseDown);
-  element.addEventListener("dragstart", dragStart);
-  element.addEventListener("dragend", dragEnd);
-});
+  for (let i = 0; i < draggables.length; i++) {
+    draggables[i].addEventListener("mousedown", onMouseDown);
+    draggables[i].addEventListener("dragstart", dragStart);
+    draggables[i].addEventListener("dragend", dragEnd);
+  }
+}
+
+function gameStartShapesFill() {
+  for (let i = 0; i < shapeWindows.length; i++) {
+    if (shapeWindows[i].innerHTML === "") {
+      fillGameShape(shapeWindows[i]);
+    }
+  }
+}
 
 screen.addEventListener("dragover", dragOver);
 
 function onMouseDown(e) {
+  shapesBoxesCoordinates = {};
+  // recording shapeWindow element to use once element is droped
+  shapesBoxesCoordinates.parent = e.target.parentElement.parentElement;
   // recording were mouse was clicked
   shapesBoxesCoordinates.mouseDownX = e.pageX;
   shapesBoxesCoordinates.mouseDownY = e.pageY;
   shapesBoxesCoordinates.boxArray = [];
-  e.target.parentElement.style.position = "absolute";
-  e.target.parentElement.style.maxwidth = "absolute";
 
   const siblings = [...e.target.parentElement.children];
 
@@ -48,7 +61,7 @@ function onMouseDown(e) {
       info.distanceY = info.cordinateY - shapesBoxesCoordinates.mouseDownY;
 
       // takign id for the element
-      info.id = parseInt(element.classList[2].split("-")[1]);
+      info.id = parseInt(element.classList[1].split("-")[1]);
 
       // records entire element
       info.element = element;
@@ -63,11 +76,9 @@ function onMouseDown(e) {
 function dragOver(e) {
   e.preventDefault();
 
-  // console.log(`drag Over`, `pageX:`, e.pageX + "px", `pageY`, e.pageY + "px");
-
-  gameBoxes.forEach((element) => {
-    element.classList.remove(`highlighted-square`);
-  });
+  for (let i = 0; i < gameBoxes.length; i++) {
+    gameBoxes[i].classList.remove(`highlighted-square`);
+  }
 
   // The fallowing code determines if center of dragable boxes are within dropboxes.
   // getting mosue cordinates during drag
@@ -122,9 +133,9 @@ function findingMacthingSquares(mouseX, mouseY) {
 function dragEnd(e) {
   this.classList.remove("invisible");
 
-  gameBoxes.forEach((element) => {
-    element.classList.remove(`highlighted-square`);
-  });
+  for (let i = 0; i < gameBoxes.length; i++) {
+    gameBoxes[i].classList.remove(`highlighted-square`);
+  }
 
   // getting mosue cordinates during the drop
   const mouseX = e.pageX;
@@ -136,19 +147,30 @@ function dragEnd(e) {
     mactchedActiveSquares[0].forEach((element) => {
       element.classList.remove(`empty-field`);
       element.classList.add(`filled-field`);
-      findDropBoxesCenters();
     });
 
-    // clears out draggable box
-    this.innerHTML = "";
+    // clears out draggable box and creates new draggable shape
+    this.parentElement.innerHTML = "";
+    gameStartShapesFill();
+
+    // pick up a new created element parent from object that was created during onClick event
+    const shapeWindowChild = shapesBoxesCoordinates.parent.children[0];
+
+    // adds event listeners to new created element
+    shapeWindowChild.addEventListener("mousedown", onMouseDown);
+    shapeWindowChild.addEventListener("dragstart", dragStart);
+    shapeWindowChild.addEventListener("dragend", dragEnd);
   }
+
+  destroyTiles();
+  findDropBoxesCenters();
 
   // cleaning up data after drag ended
   shapesBoxesCoordinates = {};
 }
 
 // DragStart starst all events right after mouse event listeners and prevents mouse event listeners from hapening
-function dragStart(e) {
+function dragStart() {
   setTimeout(() => this.classList.add("invisible"), 0);
 }
 
@@ -161,14 +183,14 @@ function findDropBoxesCenters() {
   dropBoxesCenters = [];
 
   // loops though all boxes to return information
-  gameBoxes.forEach((element) => {
+  for (let i = 0; i < gameBoxes.length; i++) {
     // creating object for each of the the elements
-    if (element.classList.contains(`empty-field`)) {
+    if (gameBoxes[i].classList.contains(`empty-field`)) {
       const info = {};
 
-      info.empty = element.classList[1] == "empty-field" ? true : false;
+      info.empty = gameBoxes[i].classList[1] == "empty-field" ? true : false;
 
-      const rect = element.getBoundingClientRect();
+      const rect = gameBoxes[i].getBoundingClientRect();
 
       // recording square dimention coordinates
       info.left = rect.left;
@@ -177,11 +199,11 @@ function findDropBoxesCenters() {
       info.bottom = rect.bottom;
 
       // taking id for the element
-      info.id = parseInt(element.id.split("-")[2]);
+      info.id = parseInt(gameBoxes[i].id.split("-")[2]);
 
-      info.element = element;
+      info.element = gameBoxes[i];
 
       dropBoxesCenters.push(info);
     }
-  });
+  }
 }

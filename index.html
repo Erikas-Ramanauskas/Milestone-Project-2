@@ -12,58 +12,85 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous"
     />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+
+    <script defer src="https://kit.fontawesome.com/be71380b34.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
+
   <body>
-    <div class="content">
-      <div class="drag-box-container">
-        <div class="drag-box">
-          <div class="draggable" draggable="true">
-            <div class="shape-box filled-box">1</div>
-            <div class="shape-box filled-box">2</div>
-            <div class="shape-box filled-box">3</div>
-            <div class="shape-box filled-box">4</div>
+    <!-- <div id="game-screen-body"> -->
+    <div id="game-screen-container">
+      <div id="game-screen">
+        <div id="game-controls">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Menu
+          </button>
+
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="staticBackdrop"
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            tabindex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel1">Modal title</h1>
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel2">Modal title</h1>
+                  <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                </div>
+                <div class="modal-body">
+                  <button
+                    type="button"
+                    onclick="gameStart()"
+                    class="btn dificulity-choice btn-primary"
+                    data-bs-dismiss="modal"
+                  >
+                    Easy
+                  </button>
+                  <button
+                    type="button"
+                    onclick="gameStart()"
+                    class="btn dificulity-choice btn-primary"
+                    data-bs-dismiss="modal"
+                  >
+                    Medium
+                  </button>
+                  <button
+                    type="button"
+                    onclick="gameStart()"
+                    class="btn dificulity-choice btn-primary"
+                    data-bs-dismiss="modal"
+                  >
+                    Hard
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="game-icons">
+            <div class="game-icon" id="rotate-left" draggable="true"><i class="fa-solid fa-rotate-left"></i></div>
+            <div class="game-icon" id="rotate-right" draggable="true"><i class="fa-solid fa-rotate-right"></i></div>
           </div>
         </div>
-
-        <div class="drag-box">
-          <div class="draggable" draggable="true">
-            <div class="shape-box filled-box box-1">1</div>
-            <div class="shape-box filled-box box-2">2</div>
-            <div class="shape-box empty-box box-3">3</div>
-            <div class="shape-box filled-box box-4">4</div>
-          </div>
+        <div id="game-board"></div>
+        <div id="game-shapes">
+          <div class="shape-window"></div>
+          <div class="shape-window"></div>
         </div>
-
-        <div class="drag-box">
-          <div class="draggable" draggable="true">
-            <div class="shape-box empty-box box-1">1</div>
-            <div class="shape-box filled-box box-2">2</div>
-            <div class="shape-box filled-box box-3">3</div>
-            <div class="shape-box empty-box box-4">4</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="drag-target" id="droptarget">
-        <div class="game-box empty-field" id="game-box-1">1</div>
-        <div class="game-box empty-field" id="game-box-2">2</div>
-        <div class="game-box filled-field" id="game-box-3">3</div>
-        <div class="game-box empty-field" id="game-box-4">4</div>
-        <div class="game-box empty-field" id="game-box-5">5</div>
-        <div class="game-box empty-field" id="game-box-6">6</div>
-        <div class="game-box empty-field" id="game-box-7">7</div>
-        <div class="game-box empty-field" id="game-box-8">8</div>
-        <div class="game-box filled-field" id="game-box-9">9</div>
-        <div class="game-box empty-field" id="game-box-10">10</div>
-        <div class="game-box empty-field" id="game-box-11">11</div>
-        <div class="game-box empty-field" id="game-box-12">12</div>
-        <div class="game-box empty-field" id="game-box-13">13</div>
-        <div class="game-box empty-field" id="game-box-14">14</div>
-        <div class="game-box empty-field" id="game-box-15">15</div>
-        <div class="game-box empty-field" id="game-box-16">16</div>
       </div>
     </div>
+    <!-- </div> -->
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
@@ -71,17 +98,13 @@
       crossorigin="anonymous"
     ></script>
     <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"
-      integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script
-      defer
       src="https://code.jquery.com/jquery-3.6.4.js"
       integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
       crossorigin="anonymous"
     ></script>
-    <script src="assets/scripts/script.js"></script>
+    <script defer src="assets/scripts/game-setup.js"></script>
+    <script defer src="assets/scripts/game-shapes.js"></script>
+    <script defer src="assets/scripts/game-drag.js"></script>
+    <script defer src="assets/scripts/game-score.js"></script>
   </body>
 </html>

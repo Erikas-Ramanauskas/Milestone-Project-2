@@ -3,11 +3,8 @@
 // This is a first JS file dealing with entire setup of game board, positioning and size of it
 // Additionly it will call all nececeraly globar variables for other files
 
-// Temporary variables
-
-const temporaryShapesNo = 2;
-
 // DOM elements
+const container = $(`#game-screen-container`);
 const gameScreen = $(`#game-screen`);
 const gameBoard = $(`#game-board`);
 const gameControls = $(`#game-controls`);
@@ -26,18 +23,16 @@ let horizontalOrNot; //true for vertical, false for horizontal, checked on load 
 
 // Functions to call once the game loads
 window.addEventListener(`load`, () => {
-  horizontalOrNot = window.innerWidth < window.innerHeight;
+  horizontalOrNot = container.innerWidth() < container.innerHeight();
   gameScreenDimentions();
   gameBoardAndScreenDimentions();
   newGameBoardGrid();
-  fillShapesContainer(temporaryShapesNo);
-  addRotationIcons();
   setShapesContainerSize();
 });
 
 // Functions to call when screen resizes
 window.addEventListener(`resize`, () => {
-  horizontalOrNot = window.innerWidth < window.innerHeight;
+  horizontalOrNot = container.innerWidth() < container.innerHeight();
   gameScreenDimentions();
   setShapesContainerSize();
   gameBoardAndScreenDimentions();
@@ -54,20 +49,20 @@ function gameScreenDimentions() {
   // Determines if height is bigger or with and decides witch way to set up 3x4 ratio.
   // after making this decition it check's for largest proportions to fit 3x4 ratio box
   if (horizontalOrNot) {
-    if (window.innerWidth / viewRatio < window.innerHeight) {
+    if (container.innerWidth() / viewRatio < container.innerHeight()) {
       width = `100%`;
-      height = `${window.innerWidth / viewRatio}px`;
+      height = `${container.innerWidth() / viewRatio}px`;
     } else {
       height = `100%`;
-      width = `${window.innerHeight * viewRatio}px`;
+      width = `${container.innerHeight() * viewRatio}px`;
     }
   } else {
-    if (window.innerHeight / viewRatio < window.innerWidth) {
+    if (container.innerHeight() / viewRatio < container.innerWidth()) {
       height = `100%`;
-      width = `${window.innerHeight / viewRatio}px`;
+      width = `${container.innerHeight() / viewRatio}px`;
     } else {
       width = `100%`;
-      height = `${window.innerWidth * viewRatio}px`;
+      height = `${container.innerWidth() * viewRatio}px`;
     }
   }
   gameScreen.css(`width`, width).css(`height`, height);
@@ -111,28 +106,6 @@ function newGameBoardGrid() {
       `<div class="game-box grid-row-${rowNumber} grid-column-${columnNumber} grid-square-${squareNumber} empty-field"></div>`
     );
   }
-}
-
-// Game shapes function for start of the game and restarting the game
-function fillShapesContainer(numSquares) {
-  // Clear any existing content in the container
-  gameShapes.html(``);
-  for (let i = 0; i < numSquares; i++) {
-    let div = document.createElement("div");
-    div.classList.add(`shape-window`);
-    gameShapes.append(div);
-  }
-}
-
-// adding game controll buttons
-function addRotationIcons() {
-  gameControls.prepend(
-    `<div id="game-icons">
-    <div class="game-icon" id="rotate-left" draggable="true"><i class="fa-solid fa-rotate-left"></i></div>
-    <div class="game-icon" id="rotate-right" draggable="true"><i class="fa-solid fa-rotate-right"></i></div>
-    <div class="game-icon" id="menu-icon"><i class="fa-solid fa-power-off"></i></div>
-    </div>`
-  );
 }
 
 // -------------------------------------------------------------------------------------
