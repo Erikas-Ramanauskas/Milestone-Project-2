@@ -26,6 +26,12 @@
   --hightlight-border-right: #469294ff;
   --hightlight-border-bottom: #5dc3c6ff;
   --hightlight-border-left: #acf8faff;
+
+  --destroy-primary: #661a11ff;
+  --destroy-border-top: #854841ff;
+  --destroy-border-right: #3d100aff;
+  --destroy-border-bottom: #52150eff;
+  --destroy-border-left: #a37670ff;
 }
 
 /* google fonts */
@@ -50,6 +56,7 @@ body {
 
 #game-board {
   background-color: var(--cream-dark);
+  border-radius: 7%;
   top: 0;
   bottom: 0;
   left: 0;
@@ -95,10 +102,15 @@ body {
 
 .draggable {
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0) !important;
+  box-sizing: border-box !important;
 }
 
 /* dragable sizes */
+
+.shape-box {
+  box-sizing: border-box !important;
+}
+
 .draggable-one {
   width: 25%;
   height: 25%;
@@ -161,6 +173,15 @@ body {
   border-left: 0.5rem solid var(--border-left);
 }
 
+/* second highlight is for tiles to be destroyed and i want highlight 1 to override 2nd */
+.highlighted-square2 {
+  background-color: var(--destroy-primary);
+  border-top: 0.5rem solid var(--destroy-border-top);
+  border-right: 0.5rem solid var(--destroy-border-right);
+  border-bottom: 0.5rem solid var(--destroy-border-bottom);
+  border-left: 0.5rem solid var(--destroy-border-left);
+}
+
 .highlighted-square {
   background-color: var(--highlight-primary);
   border-top: 0.5rem solid var(--hightlight-border-top);
@@ -168,11 +189,6 @@ body {
   border-bottom: 0.5rem solid var(--hightlight-border-bottom);
   border-left: 0.5rem solid var(--hightlight-border-left);
 }
-/* 
-#game-screen-body {
-  height: 100%;
-  width: 100%;
-} */
 
 #game-screen-container {
   display: flex;

@@ -78,6 +78,7 @@ function dragOver(e) {
 
   for (let i = 0; i < gameBoxes.length; i++) {
     gameBoxes[i].classList.remove(`highlighted-square`);
+    gameBoxes[i].classList.remove(`highlighted-square2`);
   }
 
   // The fallowing code determines if center of dragable boxes are within dropboxes.
@@ -92,13 +93,14 @@ function dragOver(e) {
       element.classList.add(`highlighted-square`);
     });
   }
+  highlightTiles();
 }
 
 /**
  * Test dragable squares center location against dropboxes area to see which ones are maching
  * @param {number} mouseX Mouse X coordinates
  * @param {number} mouseY Mouse Y coordinates
- * @returns array of elements macthed, and true or false if all elements maches and the shape can be placed.
+ * @returns array of elements matched, and true or false if all elements maches and the shape can be placed.
  */
 
 function findingMacthingSquares(mouseX, mouseY) {
@@ -111,10 +113,11 @@ function findingMacthingSquares(mouseX, mouseY) {
 
     dropBoxesCenters.forEach((e) => {
       // checkign if the dragable box center coordinates are within a dropbox square
-      const condition1 = boxCenterX > e.left;
-      const condition2 = boxCenterX < e.right;
-      const condition3 = boxCenterY > e.top;
-      const condition4 = boxCenterY < e.bottom;
+      // added 1% reduction in avialable size due to shapes catching squares they should not
+      const condition1 = boxCenterX > e.left * 1.01;
+      const condition2 = boxCenterX < e.right / 1.01;
+      const condition3 = boxCenterY > e.top * 1.01;
+      const condition4 = boxCenterY < e.bottom / 1.01;
 
       if (condition1 && condition2 && condition3 && condition4) {
         mactchedActiveSquares.push(e.element);
@@ -135,6 +138,7 @@ function dragEnd(e) {
 
   for (let i = 0; i < gameBoxes.length; i++) {
     gameBoxes[i].classList.remove(`highlighted-square`);
+    gameBoxes[i].classList.remove(`highlighted-square2`);
   }
 
   // getting mosue cordinates during the drop

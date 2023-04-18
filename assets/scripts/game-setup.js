@@ -34,8 +34,8 @@ window.addEventListener(`load`, () => {
 window.addEventListener(`resize`, () => {
   horizontalOrNot = container.innerWidth() < container.innerHeight();
   gameScreenDimentions();
-  setShapesContainerSize();
   gameBoardAndScreenDimentions();
+  setShapesContainerSize();
 });
 
 //-------------------------------------FUNCTIONS---------------------------

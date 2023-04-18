@@ -111,11 +111,15 @@ Before going in to individual smaller bugs one issue and soliution requires its 
   - this is something i would liek to revisit in a future and build up my orriginal vission.
   
 
-#### Solved Bugs
- - 
+#### Solved Bugs during developing
+  - There were a that coused the biger shapes of 4 width or height to split up and take over 5 leaving 1 as a gap. this is due to js resizing and causing the drop area being bigger than a shapes squares. When retrieving data of shapes X and Y i added to the top and left 1% (multiplied by 1.01) as well as divided right and bottom edges by the same. This seems to solve the problem, yet the player will be about 2% more accurate on droping shapes than before.
+  - Several resizing issues were detected when changing direction in the phone mode, and especialy when resizing sreen size while testing in responsive mode. Main issue was that shapes and buttons mostly relied on game board dimentions. During resize event listener the order of functions were not in order and changing them around *gameBoardAndScreenDimentions();* first and *setShapesContainerSize();* after seem to solve the problem
+
+
+#### Solved Bugs after public testing
 
 ### Remaining Bugs
-There are no remaining known bugs.
+When resizing 
 
 ### Chalanges faced and decitions made
 There are no remaining known bugs.
