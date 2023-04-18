@@ -115,16 +115,19 @@ function setShapesContainerSize() {
   let shapeAspectRatios;
   let shapeDirection;
   let iconsDirection;
+  let menuRatios;
 
   if (horizontalOrNot) {
     // if screen is horizontal
     shapeAspectRatios = (gameShapes.outerWidth() / 10) * 4;
     shapeDirection = `row`;
+    menuRatios = gameShapes.outerWidth() / 6;
     iconsDirection = [`row`, `width`, `height`];
   } else {
     // if screen is vertical
     shapeAspectRatios = (gameShapes.outerHeight() / 10) * 4;
     shapeDirection = `column`;
+    menuRatios = gameShapes.outerHeight() / 6;
     iconsDirection = [`column`, `height`, `width`];
   }
 
@@ -132,12 +135,15 @@ function setShapesContainerSize() {
   $(`.shape-window`).css(`width`, shapeAspectRatios).css(`height`, shapeAspectRatios);
   gameShapes.css(`flex-direction`, shapeDirection);
 
-  gameControls.css(`flex-direction`, iconsDirection[0]);
-  $(`#game-icons`)
-    .css(`flex-direction`, iconsDirection[0])
-    .css(iconsDirection[1], shapeAspectRatios)
-    .css(iconsDirection[2], `auto`);
-  $(`.game-icon`)
-    .css(`height`, shapeAspectRatios / 3)
-    .css(`width`, shapeAspectRatios / 3);
+  // Set CSS for game controls buttons
+  gameControls.css(`flex-direction`, iconsDirection[0]).css(iconsDirection[1], `100%`);
+
+  // sets css for menu button and its children
+  $(`.menu-container`).css(`flex-direction`, iconsDirection[0]);
+  $(`.menu-button`).css(`height`, menuRatios).css(`width`, menuRatios);
+
+  //sets css for shape rotation icons
+  $(`#game-icons`).css(`flex-direction`, iconsDirection[0]);
+
+  $(`.game-icon`).css(`height`, menuRatios).css(`width`, menuRatios);
 }

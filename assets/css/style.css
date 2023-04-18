@@ -36,7 +36,7 @@
 
 /* google fonts */
 
-@import url("https://fonts.googleapis.com/css2?family=Archivo&family=Quicksand&family=Roboto&family=Saira&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display&family=Gloria+Hallelujah&family=Roboto&display=swap");
 
 body {
   height: 100vh;
@@ -71,6 +71,26 @@ body {
 
 #game-controls {
   display: flex;
+}
+
+.menu-container {
+  display: flex;
+  background-color: transparent;
+}
+
+.menu-button {
+  border-radius: 15%;
+  background-color: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menu-button p {
+  text-align: center;
+  margin: 0;
+  font-size: 2rem;
+  color: white;
+  font-family: "Big Shoulders Stencil Display", cursive;
 }
 
 #game-shapes {
@@ -145,12 +165,14 @@ body {
   align-items: center;
   justify-content: space-around;
   background-color: var(--light-color);
+  background-color: transparent;
 }
 
 .game-icon {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 15%;
   font-size: 3.5vw;
 }
 

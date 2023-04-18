@@ -26,11 +26,15 @@
     <!-- <div id="game-screen-body"> -->
     <div id="game-screen-container">
       <div id="game-screen">
+        <!-- Button trigger modal -->
         <div id="game-controls">
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Menu
+          <button type="button" class="menu-container" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <div class="menu-button highlighted-square2"><p>M</p></div>
+            <div class="menu-button highlighted-square2"><p>E</p></div>
+            <div class="menu-button highlighted-square2"><p>N</p></div>
+            <div class="menu-button highlighted-square2"><p>U</p></div>
           </button>
+          <!-- Button trigger modal -->
 
           <!-- Modal -->
           <div
@@ -79,8 +83,12 @@
             </div>
           </div>
           <div id="game-icons">
-            <div class="game-icon" id="rotate-left" draggable="true"><i class="fa-solid fa-rotate-left"></i></div>
-            <div class="game-icon" id="rotate-right" draggable="true"><i class="fa-solid fa-rotate-right"></i></div>
+            <div class="game-icon highlighted-square" id="rotate-left" draggable="true">
+              <i class="fa-solid fa-rotate-left"></i>
+            </div>
+            <div class="game-icon highlighted-square" id="rotate-right" draggable="true">
+              <i class="fa-solid fa-rotate-right"></i>
+            </div>
           </div>
         </div>
         <div id="game-board"></div>
