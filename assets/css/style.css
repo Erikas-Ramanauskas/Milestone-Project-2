@@ -162,7 +162,6 @@ body {
 
 #game-icons {
   display: flex;
-  align-items: center;
   justify-content: space-around;
   background-color: var(--light-color);
   background-color: transparent;

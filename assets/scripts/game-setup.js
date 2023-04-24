@@ -10,12 +10,21 @@ const gameBoard = $(`#game-board`);
 const gameControls = $(`#game-controls`);
 const gameShapes = $(`#game-shapes`);
 
-// Custom variables
+// Three diferent shape dificulities are set for the start of the game, then adjusted as a game progresses
+// To set up game procentage, using thousands instead of hundreds to be more precice on procentages
 
-const gameScores = {
+const gameSettings = {
+  easyShapesProcentage: 955,
+  mediumShapesProcentage: 30,
+  hardShapesProcentage: 15,
+  // Every game turn medium and hard base value will be multiplied and increced with diminishing returns
+  mediumShapeMultiplier: 0.9, // 90%
+  hardShapeMultiplier: 0.99, // 99%
+  // Game scores setting. Turns are used for procentage base calculation
   turns: 0,
   totalScore: 0,
-  shapeNumber: 0,
+  // Game dificulity is set by numbers 1 = easy, 2 = medium, 3 = hard
+  dificulity: 0,
 };
 
 //determines if screen is horizontal or vertical and this function used for many others as a variable.
@@ -110,7 +119,7 @@ function newGameBoardGrid() {
 
 // -------------------------------------------------------------------------------------
 
-// Seting up the size and layout of game shapes windows
+// Seting up the size and layout of game shapes windows as well as controll button window
 function setShapesContainerSize() {
   let shapeAspectRatios;
   let shapeDirection;
@@ -136,7 +145,10 @@ function setShapesContainerSize() {
   gameShapes.css(`flex-direction`, shapeDirection);
 
   // Set CSS for game controls buttons
-  gameControls.css(`flex-direction`, iconsDirection[0]).css(iconsDirection[1], `100%`);
+  gameControls
+    .css(`flex-direction`, iconsDirection[0])
+    .css(iconsDirection[2], menuRatios + `px`)
+    .css(iconsDirection[1], 6 * menuRatios + `px`);
 
   // sets css for menu button and its children
   $(`.menu-container`).css(`flex-direction`, iconsDirection[0]);

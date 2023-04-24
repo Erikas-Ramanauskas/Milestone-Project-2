@@ -1,5 +1,7 @@
 "use strict";
 
+// This is second game file working with all game shape functions: creating, arranging, rotating and anythign in between
+
 // Shapes data arrays, all are made using ecxel helper and consist of 1, 4, 9 or 16 pieces representing 1x1, 2x2, 3x3, 4,x 4 size shapes
 const shapesArray = {
   easy: [
@@ -42,19 +44,6 @@ const shapesArray = {
 
 //-------------------------------------- Shapes formulas ------------------------------------------------------
 let shapeWindows = document.getElementsByClassName(`shape-window`);
-const shapeWindows2 = document.querySelectorAll(`.shape-window`);
-
-// Three diferent shape dificulities are set for the start of the game, then adjusted as a game progresses
-// To set up game procentage using thousands instead of hundreds to be more precice on procentages
-
-const gameDificulitySettings = {
-  easyShapesProcentage: 955,
-  mediumShapesProcentage: 30,
-  hardShapesProcentage: 15,
-  // Every game turn medium and hard base value will be multiplied and increced with diminishing returns
-  mediumShapeMultiplier: 0.9, // 90%
-  hardShapeMultiplier: 0.99, // 99%
-};
 
 // random rounded number generator, *"barowed" from JS Course*
 const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
@@ -62,8 +51,8 @@ const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + mi
 // Choses between easy/medium/or hard shape based on the procentages at the current stage
 // this helps to control games progresive dificulity.
 function choseRandomShapeDificulity() {
-  const easyShapeChance = gameDificulitySettings.easyShapesProcentage; // the number will be highest number roled starting(0-955) (95.5%)
-  const mediumShapeChance = gameDificulitySettings.mediumShapesProcentage + easyShapeChance;
+  const easyShapeChance = gameSettings.easyShapesProcentage; // the number will be highest number roled starting(0-955) (95.5%)
+  const mediumShapeChance = gameSettings.mediumShapesProcentage + easyShapeChance;
   const chance = randomInt(0, 1000);
 
   // depending on the number roll we check first if it is higher than easy range (starting at 0 to 955)

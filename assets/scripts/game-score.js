@@ -1,6 +1,44 @@
 "use strict";
 
-// this function detects when ever the is row/column/3x3 square match
+// Last file for game files group, this works with detecting sucsessfull shape drops, counting score, and seeting dificulity leves
+
+// I left variables for scores in game-setup file to keep all in one place it is being used in other files.
+
+/**
+ * Test dragable squares center location against dropboxes area to see which ones are maching
+ * @param {number} mouseX Mouse X coordinates
+ * @param {number} mouseY Mouse Y coordinates
+ * @returns array of elements matched, and true or false if all elements maches and the shape can be placed.
+ */
+function findingMacthingSquares(mouseX, mouseY) {
+  let mactchedActiveSquares = [];
+
+  // looping thought dragable boxes
+  shapesBoxesCoordinates.boxArray.forEach((element) => {
+    const boxCenterX = mouseX + element.distanceX;
+    const boxCenterY = mouseY + element.distanceY;
+
+    dropBoxesCenters.forEach((e) => {
+      // checkign if the dragable box center coordinates are within a dropbox square
+      // added 1% reduction in avialable size due to shapes catching squares they should not
+      const condition1 = boxCenterX > e.left * 1.01;
+      const condition2 = boxCenterX < e.right / 1.01;
+      const condition3 = boxCenterY > e.top * 1.01;
+      const condition4 = boxCenterY < e.bottom / 1.01;
+
+      if (condition1 && condition2 && condition3 && condition4) {
+        mactchedActiveSquares.push(e.element);
+      }
+    });
+  });
+
+  // checks mached active squares agains the dragable shape box array, if the mount maches this meanst the shape can be droped there.
+  const dropableOrNot = mactchedActiveSquares.length === shapesBoxesCoordinates.boxArray.length;
+
+  return [mactchedActiveSquares, dropableOrNot];
+}
+
+// function detects when ever the is row/column/3x3 square match
 function destroyTiles() {
   // set records tiles when one of the rows, columns or squares reaches 9 (maximum) and it helps with sorting out dublication in case row and column crosses
   const recordTiles = new Set();
@@ -55,7 +93,7 @@ function destroyTiles() {
 }
 
 // Does exacly the same thing as function above but wiht highlighted squares (with draged shape over)
-function highlightTiles() {
+function highlightTiles(condition) {
   // set records tiles when one of the rows, columns or squares reaches 9 (maximum) and it helps with sorting out dublication in case row and column crosses
   const recordTiles = new Set();
 
@@ -70,8 +108,6 @@ function highlightTiles() {
     let row = [];
     let column = [];
     let square = [];
-
-    console.log(rows[i].classList.contains("filled-field"));
 
     // Looping though groups to find filled tiles
     for (let i = 0; i < 9; i++) {
@@ -105,10 +141,104 @@ function highlightTiles() {
     }
   }
 
-  console.log(recordTiles);
   if (recordTiles.size > 0) {
     recordTiles.forEach((e) => {
       e.classList.add(`highlighted-square2`);
     });
   }
+}
+
+// function is given an array of HTML colection of either shape or game board and creates a matrix of true/false for open windows and shapes
+function arrayFromHTML(htmlColection) {
+  // matrix crated and lengh calculated
+  let matrix = [];
+  const matrixLenght = Math.sqrt(htmlColection.length);
+
+  // creating matrix rows
+  for (let i = 0; i < matrixLenght; i++) {
+    matrix.push([]);
+  }
+
+  for (let i = 0; i < htmlColection.length; i++) {
+    // calcualting matrix row
+    const rowNumber = Math.floor(i / matrixLenght);
+
+    // checks for filled shapes in both shape and game board situations
+    const trueOrFalese =
+      htmlColection[i].classList.contains(`filled-box`) || htmlColection[i].classList.contains(`filled-field`);
+
+    matrix[rowNumber].push(trueOrFalese);
+  }
+  return matrix;
+}
+
+// the function checks if there are any more space for either of shapes to fit in. and returns either true or false
+function checkForGameOver(gameBoardArray, draggablesArray) {
+  let matchFound = false;
+
+  for (let shape of draggablesArray) {
+    // using function to reduce shape size if there are unused rows or columns
+    const newShape = reduceShapeMatrix(shape);
+
+    const shapeColumns = newShape[0].length;
+    const shapeRows = newShape.length;
+    // declaring a limit on were the shape can be. for example shape size 3x3 first square can be at 0-6 row or column to not go over the edge
+    const columnLimit = 10 - shapeColumns;
+    const rowLimit = 10 - shapeRows;
+
+    // first two loops positions the shape at the grid chosing the first square of grid as starting point
+    for (let c = 0; c < columnLimit; c++) {
+      for (let r = 0; r < rowLimit; r++) {
+        // next 2 loops determines wich shape square is being checked against the grid
+        for (let sr = 0; sr < shapeRows; sr++) {
+          // checks if individual boxes can fit, every time it finds it does not fit it breaks both loops
+          // how ever if it find a match in all loops and goes though both at the end it declares matchFound and ends all loops
+          let endloop = false;
+          for (let sc = 0; sc < shapeColumns; sc++) {
+            // shapes square position is added to current board position to mach each shape
+            if (gameBoardArray[r + sr][c + sc] && newShape[sr][sc]) {
+              endloop = true;
+              break;
+            }
+          }
+          if (endloop) break;
+          if (sr === shapeRows - 1) {
+            matchFound = true;
+          }
+        }
+        if (matchFound) break;
+      }
+      if (matchFound) break;
+    }
+    if (matchFound) break;
+  }
+
+  return matchFound;
+}
+
+// this functions goal is to reduce entire matrix and delete unused rows or colums so the shape can be later checked against the board
+function reduceShapeMatrix(matrix) {
+  const matrixLenght = matrix.length;
+  let newMatrix = [...matrix];
+
+  // Deletes the rows and columns that has no active squares
+  // In all cases starting from the end and working backwards as otherwise it would skip the rows or colums.
+  for (let i = matrixLenght - 1; i > -1; i--) {
+    // clears out rows if they dont have any active squares
+    if (!newMatrix[i].includes(true)) newMatrix.splice(i, 1);
+
+    // two loops: one is filling array for the column to check if every matrix row's index contains false
+    // if it does second array deletes the same index at every row
+    let column = [];
+    for (let u = newMatrix.length - 1; u > -1; u--) {
+      column.push(newMatrix[u][i]);
+    }
+    if (!column.includes(true)) {
+      for (let u = newMatrix.length - 1; u > -1; u--) {
+        newMatrix[u].splice(i, 1);
+      }
+    }
+  }
+
+  return newMatrix;
 }
