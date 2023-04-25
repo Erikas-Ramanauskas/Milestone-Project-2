@@ -148,36 +148,14 @@ function highlightTiles(condition) {
   }
 }
 
-// function is given an array of HTML colection of either shape or game board and creates a matrix of true/false for open windows and shapes
-function arrayFromHTML(htmlColection) {
-  // matrix crated and lengh calculated
-  let matrix = [];
-  const matrixLenght = Math.sqrt(htmlColection.length);
-
-  // creating matrix rows
-  for (let i = 0; i < matrixLenght; i++) {
-    matrix.push([]);
-  }
-
-  for (let i = 0; i < htmlColection.length; i++) {
-    // calcualting matrix row
-    const rowNumber = Math.floor(i / matrixLenght);
-
-    // checks for filled shapes in both shape and game board situations
-    const trueOrFalese =
-      htmlColection[i].classList.contains(`filled-box`) || htmlColection[i].classList.contains(`filled-field`);
-
-    matrix[rowNumber].push(trueOrFalese);
-  }
-  return matrix;
-}
-
 // the function checks if there are any more space for either of shapes to fit in. and returns either true or false
 function checkForGameOver(gameBoardArray, draggablesArray) {
+  // if a match found it is changed to true and all loops ends as well as game continues
   let matchFound = false;
 
   for (let shape of draggablesArray) {
     // using function to reduce shape size if there are unused rows or columns
+    // the function will not work if the shape has gap and no ajecent blocks
     const newShape = reduceShapeMatrix(shape);
 
     const shapeColumns = newShape[0].length;
@@ -192,7 +170,7 @@ function checkForGameOver(gameBoardArray, draggablesArray) {
         // next 2 loops determines wich shape square is being checked against the grid
         for (let sr = 0; sr < shapeRows; sr++) {
           // checks if individual boxes can fit, every time it finds it does not fit it breaks both loops
-          // how ever if it find a match in all loops and goes though both at the end it declares matchFound and ends all loops
+          // how ever if it find a match in all loops and goes though both at the end it declares matchFound as true and ends all loops
           let endloop = false;
           for (let sc = 0; sc < shapeColumns; sc++) {
             // shapes square position is added to current board position to mach each shape
@@ -213,6 +191,7 @@ function checkForGameOver(gameBoardArray, draggablesArray) {
     if (matchFound) break;
   }
 
+  // if it goes though all of the loops without finding match false is returned
   return matchFound;
 }
 
@@ -241,4 +220,50 @@ function reduceShapeMatrix(matrix) {
   }
 
   return newMatrix;
+}
+
+// this is callled every time the shape is droped in a game box pushing the turns and recalculating shape procentages
+function gameDificulityAdjustment() {
+  gameSettings.turn++;
+  console.log(gameSettings.turn);
+  shapeDificulityAdjustment(gameSettings.turn);
+}
+
+// adjusts shapes procentage acording game turn
+// can be used during a game or every time the game loaded from memory
+function shapeDificulityAdjustment(gameTurn) {
+  let mediumShapes = gameSettings.mediumBaseProcentage;
+  let hardShapes = gameSettings.hardBaseProcentage;
+
+  const mediumMultiplier = gameSettings.mediumShapeMultiplier;
+  const hardMultiplier = gameSettings.hardShapeMultiplier;
+
+  const mediumShapeTurn = gameSettings.mediumShapeTurn;
+  const hardShapeTurn = gameSettings.hardShapeTurn;
+
+  // the fallowing delays modification until a certain game turn
+  if (gameTurn >= mediumShapeTurn) {
+    mediumShapes = shapeDificulityMultiplication(mediumShapes, mediumMultiplier, gameTurn - mediumShapeTurn);
+  }
+  if (gameTurn >= hardShapeTurn) {
+    hardShapes = shapeDificulityMultiplication(hardShapes, hardMultiplier, gameTurn - hardShapeTurn);
+  }
+
+  gameSettings.easyShapesProcentage = 1000 - mediumShapes - hardShapes;
+  gameSettings.mediumShapesProcentage = mediumShapes;
+  gameSettings.hardShapesProcentage = hardShapes;
+}
+
+// this function calculates a chancefor medium and hard shapes to be drafted.
+function shapeDificulityMultiplication(baseProc, multiplier, gameTurn) {
+  let newProc = baseProc;
+  for (let i = 0; i < gameTurn; i++) {
+    // fallowing formula creates diminishing returns with each game turn but capping at 45% if player ever reches this point
+    if (newProc > 449) {
+      newProc = newProc;
+    } else {
+      newProc = Math.ceil(newProc + baseProc * Math.pow(multiplier, i));
+    }
+  }
+  return newProc;
 }

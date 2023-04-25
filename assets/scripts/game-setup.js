@@ -14,14 +14,22 @@ const gameShapes = $(`#game-shapes`);
 // To set up game procentage, using thousands instead of hundreds to be more precice on procentages
 
 const gameSettings = {
-  easyShapesProcentage: 955,
-  mediumShapesProcentage: 30,
-  hardShapesProcentage: 15,
+  easyBaseProcentage: 910,
+  mediumBaseProcentage: 60,
+  hardBaseProcentage: 30,
+
+  easyShapesProcentage: 910,
+  mediumShapesProcentage: 60,
+  hardShapesProcentage: 30,
   // Every game turn medium and hard base value will be multiplied and increced with diminishing returns
-  mediumShapeMultiplier: 0.9, // 90%
-  hardShapeMultiplier: 0.99, // 99%
+  mediumShapeMultiplier: 0.7, // 90%
+  hardShapeMultiplier: 0.8, // 99%
+
+  mediumShapeTurn: 20,
+  hardShapeTurn: 40,
+
   // Game scores setting. Turns are used for procentage base calculation
-  turns: 0,
+  turn: 0,
   totalScore: 0,
   // Game dificulity is set by numbers 1 = easy, 2 = medium, 3 = hard
   dificulity: 0,

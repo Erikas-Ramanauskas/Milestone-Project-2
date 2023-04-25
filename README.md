@@ -102,27 +102,27 @@ Before going in to individual smaller bugs one issue and soliution requires its 
   - One of the ways i tried was using *dispatchEvent()* function but it completley crashed browser due to events boucing between siblings.
   - Another idea sugested by a friend to attach the shapes to a mouse cursor using: *position:absolute* and width height properties. However at that moment i relised it is not needed, as it alow user to be flexible and click anywere he wants on the shape without having pices to snap around.
   - Another issue was to do with practicaly all *mouse* events not trigering during the drag and right after dragdrop. To my understadning all of mouse events are transfered to drag functions. I had to adopt a mix of both for the final result.
-  - My soliution was to capture mouse position when it is clicked on one of the shapes. In turn i captured a parent div > and taken its children > recorded all X and Y cordinates and calculated center of each shape boxes. This way using *dragover* lsitener that gave me current mouse position, i was a ble to calculate all active boxes of the shape while draging their parent.
-  - Additionaly i captured all game board dropboxes coordinates at the start of drag of all 4 of their edges and using simple conditional testing i was able to check when ever dragable box center enters the squares ,ad used same principal of functionality to place them in while i did not directly appended the children as in the video (that woudl coused parent dive to go inside of one of boxes only)
+  - My soliution was to capture mouse position when it is clicked on one of the shapes. In turn i captured a parent div > and taken its children > recorded all X and Y cordinates and calculated center of each shape boxes. This way using *dragover* lsitener that gave me current mouse position, i was able to calculate all active boxes of the shape while draging their parent.
+  - Additionaly i captured all game board dropboxes coordinates at the start of drag of all 4 of their edges and using simple conditional testing i was able to check when ever draggable box center enters the squares, and used same principal of functionality to place them in while i did not directly appended the children as in the video (that would coused parent div to go inside of one of boxes only)
   - Lastly the issue i had that once something is beign dragged it CAN NOT be modified via css.
-  - This was important for me to do as my game board is 9x9 squares and on the side i wanted to fit 3 or event 4 game shapes that could be as big as 4x4. Taking that together it is 12 or even 16 squares each in the same space as game board *check early wireframes*. this means i had to make them smaller than game board sqaures and scale them up as the player pick them up. *That is how original game i got an idea from works*
+  - This was important for me to do as my game board is 9x9 squares and on the side i wanted to fit 3 or even 4 game shapes that could be as big as 4x4. Taking that together it is 12 or even 16 squares each in the same space as game board *check early wireframes*. this means i had to make them smaller than game board sqaures and scale them up as the player pick them up. *That is how original game i got an idea from works*
   - I have been searching multiple ways to achieve this, via *scale*, changing width and height, transforming, creating element bigger and fitting in the smaller box yet the design of draggable "shadow element" did not change. 
-  - Since i spend a large portion of time on these 2 problems and one of them was solved i decided to change a desing of the game and create shapes of the same size as the game board by fitting less of them or rearanging the layout.
-  - this is something i would liek to revisit in a future and build up my orriginal vission.
+  - On top of it any element that is parent of draggable element transfers background color to dragable element and no traditional css rule has changed that, causing the colour to stay on invisible *inactive* squares and edges were border radius was present. the only element backgroun the shapes are not taking is <body>
+  - Since i spend a large portion of time on these 2 problems and one of them was solved i decided to change a desing of the game and create shapes of the same size as the game board by fitting less of them or rearanging the layout as well as adding no backgroudn to parent divs.
+  - this is something i would like to revisit in a future and build up my orriginal vision.
   
 
 #### Solved Bugs during developing
-  - There were a that coused the biger shapes of 4 width or height to split up and take over 5 leaving 1 as a gap. this is due to js resizing and causing the drop area being bigger than a shapes squares. When retrieving data of shapes X and Y i added to the top and left 1% (multiplied by 1.01) as well as divided right and bottom edges by the same. This seems to solve the problem, yet the player will be about 2% more accurate on droping shapes than before.
+  - There were a that coused the biger shapes of 4 width or height to split up and take over 5 leaving 1 as a gap. this is due to js resizing and causing the drop area being bigger than a shapes squares. When retrieving data of shapes X and Y i added to the top and left 1% (multiplied by 1.01) as well as divided right and bottom edges by the same. This seems to solve the problem, yet the player will have to more accurate on droping shapes than innitialy.
+  
   - Several resizing issues were detected when changing direction in the phone mode, and especialy when resizing sreen size while testing in responsive mode. Main issue was that shapes and buttons mostly relied on game board dimentions. During resize event listener the order of functions were not in order and changing them around *gameBoardAndScreenDimentions();* first and *setShapesContainerSize();* after seem to solve the problem
-
+  
+  - Initialy i had event listeners added to a dragEnd listener *if* section which checks if shape was droped in the game board thus creating new shape and at the end adding new event listeners. However there is an existing bug that sometimes the droped shape does not apear on the game board and new shape is created insted but no event listeners are added to new shape making the shape unusable for the remaining of the game. Instead i created spearated function and called after *if* statement and to reset all event listeners every time drop down is perfomed. 
 
 #### Solved Bugs after public testing
 
 ### Remaining Bugs
-When resizing 
-
-### Chalanges faced and decitions made
-There are no remaining known bugs.
+  -There is a rare occouring bug that when the shape is droped in the game field sometimes it does not regiter but a new shape is created instead anyway. It hapens rarely and i am not sure why it hapens or how to create the bug manualy or how to solve it at the moment.
 
 ### Validation Results
 

@@ -154,7 +154,6 @@ function crateGameShapeHTML(shapeArray) {
   return shapeHTMLinner;
 }
 
-// clears
 function fillGameShape(shapeWindow) {
   shapeWindow.innerHTML = ``;
 
@@ -191,6 +190,26 @@ function fillGameShape(shapeWindow) {
   shapeWindow.append(elementDiv);
 }
 
-// take given shape window, clear it out and fill it up with new shape details.
+// function is given an array of HTML colection of either shape or game board and creates a matrix of true/false for open windows and shapes
+function arrayFromHTML(htmlColection) {
+  // matrix crated and lengh calculated
+  let matrix = [];
+  const matrixLenght = Math.sqrt(htmlColection.length);
 
-//--------------------------------END OF FUNCTIONS--------------------------------
+  // creating matrix rows
+  for (let i = 0; i < matrixLenght; i++) {
+    matrix.push([]);
+  }
+
+  for (let i = 0; i < htmlColection.length; i++) {
+    // calcualting matrix row
+    const rowNumber = Math.floor(i / matrixLenght);
+
+    // checks for filled shapes in both shape and game board situations
+    const trueOrFalese =
+      htmlColection[i].classList.contains(`filled-box`) || htmlColection[i].classList.contains(`filled-field`);
+
+    matrix[rowNumber].push(trueOrFalese);
+  }
+  return matrix;
+}

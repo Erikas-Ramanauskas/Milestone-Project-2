@@ -158,6 +158,11 @@ function dragEnd(e) {
   const mactchedActiveSquares = findingMacthingSquares(mouseX, mouseY);
 
   if (mactchedActiveSquares[1]) {
+    // adds to the game turn after sucsessfull drop and adjust the shape dificulity
+    gameDificulityAdjustment();
+
+    console.log(gameSettings);
+
     mactchedActiveSquares[0].forEach((element) => {
       element.classList.remove(`empty-field`);
       element.classList.add(`filled-field`);
@@ -166,18 +171,12 @@ function dragEnd(e) {
     // clears out draggable box and creates new draggable shape
     this.parentElement.innerHTML = "";
     gameStartShapesFill();
-
-    // pick up a new created element parent from object that was created during onClick event
-    const shapeWindowChild = shapesBoxesCoordinates.parent.children[0];
-
-    // adds event listeners to new created element
-    shapeWindowChild.addEventListener("mousedown", onMouseDown);
-    shapeWindowChild.addEventListener("dragstart", dragStart);
-    shapeWindowChild.addEventListener("dragend", dragEnd);
   }
 
   destroyTiles();
   findDropBoxesCenters();
+  // introduced this function due to a bug that if the shape missed a spot and did not register new shape event listeners are not added
+  addNewEventListeners();
 
   // cleaning up data after drag ended
   shapesBoxesCoordinates = {};
@@ -198,4 +197,17 @@ function dragEnd(e) {
       ? alert(`game over`)
       : console.log(`Function found a space avialable`);
   }, 1000);
+}
+
+function addNewEventListeners() {
+  const draggables = document.getElementsByClassName(`draggable`);
+  for (let i = 0; i < draggables.length; i++) {
+    draggables[i].removeEventListener("mousedown", onMouseDown);
+    draggables[i].removeEventListener("dragstart", dragStart);
+    draggables[i].removeEventListener("dragend", dragEnd);
+
+    draggables[i].addEventListener("mousedown", onMouseDown);
+    draggables[i].addEventListener("dragstart", dragStart);
+    draggables[i].addEventListener("dragend", dragEnd);
+  }
 }
