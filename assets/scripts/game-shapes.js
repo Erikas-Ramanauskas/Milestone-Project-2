@@ -19,19 +19,19 @@ const shapesArray = {
   medium: [
     [true, false, false, false, true, false, false, false, true],
     [false, false, false, true, false, true, true, true, true],
-    [false, true, false, true, false, true, false, true, false],
-    [false, true, false, false, false, true, true, false, false, true, false, false, false, true, false, false],
+    [true, false, true, false, true, false, false, true, false],
+    [false, true, false, true, true, true, false, true, false],
     [true, true, true, true, false, false, true, false, false],
     [true, false, false, true, true, true, true, false, false],
     [true, false, false, true, true, true, false, false, true],
     [false, true, false, false, false, true, false, true, false],
-    [false, true, false, false, false, true, false, false, false, true, false, false, false, true, true, false],
+    [false, true, false, true, false, true, false, true, false],
     [true, false, false, true, false, false, false, true, true],
   ],
   hard: [
     [true, false, false, false, false, true, false, true, false, false, true, false, false, false, false, false],
-    [false, true, false, true, false, true, false, true, false],
-    [true, true, false, false, false, false, true, false, false, false, false, true, false, false, false, false],
+    [true, false, false, false, false, true, false, true, false, false, true, false, false, true, false, false],
+    [true, true, true, false, true, false, true, true, false],
     [true, false, true, true, false, true, false, true, false],
     [false, true, false, false, false, false, true, false, false, true, false, false, false, false, true, false],
     [true, false, true, false, true, true, false, false, true],
@@ -75,7 +75,7 @@ function choseRandomShapeDificulity() {
  * @param {number} timesToFlip
  * @returns array
  */
-function rotateTile(array, timesToFlip) {
+function rotateShape(array, timesToFlip) {
   // determening if the shape is 1x1 , 2x2, 3x3, or 4x4
   const shapeDimentionlenght = Math.sqrt(array.length);
 
@@ -135,12 +135,73 @@ function rotateTile(array, timesToFlip) {
   return finalArray;
 }
 
+// almoast identical function to previous however it will make a mirror copy of the shape as several shapes can have modified by fliping them
+function mirrorShape(array) {
+  // determening if the shape is 1x1 , 2x2, 3x3, or 4x4
+  const shapeDimentionlenght = Math.sqrt(array.length);
+
+  // all changes are added to newArray and not effecting finalArray untill the loop cycle is completed.
+  let finalArray = [...array];
+  let newArray = [];
+
+  // no loop needed as it either hapens or not which is determined before function called
+  switch (shapeDimentionlenght) {
+    case 1:
+      newArray = [finalArray[0]];
+      break;
+    case 2:
+      newArray = [finalArray[1], finalArray[0], finalArray[3], finalArray[2]];
+      break;
+    case 3:
+      newArray = [
+        finalArray[2],
+        finalArray[1],
+        finalArray[0],
+        finalArray[5],
+        finalArray[4],
+        finalArray[3],
+        finalArray[8],
+        finalArray[7],
+        finalArray[6],
+      ];
+      break;
+    case 4:
+      newArray = [
+        finalArray[3],
+        finalArray[2],
+        finalArray[1],
+        finalArray[0],
+        finalArray[7],
+        finalArray[6],
+        finalArray[5],
+        finalArray[4],
+        finalArray[11],
+        finalArray[10],
+        finalArray[9],
+        finalArray[8],
+        finalArray[15],
+        finalArray[14],
+        finalArray[13],
+        finalArray[12],
+      ];
+      break;
+    default:
+      throw new Error(`shape size not found`);
+  }
+  // finalArray is replaced with new completed array and ready for next loop cycle
+  finalArray = [...newArray];
+
+  return finalArray;
+}
+
 // takes choseRandomShapeDificulity() array which has 10 differnet shapes and choses one at random.
 function choseRandomShape() {
   // choses random shape by taking random dificulity first then rolling the dice on random shape array
-  const array = choseRandomShapeDificulity()[randomInt(0, 9)];
+  const array1 = choseRandomShapeDificulity()[randomInt(0, 9)];
+  // then either fliping or not
+  const array2 = randomInt(0, 1) === 1 ? mirrorShape(array1) : array1;
   // then rotating it (or not) to get even more random shape.
-  const trulyRandomShape = rotateTile(array, randomInt(0, 3));
+  const trulyRandomShape = rotateShape(array2, randomInt(0, 3));
   return trulyRandomShape;
 }
 

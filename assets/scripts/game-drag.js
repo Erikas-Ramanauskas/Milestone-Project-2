@@ -6,6 +6,9 @@ const draggables = document.getElementsByClassName("draggable");
 const gameBoxes = document.getElementsByClassName("game-box");
 const screen = document.querySelector("#game-screen");
 
+const dropAudio = document.getElementById("drop-audio");
+const destroyAudio = document.getElementById("destroy-audio");
+
 let shapesBoxesCoordinates = {};
 
 let dropBoxesCenters = [];
@@ -138,7 +141,7 @@ function dragOver(e) {
       element.classList.add(`highlighted-square`);
     });
   }
-  highlightTiles();
+  highlightTiles(`highlight`);
 }
 
 //Drag end works like onMouseUp and does all events right after.
@@ -168,15 +171,19 @@ function dragEnd(e) {
       element.classList.add(`filled-field`);
     });
 
+    // check for meched tiles and destroy them
+    const sound = highlightTiles(`destroy`);
+    // If tiles are destroyed prevent drop audio otherwise play it.
+    sound ? `` : playAudio(`drop`);
+
     // clears out draggable box and creates new draggable shape
     this.parentElement.innerHTML = "";
     gameStartShapesFill();
   }
 
-  destroyTiles();
   findDropBoxesCenters();
   // introduced this function due to a bug that if the shape missed a spot and did not register new shape event listeners are not added
-  addNewEventListeners();
+  addNewEventListeners(`reset`);
 
   // cleaning up data after drag ended
   shapesBoxesCoordinates = {};
@@ -199,15 +206,28 @@ function dragEnd(e) {
   }, 1000);
 }
 
-function addNewEventListeners() {
+// Requires remove/add/reset action to work. effects draggable squares
+function addNewEventListeners(action) {
   const draggables = document.getElementsByClassName(`draggable`);
   for (let i = 0; i < draggables.length; i++) {
-    draggables[i].removeEventListener("mousedown", onMouseDown);
-    draggables[i].removeEventListener("dragstart", dragStart);
-    draggables[i].removeEventListener("dragend", dragEnd);
+    if (action === `remove`) {
+      draggables[i].removeEventListener("mousedown", onMouseDown);
+      draggables[i].removeEventListener("dragstart", dragStart);
+      draggables[i].removeEventListener("dragend", dragEnd);
+    } else if (action === `add`) {
+      draggables[i].addEventListener("mousedown", onMouseDown);
+      draggables[i].addEventListener("dragstart", dragStart);
+      draggables[i].addEventListener("dragend", dragEnd);
+    } else if (action === `reset`) {
+      draggables[i].removeEventListener("mousedown", onMouseDown);
+      draggables[i].removeEventListener("dragstart", dragStart);
+      draggables[i].removeEventListener("dragend", dragEnd);
 
-    draggables[i].addEventListener("mousedown", onMouseDown);
-    draggables[i].addEventListener("dragstart", dragStart);
-    draggables[i].addEventListener("dragend", dragEnd);
+      draggables[i].addEventListener("mousedown", onMouseDown);
+      draggables[i].addEventListener("dragstart", dragStart);
+      draggables[i].addEventListener("dragend", dragEnd);
+    } else {
+      throw new Error(`Event listener action was not given`);
+    }
   }
 }

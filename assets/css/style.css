@@ -39,23 +39,34 @@
 @import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display&family=Gloria+Hallelujah&family=Roboto&display=swap");
 
 body {
+  background-color: #242b28;
+  /* background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1029%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='rgba(36%2c 43%2c 40%2c 1)'%3e%3c/rect%3e%3cpath d='M867.32-99.01C705.19-54.36 647.7 394.86 412.75 396.83 177.8 398.8 88.51 147.98-41.82 139.23' stroke='rgba(102%2c 26%2c 17%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1231.72-52.67C1109.19-43.69 1024.52 195.24 807.98 196.21 591.45 197.18 596.12 126.21 384.25 126.21 172.38 126.21 67.88 195.97-39.49 196.21' stroke='rgba(102%2c 26%2c 17%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M643.45-11.26C560.68-1.24 598.92 174.41 373.8 184.98 148.67 195.55-21.61 383.32-165.51 386.58' stroke='rgba(102%2c 26%2c 17%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1264.57-98.33C1117.03-65.7 1064.71 316.07 830.88 322.64 597.05 329.21 614.04 252.64 397.2 252.64 180.35 252.64 73.33 322.42-36.49 322.64' stroke='rgba(102%2c 26%2c 17%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M794.21-17.21C650.29 5.78 574.35 353.28 344.9 354.26 115.46 355.24 17 173.02-104.4 169.46' stroke='rgba(102%2c 26%2c 17%2c 1)' stroke-width='2'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1029'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e"); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  overflow-x: hidden;
+}
+
+#full-screen {
   height: 100vh;
   width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--dark-color);
-  margin: 0;
 }
 
 #game-screen {
   display: flex;
   align-items: end;
   justify-content: end;
+  /* background-color: #74f4f7; */
 }
 
 #game-board {
   background-color: var(--cream-dark);
+  margin: 0;
+
   border-radius: 7%;
   top: 0;
   bottom: 0;
@@ -73,18 +84,65 @@ body {
   display: flex;
 }
 
-.menu-container {
+.navbar-nav {
+  border: 1px red solid;
+}
+
+.introduction {
+  font-size: 1.6rem;
+}
+
+.hero-text1 {
   display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-text2 {
+  background-color: var(--cream-dark);
+  border-radius: 3rem;
+}
+
+.hero-text2 h1,
+.hero-text2 p {
+  text-align: center;
+  padding: 0 1.5rem;
+}
+
+.default-text-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.default-text {
+  background-color: var(--cream-dark);
+  border-radius: 3rem;
+}
+
+.card {
   background-color: transparent;
+  border: none;
+}
+
+.card-title {
+  color: white;
+  text-align: center;
 }
 
 .menu-button {
   border-radius: 15%;
-  background-color: none;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+.menu-container {
+  background-color: transparent;
+}
+
 .menu-button p {
   text-align: center;
   margin: 0;
@@ -195,13 +253,6 @@ body {
 }
 
 /* second highlight is for tiles to be destroyed and i want highlight 1 to override 2nd */
-.highlighted-square2 {
-  background-color: var(--destroy-primary);
-  border-top: 0.5rem solid var(--destroy-border-top);
-  border-right: 0.5rem solid var(--destroy-border-right);
-  border-bottom: 0.5rem solid var(--destroy-border-bottom);
-  border-left: 0.5rem solid var(--destroy-border-left);
-}
 
 .highlighted-square {
   background-color: var(--highlight-primary);
@@ -209,6 +260,14 @@ body {
   border-right: 0.5rem solid var(--hightlight-border-right);
   border-bottom: 0.5rem solid var(--hightlight-border-bottom);
   border-left: 0.5rem solid var(--hightlight-border-left);
+}
+
+.highlighted-square2 {
+  background-color: var(--destroy-primary);
+  border-top: 0.5rem solid var(--destroy-border-top);
+  border-right: 0.5rem solid var(--destroy-border-right);
+  border-bottom: 0.5rem solid var(--destroy-border-bottom);
+  border-left: 0.5rem solid var(--destroy-border-left);
 }
 
 #game-screen-container {
@@ -234,4 +293,10 @@ body {
 
 .dificulity-choice {
   margin-bottom: 2rem;
+}
+
+/* Testing classes */
+
+.testing1 {
+  border: red 2px solid;
 }

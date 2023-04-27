@@ -16,7 +16,7 @@ Tedoku is a mix between tetris and sudoku with drag and drop functionality. Fill
 * [Acknowledgements](#acknowledgements-1)
 
 ## Overview
-While the game concept is not new in a genre and my idea is not origina and it is taken from: [Tripledot Studios](https://apps.apple.com/us/developer/tripledot-studios/id1191319103) game: [Woodoku](https://apps.apple.com/us/app/woodoku-wood-block-puzzles/id1496354836) i chose this project as i enjoyed my self quite a lot as well as i believed it will be good programing chalange to pull it of. I was not mistaken.
+While the game concept is not new in a genre and my idea is not original and it is taken from: [Tripledot Studios](https://apps.apple.com/us/developer/tripledot-studios/id1191319103) game: [Woodoku](https://apps.apple.com/us/app/woodoku-wood-block-puzzles/id1496354836) i chose this project as i enjoyed my self quite a lot as well as i believed it will be good programing chalange to pull it of. I was not mistaken.
 
 The simplicity of the game is as as simple as as it gets, while i do provide rules to the visitor i strongly believe and as testing shows you dont need to truly know the rules or any specific language to pick up on the simplistic rules maching to the classic games as tetris, snake or pacman jsut after a one or twor game sesions.
 

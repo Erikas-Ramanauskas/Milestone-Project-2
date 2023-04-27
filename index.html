@@ -23,82 +23,161 @@
   </head>
 
   <body>
-    <!-- <div id="game-screen-body"> -->
-    <div id="game-screen-container">
-      <div id="game-screen">
-        <!-- Button trigger modal -->
-        <div id="game-controls">
-          <button type="button" class="menu-container" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            <div class="menu-button highlighted-square2"><p>M</p></div>
-            <div class="menu-button highlighted-square2"><p>E</p></div>
-            <div class="menu-button highlighted-square2"><p>N</p></div>
-            <div class="menu-button highlighted-square2"><p>U</p></div>
-          </button>
-          <!-- Button trigger modal -->
-
-          <!-- Modal -->
-          <div
-            class="modal fade"
-            id="staticBackdrop"
-            data-bs-backdrop="static"
-            data-bs-keyboard="false"
-            tabindex="-1"
-            aria-labelledby="staticBackdropLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="staticBackdropLabel1">Modal title</h1>
-                  <h1 class="modal-title fs-5" id="staticBackdropLabel2">Modal title</h1>
-                  <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-                </div>
-                <div class="modal-body">
-                  <button
-                    type="button"
-                    onclick="gameStart(1)"
-                    class="btn dificulity-choice btn-primary"
-                    data-bs-dismiss="modal"
-                  >
-                    Easy
-                  </button>
-                  <button
-                    type="button"
-                    onclick="gameStart(2)"
-                    class="btn dificulity-choice btn-primary"
-                    data-bs-dismiss="modal"
-                  >
-                    Medium
-                  </button>
-                  <button
-                    type="button"
-                    onclick="gameStart(3)"
-                    class="btn dificulity-choice btn-primary"
-                    data-bs-dismiss="modal"
-                  >
-                    Hard
-                  </button>
-                </div>
+    <header>
+      <div class="container">
+        <!-- Nav Start -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNavAltMarkup"
+              aria-controls="navbarNavAltMarkup"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-link active mx-5" aria-current="page" href="/index.html">Home</a>
+                <a class="nav-link mx-5" href="/game.html">Play!</a>
+                <a class="nav-link mx-5" href="#">HighScores</a>
               </div>
             </div>
           </div>
-          <div id="game-icons">
-            <div class="game-icon highlighted-square" id="rotate-left" draggable="true">
-              <i class="fa-solid fa-rotate-left"></i>
-            </div>
-            <div class="game-icon highlighted-square" id="rotate-right" draggable="true">
-              <i class="fa-solid fa-rotate-right"></i>
-            </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Nav end -->
+    <div class="container hero-container my-5">
+      <div class="row gap-5">
+        <div class="col-lg-7 hero-text1">
+          <div class="hero-text2 p-4">
+            <h1 class="introduction pt-3">What hapens when SuDoKu and Tetris have babies?</h1>
+            <p>Let me introduce you to their oldest son TeDoKu</p>
           </div>
         </div>
-        <div id="game-board"></div>
-        <div id="game-shapes">
-          <div class="shape-window"></div>
-          <div class="shape-window"></div>
+        <div class="col-lg-4 d-flex justify-content-center">
+          <img loading="lazy" src="assets/images/hero-image.png" alt="Hero image" class="hero-image" />
         </div>
       </div>
     </div>
-    <!-- </div> -->
+    <main>
+      <div class="container mt-5">
+        <div class="row gap-5">
+          <div class="col-lg-4">
+            <img loading="lazy" src="assets/images/home-main.png" alt="Hero image" class="img-fluid" />
+          </div>
+          <div class="col-lg-7 p-4 default-text-container">
+            <div class="default-text p-4">
+              <h2>Simple but dificult</h2>
+              <p>
+                Tedoku is a mix between Tetris and Sudoku with drag and drop functionality. Your goal is fill the
+                vertical or horizontal lines as well as 3x3 squares like usual Sudoku 1-9 numbers but using a shapes
+                resemblign traditional Tetris game. <br /><br />
+                And just like in tetris once you fill up the row the blocks are gone alowing space for a new shapes as
+                well as rewarding a well deserved points. <br /><br />
+
+                Run out of space and its a Game-Over! Or as Gamers says these days GG!!!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row gap-5">
+          <div class="col">
+            <div class="default-text">
+              <h2>Gameplay</h2>
+              <p>Gameplay is quote simplistic but there a few things to keep in mind.</p>
+              <ol>
+                <li>Drag the pieces from outside of game board to the play area and drop them as you see fit.</li>
+                <li>Match 9 squares in either of row, column or 3x3 square matching game grid.</li>
+                <li>Avoid making gaps that will be later hard to fill up.</li>
+                <li>You are rewarded more points for making combination clears of more than single set of 9 tiles.</li>
+                <li>
+                  While doing combinations you will also get rewarded rotation points alowing you to rotate the shapes.
+                </li>
+                <li>
+                  As a game progresses there is higher chance for more dificult shapes to apear making the game
+                  incresingly harder.
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <!-- row, column and square examples -->
+        <div class="row row-cols-xl-3 row-cols-1 justify-content-center gy-5">
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Fill in the row</h5>
+              </div>
+              <img src="assets/images/row-deletion.png" class="card-img-top" alt="Mantas picture" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Fill in the column</h5>
+              </div>
+              <img src="assets/images/column-deletion.png" class="card-img-top" alt="Mantas picture" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Fill in the square</h5>
+              </div>
+              <img src="assets/images/square-deletion.png" class="card-img-top" alt="Mantas picture" />
+            </div>
+          </div>
+        </div>
+
+        <!--  Tile combination examples -->
+        <div class="row row-cols-xl-3 row-cols-1 justify-content-center gy-5">
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Double combination of square and column</h5>
+              </div>
+              <img src="assets/images/combination-1.png" class="card-img-top" alt="Mantas picture" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Triple combination of row, column and square</h5>
+              </div>
+              <img src="assets/images/combination-2.png" class="card-img-top" alt="Mantas picture" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Rotation examples -->
+        <div class="row row-cols-xl-3 row-cols-1 justify-content-center gy-5">
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Rotate shapes when things get spicy1</h5>
+              </div>
+              <img src="assets/images/rotation-1.png" class="card-img-top" alt="Mantas picture" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Earn rotation points by doing combinations</h5>
+              </div>
+              <img src="assets/images/rotation-2.png" class="card-img-top" alt="Mantas picture" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer></footer>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
@@ -110,9 +189,5 @@
       integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
       crossorigin="anonymous"
     ></script>
-    <script defer src="assets/scripts/game-setup.js"></script>
-    <script defer src="assets/scripts/game-shapes.js"></script>
-    <script defer src="assets/scripts/game-drag.js"></script>
-    <script defer src="assets/scripts/game-score.js"></script>
   </body>
 </html>
