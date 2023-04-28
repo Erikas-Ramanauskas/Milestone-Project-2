@@ -274,3 +274,8 @@ function arrayFromHTML(htmlColection) {
   }
   return matrix;
 }
+
+function rotateGameShapes(rotationDirection) {
+  // rotation direction is pushed as a number 1 is for clockwise rotation, 3 is for anticlockwise.
+  // this is because function rotateShape(array, timesToFlip) rotation of 3 times becomes anticlickwose turn
+}
