@@ -4,29 +4,32 @@
   margin: 0;
   padding: 0;
   border: 0;
-  box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  box-sizing: border-box !important;
+  font-family: "Gloria Hallelujah", cursive;
 }
 
 /* colour variables */
 :root {
-  --dark-color: #242b28;
+  --dark-color: #242b28; /* This color is not used across the website but it is main colour for a background picture and left over for testing purposes and future additions if needed.*/
   --cream-dark: #d9b09c;
   --cream-light: #ffcb9a;
   --light-color: #d1e8e2;
-  /* tile colour */
+
+  /* main tile colours */
   --primary-color: #116466;
   --border-top: #418385ff;
   --border-right: #0a3c3dff;
   --border-bottom: #0e5052ff;
   --border-left: #70a2a3ff;
 
+  /* Higlighted square colours */
   --highlight-primary: #74f4f7;
   --hightlight-border-top: #90f6f9ff;
   --hightlight-border-right: #469294ff;
   --hightlight-border-bottom: #5dc3c6ff;
   --hightlight-border-left: #acf8faff;
 
+  /* Destrutalble square colours */
   --destroy-primary: #661a11ff;
   --destroy-border-top: #854841ff;
   --destroy-border-right: #3d100aff;
@@ -36,16 +39,37 @@
 
 /* google fonts */
 
-@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display&family=Gloria+Hallelujah&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Patrick+Hand&family=Roboto&display=swap");
 
 body {
-  background-color: #242b28;
-  /* background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1029%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='rgba(36%2c 43%2c 40%2c 1)'%3e%3c/rect%3e%3cpath d='M867.32-99.01C705.19-54.36 647.7 394.86 412.75 396.83 177.8 398.8 88.51 147.98-41.82 139.23' stroke='rgba(102%2c 26%2c 17%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1231.72-52.67C1109.19-43.69 1024.52 195.24 807.98 196.21 591.45 197.18 596.12 126.21 384.25 126.21 172.38 126.21 67.88 195.97-39.49 196.21' stroke='rgba(102%2c 26%2c 17%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M643.45-11.26C560.68-1.24 598.92 174.41 373.8 184.98 148.67 195.55-21.61 383.32-165.51 386.58' stroke='rgba(102%2c 26%2c 17%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1264.57-98.33C1117.03-65.7 1064.71 316.07 830.88 322.64 597.05 329.21 614.04 252.64 397.2 252.64 180.35 252.64 73.33 322.42-36.49 322.64' stroke='rgba(102%2c 26%2c 17%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M794.21-17.21C650.29 5.78 574.35 353.28 344.9 354.26 115.46 355.24 17 173.02-104.4 169.46' stroke='rgba(102%2c 26%2c 17%2c 1)' stroke-width='2'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1029'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e"); */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1029%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='rgba(36%2c 43%2c 40%2c 1)'%3e%3c/rect%3e%3cpath d='M867.32-99.01C705.19-54.36 647.7 394.86 412.75 396.83 177.8 398.8 88.51 147.98-41.82 139.23' stroke='rgba(102%2c 26%2c 17%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1231.72-52.67C1109.19-43.69 1024.52 195.24 807.98 196.21 591.45 197.18 596.12 126.21 384.25 126.21 172.38 126.21 67.88 195.97-39.49 196.21' stroke='rgba(102%2c 26%2c 17%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M643.45-11.26C560.68-1.24 598.92 174.41 373.8 184.98 148.67 195.55-21.61 383.32-165.51 386.58' stroke='rgba(102%2c 26%2c 17%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1264.57-98.33C1117.03-65.7 1064.71 316.07 830.88 322.64 597.05 329.21 614.04 252.64 397.2 252.64 180.35 252.64 73.33 322.42-36.49 322.64' stroke='rgba(102%2c 26%2c 17%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M794.21-17.21C650.29 5.78 574.35 353.28 344.9 354.26 115.46 355.24 17 173.02-104.4 169.46' stroke='rgba(102%2c 26%2c 17%2c 1)' stroke-width='2'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1029'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
 
   overflow-x: hidden;
+}
+
+footer {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+p,
+li {
+  font-size: 1.1rem;
+  letter-spacing: 0.1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Patrick Hand", cursive;
+  letter-spacing: 0.2rem;
+  font-weight: 600;
 }
 
 #full-screen {
@@ -84,17 +108,65 @@ body {
   display: flex;
 }
 
-.navbar-nav {
-  border: 1px red solid;
+.navbar {
+  background-color: transparent !important;
 }
 
-.introduction {
+.navbar-nav {
+  border: 0.2rem var(--destroy-primary) solid;
+  border-radius: 0.4rem;
+  background-color: var(--primary-color);
+}
+
+.navbar-nav .nav-link,
+.navbar-nav .nav-link.active {
+  border: 0.2rem solid transparent;
+  box-sizing: border-box;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  line-height: 0.8rem;
+  border-radius: 0.4rem;
+  color: var(--highlight-primary);
+  transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+}
+
+.active {
+  text-decoration: underline;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active :hover {
+  border: 0.2rem solid var(--destroy-primary);
+  color: var(--destroy-primary);
+}
+
+.section {
+  transition: transform 1s, opacity 1s;
+}
+
+.section-hidden {
+  opacity: 0;
+  transform: translateY(5rem);
+}
+
+.h1 {
   font-size: 1.6rem;
+}
+
+.hero-image,
+.img-fluid {
+  width: 100%;
+  object-fit: contain;
 }
 
 .hero-text1 {
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
 }
@@ -117,9 +189,14 @@ body {
   align-items: center;
 }
 
+.highligted-bold {
+  font-weight: 600;
+}
+
 .default-text {
   background-color: var(--cream-dark);
   border-radius: 3rem;
+  padding: 1.5rem;
 }
 
 .card {
@@ -128,8 +205,20 @@ body {
 }
 
 .card-title {
+  size: 1.2rem;
   color: white;
   text-align: center;
+  padding: 1rem;
+}
+
+.invisible-text {
+  visibility: hidden;
+}
+
+@media only screen and (min-width: 1400px) {
+  .invisible-text {
+    display: none;
+  }
 }
 
 .menu-button {
@@ -148,7 +237,6 @@ body {
   margin: 0;
   font-size: 2rem;
   color: white;
-  font-family: "Big Shoulders Stencil Display", cursive;
 }
 
 #game-shapes {
@@ -231,6 +319,48 @@ body {
   justify-content: center;
   border-radius: 15%;
   font-size: 3.5vw;
+}
+
+.fa-container a {
+  text-decoration: none !important;
+}
+
+.fa-brands {
+  border-radius: 30%;
+  border-color: var(--highlight-primary);
+  background-color: var(--highlight-primary);
+  margin: 0 10px;
+  width: 4rem;
+  height: 4rem;
+  font-size: 2.5rem;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary-color);
+  transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+}
+
+.fa-brands:hover {
+  color: var(--destroy-primary);
+  background-color: var(--primary-color);
+  text-decoration: none;
+  border: 3px var(--destroy-primary) solid;
+}
+
+.readme-link {
+  color: var(--highlight-primary);
+  transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+}
+
+.readme-link:hover {
+  color: var(--destroy-primary);
 }
 
 /* -------------------------------------------------   Drag and d rop testing ---------------------------------------------*/
