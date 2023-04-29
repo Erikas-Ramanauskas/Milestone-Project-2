@@ -215,16 +215,18 @@ function crateGameShapeHTML(shapeArray) {
   return shapeHTMLinner;
 }
 
-function fillGameShape(shapeWindow) {
+function fillGameShape(shapeWindow, array) {
   shapeWindow.innerHTML = ``;
 
-  // picking random shape and creating its HTML
-  const randomShapeArray = choseRandomShape();
+  let shapeArray = array;
 
-  const draggableHTML = crateGameShapeHTML(randomShapeArray);
+  // picking random shape and creating its HTML if array it is not provided
+  if (array === undefined) shapeArray = choseRandomShape();
+
+  const draggableHTML = crateGameShapeHTML(shapeArray);
 
   // finding out if it is 1x1, 2x2, 3x3, 4x4
-  const multiplier = Math.sqrt(randomShapeArray.length);
+  const multiplier = Math.sqrt(shapeArray.length);
 
   let dragClass;
 
@@ -278,4 +280,18 @@ function arrayFromHTML(htmlColection) {
 function rotateGameShapes(rotationDirection) {
   // rotation direction is pushed as a number 1 is for clockwise rotation, 3 is for anticlockwise.
   // this is because function rotateShape(array, timesToFlip) rotation of 3 times becomes anticlickwose turn
+  const shapeWindows = document.getElementsByClassName(`shape-window`);
+
+  for (let i = 0; i < shapeWindows.length; i++) {
+    // grab shapes array and return as matrix
+    const arrayMatrix = arrayFromHTML(shapeWindows[i].firstChild.children);
+    // flatten the shape array
+    const arrayFlatened = arrayMatrix.flat();
+    // rotate array
+    const rotatedShape = rotateShape(arrayFlatened, rotationDirection);
+    // fill bakc the shape
+    fillGameShape(shapeWindows[i], rotatedShape);
+  }
+  // re-add event listeners
+  addNewEventListeners(`add`);
 }

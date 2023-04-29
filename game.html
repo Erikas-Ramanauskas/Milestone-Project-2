@@ -29,11 +29,14 @@
         <div id="game-screen">
           <!-- Button trigger modal -->
           <div id="game-controls">
-            <button type="button" class="menu-container" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-              <div class="menu-button highlighted-square2"><p>M</p></div>
-              <div class="menu-button highlighted-square2"><p>E</p></div>
-              <div class="menu-button highlighted-square2"><p>N</p></div>
-              <div class="menu-button highlighted-square2"><p>U</p></div>
+            <button
+              id="menu-button"
+              type="button"
+              class="game-buttons highlighted-square2"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+            >
+              <p>Menu</p>
             </button>
             <!-- Button trigger modal -->
 
@@ -84,12 +87,130 @@
                 </div>
               </div>
             </div>
-            <div id="game-icons">
-              <button onclick="rotateGameShapes(3)" class="game-icon highlighted-square" id="rotate-left">
-                <i class="fa-solid fa-rotate-left"></i>
+            <div id="game-current-score" class="game-buttons highlighted-square2">
+              <p>Score:</p>
+              <p>0</p>
+            </div>
+            <div id="game-high-score" class="game-buttons highlighted-square2">
+              <p>High-score:</p>
+              <p>0</p>
+            </div>
+            <div id="rotation-count" class="game-buttons highlighted-square2">
+              <p>Rotations:</p>
+              <p>0</p>
+            </div>
+            <div id="rotation-buttons">
+              <button onclick="rotateGameShapes(3)" class="rotation-button highlighted-square" id="rotate-left">
+                <svg
+                  version="1.1"
+                  viewBox="0.0 0.0 447.76115485564304 449.3963254593176"
+                  fill="none"
+                  stroke="none"
+                  stroke-linecap="square"
+                  stroke-miterlimit="10"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <clipPath id="p.0">
+                    <path d="m0 0l447.76117 0l0 449.39633l-447.76117 0l0 -449.39633z" clip-rule="nonzero" />
+                  </clipPath>
+                  <g clip-path="url(#p.0)">
+                    <path
+                      fill="#000000"
+                      fill-opacity="0.0"
+                      d="m0 0l447.76117 0l0 449.39633l-447.76117 0z"
+                      fill-rule="evenodd"
+                    />
+                    <path
+                      fill="#000000"
+                      fill-opacity="0.0"
+                      d="m448.8714 0.30446196l-449.48032 0l0 449.48032l449.48032 0z"
+                      fill-rule="evenodd"
+                    />
+                    <path
+                      fill="#661a11"
+                      d="m252.851 422.1407l0 0c108.87068 -0.8701477 196.4922 -89.703 195.86754 -198.57538c-0.6246643 -108.87236 -89.259735 -196.69395 -198.13324 -196.31476c-108.873505 0.37918663 -196.89471 88.81604 -196.761 197.69012l43.59272 -0.05354309l0 0c-0.10419464 -84.83685 68.483696 -153.74863 153.3201 -154.0441c84.836395 -0.2954712 153.90262 68.13688 154.38937 152.97238c0.48675537 84.835526 -67.7897 154.0559 -152.6239 154.7339z"
+                      fill-rule="evenodd"
+                    />
+                    <path
+                      stroke="#661a11"
+                      stroke-width="1.0"
+                      stroke-linejoin="round"
+                      stroke-linecap="butt"
+                      d="m252.851 422.1407l0 0c108.87068 -0.8701477 196.4922 -89.703 195.86754 -198.57538c-0.6246643 -108.87236 -89.259735 -196.69395 -198.13324 -196.31476c-108.873505 0.37918663 -196.89471 88.81604 -196.761 197.69012l43.59272 -0.05354309l0 0c-0.10419464 -84.83685 68.483696 -153.74863 153.3201 -154.0441c84.836395 -0.2954712 153.90262 68.13688 154.38937 152.97238c0.48675537 84.835526 -67.7897 154.0559 -152.6239 154.7339z"
+                      fill-rule="evenodd"
+                    />
+                    <path
+                      fill="#661a11"
+                      d="m-0.4566929 172.75853l89.039375 154.01576l89.03936 -154.01576z"
+                      fill-rule="evenodd"
+                    />
+                    <path
+                      stroke="#661a11"
+                      stroke-width="1.0"
+                      stroke-linejoin="round"
+                      stroke-linecap="butt"
+                      d="m-0.4566929 172.75853l89.039375 154.01576l89.03936 -154.01576z"
+                      fill-rule="evenodd"
+                    />
+                  </g>
+                </svg>
               </button>
-              <button onclick="rotateGameShapes(1)" class="game-icon highlighted-square" id="rotate-right">
-                <i class="fa-solid fa-rotate-right"></i>
+              <button onclick="rotateGameShapes(1)" class="rotation-button highlighted-square" id="rotate-right">
+                <svg
+                  version="1.1"
+                  viewBox="0.0 0.0 447.76115485564304 449.3963254593176"
+                  fill="none"
+                  stroke="none"
+                  stroke-linecap="square"
+                  stroke-miterlimit="10"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <clipPath id="p.0">
+                    <path d="m0 0l447.76117 0l0 449.39633l-447.76117 0l0 -449.39633z" clip-rule="nonzero" />
+                  </clipPath>
+                  <g clip-path="url(#p.0)">
+                    <path
+                      fill="#000000"
+                      fill-opacity="0.0"
+                      d="m0 0l447.76117 0l0 449.39633l-447.76117 0z"
+                      fill-rule="evenodd"
+                    />
+                    <path
+                      fill="#000000"
+                      fill-opacity="0.0"
+                      d="m-0.6089239 0.30446196l449.48032 0l0 449.48032l-449.48032 0z"
+                      fill-rule="evenodd"
+                    />
+                    <path
+                      fill="#661a11"
+                      d="m195.41148 422.1407l0 0c-108.87069 -0.8701477 -196.49222 -89.703 -195.86755 -198.57538c0.6246598 -108.87236 89.25975 -196.69395 198.13324 -196.31476c108.87349 0.37918663 196.8947 88.81604 196.761 197.69012l-43.592712 -0.05354309l0 0c0.10418701 -84.83685 -68.4837 -153.74863 -153.32011 -154.0441c-84.8364 -0.2954712 -153.90263 68.13688 -154.38937 152.97238c-0.48674393 84.835526 67.789696 154.0559 152.6239 154.7339z"
+                      fill-rule="evenodd"
+                    />
+                    <path
+                      stroke="#661a11"
+                      stroke-width="1.0"
+                      stroke-linejoin="round"
+                      stroke-linecap="butt"
+                      d="m195.41148 422.1407l0 0c-108.87069 -0.8701477 -196.49222 -89.703 -195.86755 -198.57538c0.6246598 -108.87236 89.25975 -196.69395 198.13324 -196.31476c108.87349 0.37918663 196.8947 88.81604 196.761 197.69012l-43.592712 -0.05354309l0 0c0.10418701 -84.83685 -68.4837 -153.74863 -153.32011 -154.0441c-84.8364 -0.2954712 -153.90263 68.13688 -154.38937 152.97238c-0.48674393 84.835526 67.789696 154.0559 152.6239 154.7339z"
+                      fill-rule="evenodd"
+                    />
+                    <path
+                      fill="#661a11"
+                      d="m448.71915 172.75853l-89.03937 154.01576l-89.03937 -154.01576z"
+                      fill-rule="evenodd"
+                    />
+                    <path
+                      stroke="#661a11"
+                      stroke-width="1.0"
+                      stroke-linejoin="round"
+                      stroke-linecap="butt"
+                      d="m448.71915 172.75853l-89.03937 154.01576l-89.03937 -154.01576z"
+                      fill-rule="evenodd"
+                    />
+                  </g>
+                </svg>
               </button>
             </div>
           </div>

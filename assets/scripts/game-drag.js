@@ -20,11 +20,7 @@ function gameStart(dificulity) {
   gameStartShapesFill();
   findDropBoxesCenters();
 
-  for (let i = 0; i < draggables.length; i++) {
-    draggables[i].addEventListener("mousedown", onMouseDown);
-    draggables[i].addEventListener("dragstart", dragStart);
-    draggables[i].addEventListener("dragend", dragEnd);
-  }
+  addNewEventListeners(`add`);
 }
 
 function gameStartShapesFill() {
@@ -39,6 +35,8 @@ screen.addEventListener("dragover", dragOver);
 
 // reacts when the mouses is pressed on one of tthe shapes
 function onMouseDown(e) {
+  console.log(`mouse down`, e.pageX, e.pageX);
+
   shapesBoxesCoordinates = {};
   // recording shapeWindow element to use once element is droped
   shapesBoxesCoordinates.parent = e.target.parentElement.parentElement;
@@ -82,7 +80,8 @@ function onMouseDown(e) {
 
 // DragStart starts all events right after mouse event listeners and prevents mouse event listeners from hapening
 // however it records mouse position later than pressed this is why i sepparated onMouseDown
-function dragStart() {
+function dragStart(e) {
+  console.log(`DragStart`, e.pageX, e.pageX);
   setTimeout(() => this.classList.add("invisible"), 0);
 }
 
@@ -200,9 +199,7 @@ function dragEnd(e) {
   }
 
   setTimeout(function () {
-    !checkForGameOver(gameBoardArray, draggablesArray)
-      ? alert(`game over`)
-      : console.log(`Function found a space avialable`);
+    !checkForGameOver(gameBoardArray, draggablesArray) ? alert(`game over`) : console.log(``);
   }, 1000);
 }
 

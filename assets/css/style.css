@@ -104,10 +104,6 @@ h6 {
   grid-template-rows: repeat(9, 1fr);
 }
 
-#game-controls {
-  display: flex;
-}
-
 .navbar {
   background-color: transparent !important;
 }
@@ -221,24 +217,6 @@ h6 {
   }
 }
 
-.menu-button {
-  border-radius: 15%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.menu-container {
-  background-color: transparent;
-}
-
-.menu-button p {
-  text-align: center;
-  margin: 0;
-  font-size: 2rem;
-  color: white;
-}
-
 #game-shapes {
   display: flex;
   justify-content: space-between;
@@ -306,19 +284,27 @@ h6 {
   grid-template-rows: repeat(4, 4fr);
 }
 
-#game-icons {
+#rotation-buttons {
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  height: calc(100% / 6);
+  width: 100%;
   background-color: var(--light-color);
   background-color: transparent;
 }
 
-.game-icon {
+.rotation-button {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
+  width: 50%;
   border-radius: 15%;
-  font-size: 3.5vw;
+}
+
+.rotation-button svg {
+  width: 90%;
+  height: 90%;
 }
 
 .fa-container a {
@@ -425,8 +411,77 @@ h6 {
   margin-bottom: 2rem;
 }
 
-/* Testing classes */
+#game-controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-.testing1 {
-  border: red 2px solid;
+.game-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  height: calc(100% / 6);
+  width: 100%;
+}
+
+.game-buttons p {
+  border: 1px red solid;
+  margin-bottom: 0;
+  font-size: 1.1rem;
+}
+
+@media only screen and (max-width: 800px) and (orientation: landscape) {
+  .game-buttons p {
+    font-size: 0.8rem;
+  }
+}
+
+@media only screen and (max-width: 450px) and (orientation: portrait) {
+  .game-buttons p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (orientation: portrait) {
+  #game-controls {
+    flex-direction: row;
+    flex-flow: wrap column;
+    justify-content: space-around;
+    column-gap: calc(100% / 12);
+  }
+
+  #rotation-buttons {
+    flex-direction: column;
+    height: 100%;
+    width: calc(100% / 6);
+    order: 1;
+  }
+
+  #game-current-score {
+    order: 2;
+  }
+  #menu-button {
+    order: 4;
+  }
+
+  #game-high-score {
+    order: 5;
+  }
+
+  #rotation-count {
+    order: 3;
+  }
+
+  .game-buttons {
+    height: calc(100% / 2);
+    width: calc(100% / 3);
+  }
+
+  .rotation-button {
+    height: 50%;
+    width: 100%;
+  }
 }
