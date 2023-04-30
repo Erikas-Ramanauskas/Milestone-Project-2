@@ -6,12 +6,6 @@ const draggables = document.getElementsByClassName("draggable");
 const gameBoxes = document.getElementsByClassName("game-box");
 const screen = document.querySelector("#game-screen");
 
-const dropAudio = document.getElementById("drop-audio");
-const destroyAudio = document.getElementById("destroy-audio");
-
-dropAudio.volume = 0.5;
-destroyAudio.volume = 0.2;
-
 let shapesBoxesCoordinates = {};
 
 let dropBoxesCenters = [];

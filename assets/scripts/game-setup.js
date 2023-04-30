@@ -14,7 +14,10 @@ const currentScoreCount = document.querySelector(`#current-score-count`);
 const highScoreCount = document.querySelector(`#high-score-count`);
 const rotationCount = document.querySelector(`#rotation-count-number`);
 
+// sound variables
 const volumeInput = document.querySelector("#volume");
+const dropAudio = document.getElementById("drop-audio");
+const destroyAudio = document.getElementById("destroy-audio");
 
 const menuModal = new bootstrap.Modal(document.getElementById("staticBackdrop"), {
   keyboard: false,
@@ -50,7 +53,7 @@ const gameSettings = {
   rotationScore: 3,
 
   // volume sttings
-  volume: 50,
+  volume: 0.5,
 };
 
 //determines if screen is horizontal or vertical and this function used for many others as a variable.
@@ -63,6 +66,7 @@ window.addEventListener(`load`, () => {
   gameBoardAndScreenDimentions();
   newGameBoardGrid();
   setShapesContainerSize();
+  setGameSound();
 });
 
 // Functions to call when screen resizes
@@ -109,8 +113,15 @@ function gameStart(dificulity) {
 }
 
 volumeInput.addEventListener("input", (event) => {
-  gameSettings.volume = event.target.value;
+  gameSettings.volume = event.target.value / 200;
+  console.log(`gameSettings.volume`);
+  setGameSound();
 });
+
+function setGameSound() {
+  dropAudio.volume = gameSettings.volume;
+  destroyAudio.volume = gameSettings.volume;
+}
 
 // setting screen dimentions and layout
 function gameScreenDimentions() {
