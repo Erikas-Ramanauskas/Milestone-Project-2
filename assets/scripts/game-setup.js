@@ -112,9 +112,9 @@ function gameStart(dificulity) {
   rotationCount.innerHTML = gameSettings.rotationScore;
 }
 
+// function setting game sound
 volumeInput.addEventListener("input", (event) => {
   gameSettings.volume = event.target.value / 200;
-  console.log(`gameSettings.volume`);
   setGameSound();
 });
 
