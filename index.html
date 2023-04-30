@@ -32,18 +32,26 @@
             class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-link active mx-5" aria-current="page" href="index.html">Home</a>
-              <a class="nav-link mx-5" href="game.html">Play!</a>
-              <a class="nav-link mx-5" href="highscores.html">HighScores</a>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex justify-content-center navigation-container">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active mx-5" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mx-5" href="game.html">Play!</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mx-5" href="highscores.html">HighScores</a>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -52,14 +60,14 @@
 
     <!-- Nav end -->
     <div class="container my-5">
-      <div class="row g-5">
-        <div class="col-lg-8 section hero-text1">
+      <div class="row g-5 section">
+        <div class="col-lg-8 hero-text1">
           <div class="hero-text2 p-4">
             <h1 class="introduction pt-4 pb-1">What hapens when SuDoKu and Tetris have babies?</h1>
             <p>Let me introduce you to their oldest son TeDoKu</p>
           </div>
         </div>
-        <div class="col-lg-4 section d-flex justify-content-center">
+        <div class="col-lg-4 d-flex justify-content-center">
           <img src="assets/images/hero-image.png" alt="Hero image" class="hero-image" />
         </div>
       </div>
@@ -290,10 +298,16 @@
     </footer>
 
     <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
+      integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
+      crossorigin="anonymous"
+    ></script>
+    <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
       integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
       crossorigin="anonymous"
     ></script>
+
     <script
       src="https://code.jquery.com/jquery-3.6.4.js"
       integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="

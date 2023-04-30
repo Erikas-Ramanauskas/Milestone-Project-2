@@ -282,16 +282,24 @@ function rotateGameShapes(rotationDirection) {
   // this is because function rotateShape(array, timesToFlip) rotation of 3 times becomes anticlickwose turn
   const shapeWindows = document.getElementsByClassName(`shape-window`);
 
-  for (let i = 0; i < shapeWindows.length; i++) {
-    // grab shapes array and return as matrix
-    const arrayMatrix = arrayFromHTML(shapeWindows[i].firstChild.children);
-    // flatten the shape array
-    const arrayFlatened = arrayMatrix.flat();
-    // rotate array
-    const rotatedShape = rotateShape(arrayFlatened, rotationDirection);
-    // fill bakc the shape
-    fillGameShape(shapeWindows[i], rotatedShape);
+  if (gameSettings.rotationScore > 0) {
+    for (let i = 0; i < shapeWindows.length; i++) {
+      // grab shapes array and return as matrix
+      const arrayMatrix = arrayFromHTML(shapeWindows[i].firstChild.children);
+      // flatten the shape array
+      const arrayFlatened = arrayMatrix.flat();
+      // rotate array
+      const rotatedShape = rotateShape(arrayFlatened, rotationDirection);
+      // fill bakc the shape
+      fillGameShape(shapeWindows[i], rotatedShape);
+    }
+
+    gameSettings.rotationScore -= 1;
+    rotationCount.innerHTML = gameSettings.rotationScore;
+
+    // re-add event listeners
+    addNewEventListeners(`add`);
   }
-  // re-add event listeners
-  addNewEventListeners(`add`);
+
+  trigerGameOverCheck();
 }

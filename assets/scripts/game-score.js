@@ -106,7 +106,7 @@ function highlightTiles(condition) {
 
   if (recordTiles.size > 0) {
     recordTiles.forEach((e) => {
-      if (highlightOrDestroy && dificulity < 3) {
+      if (highlightOrDestroy && dificulity < 4) {
         e.classList.add(`highlighted-square2`);
       } else if (!highlightOrDestroy) {
         e.classList.remove(`filled-field`);
@@ -117,11 +117,33 @@ function highlightTiles(condition) {
     // play destruction sound if tiles are destroyed
     if (!highlightOrDestroy) {
       playAudio(`destroy`);
-      // add tiles count to score calculation
-      console.log(gameBaseScore);
+      // checks for combination and calculates potins acordingly
+      gameChangeUpdate(gameBaseScore);
+
       return true;
     }
   }
+}
+
+function trigerGameOverCheck() {
+  // checks if a player still has some turns left
+  if (gameSettings.rotationScore > 0) return;
+
+  const draggables = document.getElementsByClassName(`draggable`);
+  const gameBoard = document.getElementById(`game-board`).children;
+
+  const gameBoardArray = arrayFromHTML(gameBoard);
+  let draggablesArray = [];
+
+  for (let draggable of draggables) {
+    draggablesArray.push(arrayFromHTML(draggable.children));
+  }
+
+  // alowing time to return new shape
+  setTimeout(function () {
+    // shows meniu options once the game is over
+    if (!checkForGameOver(gameBoardArray, draggablesArray)) menuModal.show();
+  }, 1000);
 }
 
 // the function checks if there are any more space for either of shapes to fit in. and returns either true or false
@@ -252,4 +274,16 @@ function playAudio(sound) {
       destroyAudio.play();
       break;
   }
+}
+
+function gameChangeUpdate(baseScore) {
+  // check if there is a combination and multiply score reward , updates data and pushes to html
+  const newGameScore = baseScore > 9 ? baseScore * 1.5 : baseScore;
+  gameSettings.currentScore += newGameScore;
+  currentScoreCount.innerHTML = Math.floor(gameSettings.currentScore);
+
+  // checking how many points will be added to rotations
+  const noOfRotations = baseScore / 9 - gameSettings.dificulity;
+  gameSettings.rotationScore += noOfRotations > 0 ? noOfRotations : 0;
+  rotationCount.innerHTML = gameSettings.rotationScore;
 }

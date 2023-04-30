@@ -217,7 +217,15 @@ To fork the repository, use the following steps:
 6. Press Enter. Your clone will be created.
 
 ## Credits
-### Code
+### Tools Used
+
+ [Imgonline.tools](https://imgonline.tools/remove-color) used with screenshots of the game to remove background colour
+ [BGJar](https://bgjar.com/curve-line) used to create background
+ [Google_tools](https://drive.google.com/drive/folders/1_VxQCii04fFd1Zq0wxsbFM4VuxG_2guz?usp=sharing) Used to create multiple components inluding pictures, planing shape shape manipulation and probability calculation using spreadsheets.
+
+### Codes
+
+
 * Credit and thanks belong to numerous tutorials on YouTube by seasoned developers.
     - Thanks to FlorinPop's [Create a Modal (Popup) with HTML/CSS and JavaScript](https://www.youtube.com/watch?v=XH5OW46yO8I);
     [Code:](./assets/images/snippets/florinpop-js.webp)
@@ -226,17 +234,17 @@ To fork the repository, use the following steps:
     - Thanks to NetNinja's Udemy course for the code snippet on animating scores [Code:](./assets/images/snippets/netninja-js.webp) 
     - Also thanks to Jacinto Wong's Udemy course for the code snippet on how to Tweet quotes at one click of a button [Code:](./assets/images/snippets/jacintowong-js.webp)
     
-### Content
-* The quiz questions written by the developer, based on the knowledge of having watched the Star Trek shows previously. The quotes were gathered from Inc.com's [50 Star Trek Quotes Inspiring You to Boldly Go Into Your Future](https://www.inc.com/kevin-daum/50-star-trek-inspiring-you-to-boldly-go-into-your-future.html). Credit for the content (questions and quotes) ultimately belongs to Star Trek and Paramount. 
+### Game Idea 
+
 
 ### Media
-* All images were licensed from Adobe Stock
-* PNG - [pngegg](https://www.pngegg.com/) for the Voyager spaceship png
+* 
+* 
 
 ## Acknowledgements
-Thanks to Jo Bowden and the team at South Devon College for your help with this project, it's really appreciated.
-Special mention and thanks to my mentor, Dario Carrasquel, for his support, invaluable insights and patience with me 
-on this project.
+[Tripledot Studios](https://apps.apple.com/us/developer/tripledot-studios/id1191319103) game: [Woodoku](https://apps.apple.com/us/app/woodoku-wood-block-puzzles/id1496354836) is were i pucked up idea and general rule set for this game.
+
+Added my own twist to gare rules and dificulity levels
 
 ## Copyrights
-[Joy Zadan, 2022](www.linkedin.com/in/joy-araneta-zadan)
+[Erikas Ramanauskas, 2023](https://www.linkedin.com/in/erikas-ramanauskas)

@@ -53,16 +53,20 @@
               <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <a class="nav-link mx-5" href="index.html">Home</a>
-                    <a class="nav-link active mx-5" aria-current="page" href="game.html">Play!</a>
-                    <a class="nav-link mx-5" href="highscores.html">HighScores</a>
-                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                    <a class="nav-link" href="index.html">Home</a>
+                    <a class="nav-link active" aria-current="page" href="game.html">Play!</a>
+                    <a class="nav-link" href="highscores.html">HighScores</a>
                   </div>
+
                   <div class="modal-body">
+                    <button type="button" class="btn dificulity-choice btn-resume-game" data-bs-dismiss="modal">
+                      Resume game
+                    </button>
+
                     <button
                       type="button"
                       onclick="gameStart(1)"
-                      class="btn dificulity-choice btn-primary"
+                      class="btn dificulity-choice btn-select-dificulity"
                       data-bs-dismiss="modal"
                     >
                       Easy
@@ -70,7 +74,7 @@
                     <button
                       type="button"
                       onclick="gameStart(2)"
-                      class="btn dificulity-choice btn-primary"
+                      class="btn dificulity-choice btn-select-dificulity"
                       data-bs-dismiss="modal"
                     >
                       Medium
@@ -78,26 +82,32 @@
                     <button
                       type="button"
                       onclick="gameStart(3)"
-                      class="btn dificulity-choice btn-primary"
+                      class="btn dificulity-choice btn-select-dificulity"
                       data-bs-dismiss="modal"
                     >
                       Hard
                     </button>
+                  </div>
+                  <div class="modal-footer">
+                    <div>
+                      <label for="volume"><i class="fa-solid fa-volume-high"></i> </label>
+                      <input type="range" id="volume" name="volume" min="0" max="100" value="50" />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             <div id="game-current-score" class="game-buttons highlighted-square2">
               <p>Score:</p>
-              <p>0</p>
+              <p id="current-score-count">0</p>
             </div>
             <div id="game-high-score" class="game-buttons highlighted-square2">
               <p>High-score:</p>
-              <p>0</p>
+              <p id="high-score-count">0</p>
             </div>
             <div id="rotation-count" class="game-buttons highlighted-square2">
               <p>Rotations:</p>
-              <p>0</p>
+              <p id="rotation-count-number">0</p>
             </div>
             <div id="rotation-buttons">
               <button onclick="rotateGameShapes(3)" class="rotation-button highlighted-square" id="rotate-left">

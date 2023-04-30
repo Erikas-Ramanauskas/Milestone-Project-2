@@ -9,19 +9,12 @@ const screen = document.querySelector("#game-screen");
 const dropAudio = document.getElementById("drop-audio");
 const destroyAudio = document.getElementById("destroy-audio");
 
+dropAudio.volume = 0.5;
+destroyAudio.volume = 0.2;
+
 let shapesBoxesCoordinates = {};
 
 let dropBoxesCenters = [];
-
-// runs when dificulity is selected and starts event listeners and fills the shapes
-function gameStart(dificulity) {
-  gameSettings.dificulity = dificulity;
-
-  gameStartShapesFill();
-  findDropBoxesCenters();
-
-  addNewEventListeners(`add`);
-}
 
 function gameStartShapesFill() {
   for (let i = 0; i < shapeWindows.length; i++) {
@@ -35,8 +28,6 @@ screen.addEventListener("dragover", dragOver);
 
 // reacts when the mouses is pressed on one of tthe shapes
 function onMouseDown(e) {
-  console.log(`mouse down`, e.pageX, e.pageX);
-
   shapesBoxesCoordinates = {};
   // recording shapeWindow element to use once element is droped
   shapesBoxesCoordinates.parent = e.target.parentElement.parentElement;
@@ -79,9 +70,8 @@ function onMouseDown(e) {
 }
 
 // DragStart starts all events right after mouse event listeners and prevents mouse event listeners from hapening
-// however it records mouse position later than pressed this is why i sepparated onMouseDown
+// however during
 function dragStart(e) {
-  console.log(`DragStart`, e.pageX, e.pageX);
   setTimeout(() => this.classList.add("invisible"), 0);
 }
 
@@ -159,7 +149,10 @@ function dragEnd(e) {
 
   const mactchedActiveSquares = findingMacthingSquares(mouseX, mouseY);
 
-  if (mactchedActiveSquares[1]) {
+  // introduced this to counter a bug that happens when on mouse click event that does not triger when drag starts as it does not record the data for drop boxes
+  const bugCheck = dropBoxesCenters.length > 0;
+
+  if (mactchedActiveSquares[1] && bugCheck) {
     // adds to the game turn after sucsessfull drop and adjust the shape dificulity
     gameDificulityAdjustment();
 
@@ -188,19 +181,10 @@ function dragEnd(e) {
   shapesBoxesCoordinates = {};
 
   // Fallowing functions checks if player still has any choices of playing tiles or if it is game over
-  const draggables = document.getElementsByClassName(`draggable`);
-  const gameBoard = document.getElementById(`game-board`).children;
 
-  const gameBoardArray = arrayFromHTML(gameBoard);
-  let draggablesArray = [];
-
-  for (let draggable of draggables) {
-    draggablesArray.push(arrayFromHTML(draggable.children));
-  }
-
-  setTimeout(function () {
-    !checkForGameOver(gameBoardArray, draggablesArray) ? alert(`game over`) : console.log(``);
-  }, 1000);
+  // check if it is game over
+  trigerGameOverCheck();
+  console.log(gameSettings);
 }
 
 // Requires remove/add/reset action to work. effects draggable squares
