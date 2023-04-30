@@ -174,11 +174,8 @@ function dragEnd(e) {
   // cleaning up data after drag ended
   shapesBoxesCoordinates = {};
 
-  // Fallowing functions checks if player still has any choices of playing tiles or if it is game over
-
   // check if it is game over
   trigerGameOverCheck();
-  console.log(gameSettings);
 }
 
 // Requires remove/add/reset action to work. effects draggable squares

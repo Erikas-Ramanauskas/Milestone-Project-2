@@ -1,7 +1,7 @@
 "use strict";
 
 // This is a first JS file dealing with entire setup of game board, positioning and size of it
-// Additionly it will call all nececeraly globar variables for other files
+// Additionly it will call all nececeraly global variables for other files
 
 // DOM elements
 const container = $(`#game-screen-container`);
@@ -13,6 +13,13 @@ const gameShapes = $(`#game-shapes`);
 const currentScoreCount = document.querySelector(`#current-score-count`);
 const highScoreCount = document.querySelector(`#high-score-count`);
 const rotationCount = document.querySelector(`#rotation-count-number`);
+const currentGameMode = document.querySelector(`#current-game-mode`);
+const gameModeVisibility = document.querySelector(`.current-mode-container`);
+
+// game over message and resume button
+const gameOverMessage = document.querySelector(`#game-over-message`);
+const resumeButton = document.querySelector(`#btn-resume-game`);
+const gameOverScore = document.querySelector(`#game-over-score`);
 
 // sound variables
 const volumeInput = document.querySelector("#volume");
@@ -34,10 +41,12 @@ const gameSettings = {
   easyShapesProcentage: 910,
   mediumShapesProcentage: 60,
   hardShapesProcentage: 30,
+
   // Every game turn medium and hard base value will be multiplied and increced with diminishing returns
   mediumShapeMultiplier: 0.7, // 70%
   hardShapeMultiplier: 0.8, // 80%
 
+  // Both medium and hard will have their individual turns depending on game dificulity and general game turn
   mediumShapeTurn: 0,
   hardShapeTurn: 0,
 
@@ -83,11 +92,17 @@ window.addEventListener(`resize`, () => {
 function gameStart(dificulity) {
   gameSettings.dificulity = dificulity;
 
+  // eddits htm in modal
+  setVissablesAndHidden(dificulity);
+
+  //Resets the game components
   clearGameBoardandShapes();
 
+  // fills new shapes
   gameStartShapesFill();
   findDropBoxesCenters();
 
+  // sets event listeners for shapes
   addNewEventListeners(`add`);
 
   // sets up default parameters
@@ -110,6 +125,32 @@ function gameStart(dificulity) {
   // rotation count update
   gameSettings.rotationScore = 4 - dificulity;
   rotationCount.innerHTML = gameSettings.rotationScore;
+}
+
+// Sets neceseraly vissables and hiden in game modal
+function setVissablesAndHidden(dificulity) {
+  // set up visability of game dificulity
+  let text;
+
+  switch (dificulity) {
+    case 1:
+      text = `Easy`;
+      break;
+    case 2:
+      text = `Medium`;
+      break;
+    case 3:
+      text = `Hard`;
+      break;
+    default:
+      text = ``;
+  }
+  currentGameMode.innerHTML = text;
+  gameModeVisibility.style.visibility = `visible`;
+
+  // set up visabilities of resume game and hide game over message
+  gameOverMessage.style.display = `none`;
+  resumeButton.style.display = `block`;
 }
 
 // function setting game sound

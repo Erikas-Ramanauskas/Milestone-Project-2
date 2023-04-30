@@ -59,9 +59,18 @@
                   </div>
 
                   <div class="modal-body">
-                    <button type="button" class="btn dificulity-choice btn-resume-game" data-bs-dismiss="modal">
+                    <button
+                      id="btn-resume-game"
+                      type="button"
+                      class="btn dificulity-choice btn-resume-game"
+                      data-bs-dismiss="modal"
+                    >
                       Resume game
                     </button>
+                    <div id="game-over-message">
+                      <p>Oh No! you run out of space</p>
+                      <p>Your final score: <span id="game-over-score">0</span></p>
+                    </div>
 
                     <button
                       type="button"
@@ -89,6 +98,9 @@
                     </button>
                   </div>
                   <div class="modal-footer">
+                    <div class="current-mode-container">
+                      <p>Dificulity: <span id="current-game-mode"></span></p>
+                    </div>
                     <div>
                       <label for="volume"><i class="fa-solid fa-volume-high"></i> </label>
                       <input type="range" id="volume" name="volume" min="0" max="100" value="50" />
@@ -235,7 +247,7 @@
 
     <!-- game audios -->
     <audio id="drop-audio">
-      <source src="/assets/audio/drop-audio.mp3" type="audio/mpeg" />
+      <source src="assets/audio/drop-audio.mp3" type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
     <audio id="destroy-audio">

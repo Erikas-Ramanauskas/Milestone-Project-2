@@ -380,6 +380,12 @@ h6 {
 
 .modal-footer {
   border-top: 2px solid var(--cream-light);
+  justify-content: space-between;
+}
+
+.current-mode-container {
+  color: var(--highlight-primary);
+  visibility: hidden;
 }
 
 .modal-header a {
@@ -454,6 +460,15 @@ h6 {
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+#game-over-message {
+  color: var(--highlight-primary);
+  display: none;
+}
+
+#game-over-message p {
+  text-align: center;
 }
 
 .btn-resume-game {

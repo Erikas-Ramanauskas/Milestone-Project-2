@@ -142,7 +142,13 @@ function trigerGameOverCheck() {
   // alowing time to return new shape
   setTimeout(function () {
     // shows meniu options once the game is over
-    if (!checkForGameOver(gameBoardArray, draggablesArray)) menuModal.show();
+    if (!checkForGameOver(gameBoardArray, draggablesArray)) {
+      // changes resume button to game over message
+      gameOverScore.innerHTML = gameSettings.currentScore;
+      gameOverMessage.style.display = `block`;
+      resumeButton.style.display = `none`;
+      menuModal.show();
+    }
   }, 1000);
 }
 
