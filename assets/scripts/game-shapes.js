@@ -49,7 +49,7 @@ let shapeWindows = document.getElementsByClassName(`shape-window`);
 const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 // Choses between easy/medium/or hard shape based on the procentages at the current stage
-// this helps to control games progresive dificulity.
+// this helps to control games progresive dificulty.
 function choseRandomShapeDificulity() {
   const easyShapeChance = gameSettings.easyShapesProcentage; // the number will be highest number roled starting(0-955) (95.5%)
   const mediumShapeChance = gameSettings.mediumShapesProcentage + easyShapeChance;
@@ -196,7 +196,7 @@ function mirrorShape(array) {
 
 // takes choseRandomShapeDificulity() array which has 10 differnet shapes and choses one at random.
 function choseRandomShape() {
-  // choses random shape by taking random dificulity first then rolling the dice on random shape array
+  // choses random shape by taking random dificulty first then rolling the dice on random shape array
   const array1 = choseRandomShapeDificulity()[randomInt(0, 9)];
   // then either fliping or not
   const array2 = randomInt(0, 1) === 1 ? mirrorShape(array1) : array1;
@@ -277,12 +277,30 @@ function arrayFromHTML(htmlColection) {
   return matrix;
 }
 
+//similar function to above however turing from flat array in to matrix
+function matrixFromArray(array) {
+  let matrix = [];
+  const matrixLenght = Math.sqrt(array.length);
+
+  // creating matrix rows
+  for (let i = 0; i < matrixLenght; i++) {
+    matrix.push([]);
+  }
+
+  for (let i = 0; i < array.length; i++) {
+    // calcualting matrix row
+    const rowNumber = Math.floor(i / matrixLenght);
+
+    matrix[rowNumber].push(array[i]);
+  }
+  return matrix;
+}
+
 function rotateGameShapes(rotationDirection) {
   // rotation direction is pushed as a number 1 is for clockwise rotation, 3 is for anticlockwise.
   // this is because function rotateShape(array, timesToFlip) rotation of 3 times becomes anticlickwose turn
   const shapeWindows = document.getElementsByClassName(`shape-window`);
 
-  console.log(shapeWindows[1].innerHTML);
   if (gameSettings.rotationScore > 0) {
     for (let i = 0; i < shapeWindows.length; i++) {
       // grab shapes array and return as matrix

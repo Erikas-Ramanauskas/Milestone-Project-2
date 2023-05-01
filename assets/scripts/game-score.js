@@ -1,6 +1,6 @@
 "use strict";
 
-// Last file for game files group, this works with detecting sucsessfull shape drops, counting score, and seeting dificulity leves
+// Last file for game files group, this works with detecting sucsessfull shape drops, counting score, and seeting dificulty leves
 
 // I left variables for scores in game-setup file to keep all in one place it is being used in other files.
 
@@ -101,12 +101,12 @@ function highlightTiles(condition) {
     }
   }
 
-  // dificulity testing is added for higher dificulities as i would like to disable highlight for hard mode
-  const dificulity = gameSettings.dificulity;
+  // dificulty testing is added for higher dificulities as i would like to disable highlight for hard mode
+  const dificulty = gameSettings.dificulty;
 
   if (recordTiles.size > 0) {
     recordTiles.forEach((e) => {
-      if (highlightOrDestroy && dificulity < 4) {
+      if (highlightOrDestroy && dificulty < 4) {
         e.classList.add(`highlighted-square2`);
       } else if (!highlightOrDestroy) {
         e.classList.remove(`filled-field`);
@@ -127,7 +127,6 @@ function highlightTiles(condition) {
 
 function trigerGameOverCheck() {
   // checks if a player still has some turns left
-  if (gameSettings.rotationScore > 0) return;
 
   const draggables = document.getElementsByClassName(`draggable`);
   const gameBoard = document.getElementById(`game-board`).children;
@@ -137,6 +136,30 @@ function trigerGameOverCheck() {
 
   for (let draggable of draggables) {
     draggablesArray.push(arrayFromHTML(draggable.children));
+  }
+
+  // fallowing check if player has still one or more rotations and pushes posible rotated shapes in to array
+  if (gameSettings.rotationScore > 0) {
+    for (let draggable of draggables) {
+      const draggableArray = arrayFromHTML(draggable.children).flat();
+
+      // checks for only left and right rotations
+      const draggableRight = rotateShape(draggableArray, 1);
+      const draggableLeft = rotateShape(draggableArray, 3);
+
+      const draggableMatrixRight = matrixFromArray(draggableRight);
+      const draggableMatrixLeft = matrixFromArray(draggableLeft);
+
+      draggablesArray.push(draggableMatrixRight);
+      draggablesArray.push(draggableMatrixLeft);
+
+      // check for double rotation as well if player has more than 1 rotation point
+      if (gameSettings.rotationScore > 1) {
+        const draggable180 = rotateShape(draggableArray, 2);
+        const draggableMatrix180 = matrixFromArray(draggable180);
+        draggablesArray.push(draggableMatrix180);
+      }
+    }
   }
 
   // alowing time to return new shape
@@ -288,18 +311,56 @@ function gameChangeUpdate(baseScore) {
   gameSettings.currentScore += newGameScore;
 
   // checking how many points will be added to rotations
-  const noOfRotations = baseScore / 9 - gameSettings.dificulity;
+  const noOfRotations = baseScore / 9 - gameSettings.dificulty;
   gameSettings.rotationScore += noOfRotations > 0 ? noOfRotations : 0;
 
-  // if current score is higher than high score update it
-  gameSettings.highestScore =
-    gameSettings.highestScore < gameSettings.currentScore ? gameSettings.currentScore : gameSettings.highestScore;
+  //
+  switch (gameSettings.dificulty) {
+    case 1:
+      gameSettings.easyHighestScore =
+        gameSettings.easyHighestScore < gameSettings.currentScore
+          ? gameSettings.currentScore
+          : gameSettings.easyHighestScore;
+
+      break;
+    case 2:
+      gameSettings.mediumHighestScore =
+        gameSettings.mediumHighestScore < gameSettings.currentScore
+          ? gameSettings.currentScore
+          : gameSettings.mediumHighestScore;
+      break;
+    case 3:
+      gameSettings.hardHighestScore =
+        gameSettings.hardHighestScore < gameSettings.currentScore
+          ? gameSettings.currentScore
+          : gameSettings.hardHighestScore;
+      break;
+    default:
+      throw console.error(`game dificulty not found`);
+  }
 
   renderGameScores();
 }
 
-function renderGameScores() {
+function renderGameScores(ifLoaded) {
   currentScoreCount.innerHTML = Math.floor(gameSettings.currentScore);
   rotationCount.innerHTML = gameSettings.rotationScore;
+
+  if (ifLoaded === `load`) {
+    console.log(`yes`);
+    switch (gameSettings.dificulty) {
+      case 1:
+        gameSettings.highestScore = gameSettings.easyHighestScore;
+        break;
+      case 2:
+        gameSettings.highestScore = gameSettings.mediumHighestScore;
+        break;
+      case 3:
+        gameSettings.highestScore = gameSettings.hardHighestScore;
+        break;
+      default:
+        throw console.error(`game dificulty not found`);
+    }
+  }
   highScoreCount.innerHTML = Math.floor(gameSettings.highestScore);
 }

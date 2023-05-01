@@ -46,20 +46,32 @@ let gameSettings = {
   mediumShapeMultiplier: 0.7, // 70%
   hardShapeMultiplier: 0.8, // 80%
 
-  // Both medium and hard will have their individual turns depending on game dificulity and general game turn
+  // Both medium and hard will have their individual turns depending on game dificulty and general game turn
   mediumShapeTurn: 0,
   hardShapeTurn: 0,
 
   // Game scores setting. Turns are used for procentage base calculation
   turn: 0,
-  // Game dificulity is set by numbers 1 = easy, 2 = medium, 3 = hard
-  dificulity: 0,
+  // Game dificulty is set by numbers 1 = easy, 2 = medium, 3 = hard
+  dificulty: 0,
 
   // game Scores
   currentScore: 0,
   weekScore: 0,
   highestScore: 0,
   rotationScore: 3,
+
+  easyWeekScore: 0,
+  easyHighestScore: 0,
+
+  mediumWeekScore: 0,
+  mediumHighestScore: 0,
+
+  hardWeekScore: 0,
+  hardHighestScore: 0,
+
+  WeekScore: 0,
+  HighestScore: 0,
 
   // volume sttings
   volume: 0.5,
@@ -88,7 +100,8 @@ window.addEventListener(`load`, () => {
     gameSettings = getLocalStorage()[0];
     addNewEventListeners(`add`);
     setOldGameValue();
-    setVissablesAndHidden(gameSettings.dificulity);
+    setVissablesAndHidden(gameSettings.dificulty);
+    renderGameScores(`load`);
   }
 
   renderGameScores();
@@ -106,12 +119,12 @@ window.addEventListener(`resize`, () => {
 
 //-------------------------------------FUNCTIONS---------------------------
 
-// runs when dificulity is selected and starts event listeners and fills the shapes
-function gameStart(dificulity) {
-  gameSettings.dificulity = dificulity;
+// runs when dificulty is selected and starts event listeners and fills the shapes
+function gameStart(dificulty) {
+  gameSettings.dificulty = dificulty;
 
   // eddits htm in modal
-  setVissablesAndHidden(dificulity);
+  setVissablesAndHidden(dificulty);
 
   //Resets the game components
   clearGameBoardandShapes();
@@ -132,23 +145,24 @@ function gameStart(dificulity) {
   gameSettings.turn = 0;
   gameSettings.currentScore = 0;
   currentScoreCount.innerHTML = gameSettings.currentScore;
-  highScoreCount.innerHTML = gameSettings.highestScore;
+  highScoreCount.innerHTML = Math.floor(gameSettings.highestScore);
 
-  // sets medium and hard shapes starting turn when it starts raising dificulity
-  gameSettings.mediumShapeTurn = 25 - 5 * dificulity;
-  gameSettings.hardShapeTurn = 50 - 10 * dificulity;
+  // sets medium and hard shapes starting turn when it starts raising dificulty
+  gameSettings.mediumShapeTurn = 25 - 5 * dificulty;
+  gameSettings.hardShapeTurn = 50 - 10 * dificulty;
 
   // rotation count update
-  gameSettings.rotationScore = 4 - dificulity;
+  gameSettings.rotationScore = 4 - dificulty;
   rotationCount.innerHTML = gameSettings.rotationScore;
+  renderGameScores(`load`);
 }
 
 // Sets neceseraly vissables and hiden in game modal
-function setVissablesAndHidden(dificulity) {
-  // set up visability of game dificulity
+function setVissablesAndHidden(dificulty) {
+  // set up visability of game dificulty
   let text;
 
-  switch (dificulity) {
+  switch (dificulty) {
     case 1:
       text = `Easy`;
       break;

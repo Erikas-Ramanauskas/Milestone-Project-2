@@ -149,10 +149,8 @@ function dragEnd(e) {
   const bugCheck = dropBoxesCenters.length > 0;
 
   if (mactchedActiveSquares[1] && bugCheck) {
-    // adds to the game turn after sucsessfull drop and adjust the shape dificulity
+    // adds to the game turn after sucsessfull drop and adjust the shape dificulty
     gameDificulityAdjustment();
-
-    console.log(gameSettings);
 
     mactchedActiveSquares[0].forEach((element) => {
       element.classList.remove(`empty-field`);
