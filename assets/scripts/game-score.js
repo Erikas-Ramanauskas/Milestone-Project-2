@@ -342,25 +342,23 @@ function gameChangeUpdate(baseScore) {
   renderGameScores();
 }
 
-function renderGameScores(ifLoaded) {
+function renderGameScores() {
   currentScoreCount.innerHTML = Math.floor(gameSettings.currentScore);
   rotationCount.innerHTML = gameSettings.rotationScore;
 
-  if (ifLoaded === `load`) {
-    console.log(`yes`);
-    switch (gameSettings.dificulty) {
-      case 1:
-        gameSettings.highestScore = gameSettings.easyHighestScore;
-        break;
-      case 2:
-        gameSettings.highestScore = gameSettings.mediumHighestScore;
-        break;
-      case 3:
-        gameSettings.highestScore = gameSettings.hardHighestScore;
-        break;
-      default:
-        throw console.error(`game dificulty not found`);
-    }
+  switch (gameSettings.dificulty) {
+    case 1:
+      gameSettings.highestScore = gameSettings.easyHighestScore;
+      break;
+    case 2:
+      gameSettings.highestScore = gameSettings.mediumHighestScore;
+      break;
+    case 3:
+      gameSettings.highestScore = gameSettings.hardHighestScore;
+      break;
+    default:
+      throw console.error(`game dificulty not found`);
   }
+
   highScoreCount.innerHTML = Math.floor(gameSettings.highestScore);
 }

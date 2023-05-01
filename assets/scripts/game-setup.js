@@ -101,7 +101,7 @@ window.addEventListener(`load`, () => {
     addNewEventListeners(`add`);
     setOldGameValue();
     setVissablesAndHidden(gameSettings.dificulty);
-    renderGameScores(`load`);
+    renderGameScores();
   }
 
   renderGameScores();
@@ -154,7 +154,7 @@ function gameStart(dificulty) {
   // rotation count update
   gameSettings.rotationScore = 4 - dificulty;
   rotationCount.innerHTML = gameSettings.rotationScore;
-  renderGameScores(`load`);
+  renderGameScores();
 }
 
 // Sets neceseraly vissables and hiden in game modal
