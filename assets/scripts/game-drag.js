@@ -6,8 +6,10 @@ const draggables = document.getElementsByClassName("draggable");
 const gameBoxes = document.getElementsByClassName("game-box");
 const screen = document.querySelector("#game-screen");
 
+// game square coorodinates that are used with drag start
 let shapesBoxesCoordinates = {};
 
+// game board cooridantes used with drag start
 let dropBoxesCenters = [];
 
 function gameStartShapesFill() {
@@ -176,6 +178,16 @@ function dragEnd(e) {
 
   // check if it is game over
   trigerGameOverCheck();
+
+  // Clean and push new shapes data for local storage
+  gameData.shapes = [];
+  storeGameShapes();
+
+  // Clean and push new game board data for local storage
+  gameData.board = ``;
+  storeGameBoard();
+
+  setLocalStorage();
 }
 
 // Requires remove/add/reset action to work. effects draggable squares

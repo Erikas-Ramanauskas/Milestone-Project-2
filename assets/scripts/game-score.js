@@ -144,7 +144,7 @@ function trigerGameOverCheck() {
     // shows meniu options once the game is over
     if (!checkForGameOver(gameBoardArray, draggablesArray)) {
       // changes resume button to game over message
-      gameOverScore.innerHTML = gameSettings.currentScore;
+      gameOverScore.innerHTML = Math.floor(gameSettings.currentScore);
       gameOverMessage.style.display = `block`;
       resumeButton.style.display = `none`;
       menuModal.show();
@@ -286,10 +286,20 @@ function gameChangeUpdate(baseScore) {
   // check if there is a combination and multiply score reward , updates data and pushes to html
   const newGameScore = baseScore > 9 ? baseScore * 1.5 : baseScore;
   gameSettings.currentScore += newGameScore;
-  currentScoreCount.innerHTML = Math.floor(gameSettings.currentScore);
 
   // checking how many points will be added to rotations
   const noOfRotations = baseScore / 9 - gameSettings.dificulity;
   gameSettings.rotationScore += noOfRotations > 0 ? noOfRotations : 0;
+
+  // if current score is higher than high score update it
+  gameSettings.highestScore =
+    gameSettings.highestScore < gameSettings.currentScore ? gameSettings.currentScore : gameSettings.highestScore;
+
+  renderGameScores();
+}
+
+function renderGameScores() {
+  currentScoreCount.innerHTML = Math.floor(gameSettings.currentScore);
   rotationCount.innerHTML = gameSettings.rotationScore;
+  highScoreCount.innerHTML = Math.floor(gameSettings.highestScore);
 }

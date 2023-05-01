@@ -33,7 +33,7 @@ const menuModal = new bootstrap.Modal(document.getElementById("staticBackdrop"),
 // Three diferent shape dificulities are set for the start of the game, then adjusted as a game progresses
 // To set up game procentage, using thousands instead of hundreds to be more precice on procentages
 
-const gameSettings = {
+let gameSettings = {
   easyBaseProcentage: 910,
   mediumBaseProcentage: 60,
   hardBaseProcentage: 30,
@@ -65,6 +65,11 @@ const gameSettings = {
   volume: 0.5,
 };
 
+const gameData = {
+  board: [],
+  shapes: [],
+};
+
 //determines if screen is horizontal or vertical and this function used for many others as a variable.
 let horizontalOrNot; //true for vertical, false for horizontal, checked on load and on resize.
 
@@ -73,9 +78,22 @@ window.addEventListener(`load`, () => {
   horizontalOrNot = container.innerWidth() < container.innerHeight();
   gameScreenDimentions();
   gameBoardAndScreenDimentions();
-  newGameBoardGrid();
   setShapesContainerSize();
-  setGameSound();
+  // checks if player is visiting first time or if old info needs to be uploaded
+  if (!getLocalStorage()) {
+    newGameBoardGrid();
+  } else {
+    oldGameBoardGrid(getLocalStorage()[1]);
+    fillOldGameShapes(getLocalStorage()[1]);
+    gameSettings = getLocalStorage()[0];
+    addNewEventListeners(`add`);
+    setOldGameValue();
+    setVissablesAndHidden(gameSettings.dificulity);
+  }
+
+  renderGameScores();
+  setGameVolume();
+  trigerGameOverCheck();
 });
 
 // Functions to call when screen resizes
@@ -114,8 +132,6 @@ function gameStart(dificulity) {
   gameSettings.turn = 0;
   gameSettings.currentScore = 0;
   currentScoreCount.innerHTML = gameSettings.currentScore;
-  gameSettings.weekScore = 0;
-  gameSettings.highestScore = 0;
   highScoreCount.innerHTML = gameSettings.highestScore;
 
   // sets medium and hard shapes starting turn when it starts raising dificulity
@@ -153,15 +169,19 @@ function setVissablesAndHidden(dificulity) {
   resumeButton.style.display = `block`;
 }
 
-// function setting game sound
+// functions setting game sound
 volumeInput.addEventListener("input", (event) => {
   gameSettings.volume = event.target.value / 200;
-  setGameSound();
+  setGameVolume();
 });
 
-function setGameSound() {
+function setGameVolume() {
   dropAudio.volume = gameSettings.volume;
   destroyAudio.volume = gameSettings.volume;
+}
+
+function setOldGameValue() {
+  volumeInput.value = gameSettings.volume * 200;
 }
 
 // setting screen dimentions and layout
@@ -230,6 +250,11 @@ function newGameBoardGrid() {
       `<div class="game-box grid-row-${rowNumber} grid-column-${columnNumber} grid-square-${squareNumber} empty-field"></div>`
     );
   }
+}
+
+// fills up board with old game data
+function oldGameBoardGrid(oldStorage) {
+  gameBoard.append(oldStorage.board);
 }
 
 // -------------------------------------------------------------------------------------
