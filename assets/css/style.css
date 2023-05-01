@@ -566,3 +566,18 @@ h6 {
 .test1 {
   border: red solid 1px;
 }
+
+.highscore-table {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.highscore-table th {
+  text-align: center;
+}
+
+.highscore-table td,
+.highscore-table th {
+  padding: 1rem;
+  padding-top: 0;
+}

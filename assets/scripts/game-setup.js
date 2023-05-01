@@ -99,7 +99,7 @@ window.addEventListener(`load`, () => {
     fillOldGameShapes(getLocalStorage()[1]);
     gameSettings = getLocalStorage()[0];
     addNewEventListeners(`add`);
-    setOldGameValue();
+    setOldGameVolume();
     setVissablesAndHidden(gameSettings.dificulty);
     renderGameScores();
   }
@@ -194,7 +194,7 @@ function setGameVolume() {
   destroyAudio.volume = gameSettings.volume;
 }
 
-function setOldGameValue() {
+function setOldGameVolume() {
   volumeInput.value = gameSettings.volume * 200;
 }
 

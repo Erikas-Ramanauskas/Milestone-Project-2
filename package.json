@@ -17,6 +17,19 @@
   },
   "homepage": "https://github.com/Erikas-Ramanauskas/Milestone-Project-2#readme",
   "devDependencies": {
-    "jest": "^29.5.0"
-  }
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0"
+  },
+  "jest": {
+    
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "collectCoverage" : true
+  },
+  "collectCoverageFrom": [
+    "/*.{js,jsx}",
+    "!/node_modules/",
+    "!/vendor/**"
+  ]
 }
