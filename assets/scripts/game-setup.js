@@ -12,6 +12,7 @@ const gameShapes = $(`#game-shapes`);
 
 const currentScoreCount = document.querySelector(`#current-score-count`);
 const highScoreCount = document.querySelector(`#high-score-count`);
+const highScoreText = document.querySelector(`#high-score-text`);
 const rotationCount = document.querySelector(`#rotation-count-number`);
 const currentGameMode = document.querySelector(`#current-game-mode`);
 const gameModeVisibility = document.querySelector(`.current-mode-container`);
@@ -53,25 +54,26 @@ let gameSettings = {
   // Game scores setting. Turns are used for procentage base calculation
   turn: 0,
   // Game dificulty is set by numbers 1 = easy, 2 = medium, 3 = hard
-  dificulty: 0,
+  dificulty: 1,
 
   // game Scores
   currentScore: 0,
   weekScore: 0,
   highestScore: 0,
   rotationScore: 3,
+  gameWeek: 0,
 
+  easyGamesPlayed: 0,
   easyWeekScore: 0,
   easyHighestScore: 0,
 
+  mediumGamesPlayed: 0,
   mediumWeekScore: 0,
   mediumHighestScore: 0,
 
+  hardGamesPlayed: 0,
   hardWeekScore: 0,
   hardHighestScore: 0,
-
-  WeekScore: 0,
-  HighestScore: 0,
 
   // volume sttings
   volume: 0.5,
@@ -91,9 +93,11 @@ window.addEventListener(`load`, () => {
   gameScreenDimentions();
   gameBoardAndScreenDimentions();
   setShapesContainerSize();
+
   // checks if player is visiting first time or if old info needs to be uploaded
   if (!getLocalStorage()) {
     newGameBoardGrid();
+    gameStart(1); // In case player never visited website automaticaly starts easy game
   } else {
     oldGameBoardGrid(getLocalStorage()[1]);
     fillOldGameShapes(getLocalStorage()[1]);
@@ -104,6 +108,7 @@ window.addEventListener(`load`, () => {
     renderGameScores();
   }
 
+  resetGameWeek();
   renderGameScores();
   setGameVolume();
   trigerGameOverCheck();
@@ -315,4 +320,21 @@ function clearGameBoardandShapes() {
   for (let i = 0; i < gameShapes.length; i++) {
     gameShapes[i].innerHTML = "";
   }
+}
+
+//checks what week is current and what week was recorded last time, if it maches no changes done if it does not then resets highscores
+function resetGameWeek() {
+  // creates week number
+  const currentDate = new Date();
+  const startDate = new Date(currentDate.getFullYear(), 0, 1);
+  const days = Math.floor((currentDate - startDate) / (24 * 60 * 60 * 1000));
+
+  const weekNumber = Math.ceil(days / 7);
+
+  if (gameSettings.gameWeek + 1 == weekNumber) return;
+
+  gameSettings.gameWeek = weekNumber;
+  gameSettings.easyWeekScore = 0;
+  gameSettings.mediumWeekScore = 0;
+  gameSettings.hardWeekScore = 0;
 }

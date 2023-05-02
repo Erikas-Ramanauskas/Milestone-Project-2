@@ -171,6 +171,7 @@ function trigerGameOverCheck() {
       gameOverMessage.style.display = `block`;
       resumeButton.style.display = `none`;
       menuModal.show();
+      gamesCount();
     }
   }, 1000);
 }
@@ -307,7 +308,9 @@ function playAudio(sound) {
 
 function gameChangeUpdate(baseScore) {
   // check if there is a combination and multiply score reward , updates data and pushes to html
-  const newGameScore = baseScore > 9 ? baseScore * 1.5 : baseScore;
+  const dificulityAdjustedScore = (gameSettings.dificulty - 1) * 0.2 * baseScore + baseScore;
+
+  const newGameScore = baseScore > 9 ? dificulityAdjustedScore * 1.5 : dificulityAdjustedScore;
   gameSettings.currentScore += newGameScore;
 
   // checking how many points will be added to rotations
@@ -317,6 +320,9 @@ function gameChangeUpdate(baseScore) {
   //
   switch (gameSettings.dificulty) {
     case 1:
+      gameSettings.easyWeekScore =
+        gameSettings.easyWeekScore < gameSettings.currentScore ? gameSettings.currentScore : gameSettings.easyWeekScore;
+
       gameSettings.easyHighestScore =
         gameSettings.easyHighestScore < gameSettings.currentScore
           ? gameSettings.currentScore
@@ -324,12 +330,20 @@ function gameChangeUpdate(baseScore) {
 
       break;
     case 2:
+      gameSettings.mediumWeekScore =
+        gameSettings.mediumWeekScore < gameSettings.currentScore
+          ? gameSettings.currentScore
+          : gameSettings.mediumWeekScore;
+
       gameSettings.mediumHighestScore =
         gameSettings.mediumHighestScore < gameSettings.currentScore
           ? gameSettings.currentScore
           : gameSettings.mediumHighestScore;
       break;
     case 3:
+      gameSettings.hardWeekScore =
+        gameSettings.hardWeekScore < gameSettings.currentScore ? gameSettings.currentScore : gameSettings.hardWeekScore;
+
       gameSettings.hardHighestScore =
         gameSettings.hardHighestScore < gameSettings.currentScore
           ? gameSettings.currentScore
@@ -346,19 +360,57 @@ function renderGameScores() {
   currentScoreCount.innerHTML = Math.floor(gameSettings.currentScore);
   rotationCount.innerHTML = gameSettings.rotationScore;
 
+  let weekOrTotal;
   switch (gameSettings.dificulty) {
     case 1:
-      gameSettings.highestScore = gameSettings.easyHighestScore;
+      gameSettings.highestScore =
+        gameSettings.easyHighestScore > gameSettings.easyWeekScore
+          ? gameSettings.easyHighestScore
+          : gameSettings.easyWeekScore;
+
+      weekOrTotal = gameSettings.easyHighestScore > gameSettings.easyWeekScore;
+
       break;
     case 2:
-      gameSettings.highestScore = gameSettings.mediumHighestScore;
+      gameSettings.highestScore =
+        gameSettings.mediumHighestScore > gameSettings.mediumWeekScore
+          ? gameSettings.mediumHighestScore
+          : gameSettings.mediumWeekScore;
+
+      weekOrTotal = gameSettings.mediumHighestScore > gameSettings.mediumWeekScore;
       break;
     case 3:
-      gameSettings.highestScore = gameSettings.hardHighestScore;
+      gameSettings.highestScore =
+        gameSettings.hardHighestScore > gameSettings.hardWeekScore
+          ? gameSettings.hardHighestScore
+          : gameSettings.hardWeekScore;
+
+      weekOrTotal = gameSettings.hardHighestScore > gameSettings.hardWeekScore;
       break;
     default:
       throw console.error(`game dificulty not found`);
   }
 
+  if (!weekOrTotal) {
+    highScoreText.innerHTML = `High-score:`;
+  } else {
+    highScoreText.innerHTML = `Best of Week:`;
+  }
   highScoreCount.innerHTML = Math.floor(gameSettings.highestScore);
+}
+
+function gamesCount() {
+  switch (gameSettings.dificulty) {
+    case 1:
+      gameSettings.easyGamesPlayed++;
+      break;
+    case 2:
+      gameSettings.mediumGamesPlayed++;
+      break;
+    case 3:
+      gameSettings.hardGamesPlayed++;
+      break;
+    default:
+      throw console.error(`game dificulty not found`);
+  }
 }
