@@ -51,8 +51,11 @@
     </header>
     <!-- Nav end -->
     <main>
+      <button id="authorize_button" onclick="handleSignInClick()">Authorize</button>
+      <button id="signout_button" onclick="handleSignOutClick()">Sign Out</button>
+
       <div class="container-fluid">
-        <div class="row row-cols-1 row-cols-md-2 section grid gap-0 row-gap-4 my-4 d-flex justify-content-center">
+        <div class="row row-cols-1 row-cols-md-2 section grid gap-0 row-gap-4 my-5 d-flex justify-content-center">
           <div class="col d-flex justify-content-center">
             <table class="highscore-table">
               <tr>
@@ -163,5 +166,9 @@
       crossorigin="anonymous"
     ></script>
     <script defer src="assets/scripts/index.js"></script>
+    <script defer src="assets/scripts/local-storage.js"></script>
+
+    <script async defer src="https://apis.google.com/js/api.js" onload="handleClientLoad()"></script>
+    <script async defer src="https://accounts.google.com/gsi/client" onload="initClient()"></script>
   </body>
 </html>

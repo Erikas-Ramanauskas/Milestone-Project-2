@@ -570,10 +570,12 @@ h6 {
 .highscore-table {
   color: white;
   font-size: 1.5rem;
+  letter-spacing: 0.2rem;
 }
 
 .highscore-table th {
   text-align: center;
+  text-decoration: underline;
 }
 
 .highscore-table td,

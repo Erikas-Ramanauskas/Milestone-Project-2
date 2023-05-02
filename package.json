@@ -21,15 +21,17 @@
     "jest-environment-jsdom": "^29.5.0"
   },
   "jest": {
-    
     "testPathIgnorePatterns": [
       "/node_modules/"
     ],
-    "collectCoverage" : true
+    "collectCoverage": true
   },
   "collectCoverageFrom": [
     "/*.{js,jsx}",
     "!/node_modules/",
     "!/vendor/**"
-  ]
+  ],
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
 }

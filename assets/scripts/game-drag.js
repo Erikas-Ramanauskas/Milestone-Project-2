@@ -115,7 +115,7 @@ function dragOver(e) {
   }
 
   // The fallowing code determines if center of dragable boxes are within dropboxes.
-  // getting mosue cordinates during drag
+  // getting mouse cordinates during drag
   const mouseX = e.pageX;
   const mouseY = e.pageY;
 
@@ -146,7 +146,7 @@ function dragEnd(e) {
   const mactchedActiveSquares = findingMacthingSquares(mouseX, mouseY);
 
   // introduced this to counter a bug that happens when on mouse click event that does not triger when drag starts as it does not record the data for drop boxes
-  const bugCheck = dropBoxesCenters.length > 0;
+  const bugCheck = mactchedActiveSquares[0].length > 0;
 
   if (mactchedActiveSquares[1] && bugCheck) {
     // adds to the game turn after sucsessfull drop and adjust the shape dificulty
