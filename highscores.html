@@ -51,10 +51,9 @@
     </header>
     <!-- Nav end -->
     <main>
-
       <div class="container-fluid">
-        <div class="row row-cols-1 row-cols-md-2 section grid gap-0 row-gap-4 my-5 d-flex justify-content-center">
-          <div class="col d-flex justify-content-center">
+        <div class="row row-cols-1 row-cols-md-2 grid gap-0 row-gap-4 my-5 d-flex justify-content-center">
+          <div class="col section d-flex justify-content-center">
             <table class="highscore-table">
               <tr>
                 <th colspan="2">Easy</th>
@@ -73,7 +72,7 @@
               </tr>
             </table>
           </div>
-          <div class="col d-flex justify-content-center">
+          <div class="col section d-flex justify-content-center">
             <table class="highscore-table">
               <tr>
                 <th colspan="2">Medium</th>
@@ -92,7 +91,7 @@
               </tr>
             </table>
           </div>
-          <div class="col d-flex justify-content-center">
+          <div class="col section d-flex justify-content-center">
             <table class="highscore-table">
               <tr>
                 <th colspan="2">Hard</th>
@@ -114,7 +113,7 @@
         </div>
       </div>
     </main>
-    <footer class="container-fluid px-5 pt-4 pb-2">
+    <footer class="container-fluid section px-5 pt-4 pb-2">
       <h3 class="fw-bold pb-2">About the developer</h3>
       <p class="px-3">
         Hi I am Erikas Ramanauskas, a student of Code Institute, learning full stack development. You are looking at my
@@ -165,11 +164,13 @@
     ></script>
     <script defer src="assets/scripts/index.js"></script>
     <script defer src="assets/scripts/local-storage.js"></script>
- </script>
-    <script async defer src="https://apis.google.com/js/api.js"
+    <script
+      async
+      defer
+      src="https://apis.google.com/js/api.js"
       onload="this.onload=function(){};handleClientLoad()"
-      onreadystatechange="if (this.readyState === 'complete') this.onload()">
-    </script>
+      onreadystatechange="if (this.readyState === 'complete') this.onload()"
+    ></script>
     <button id="signin-button" onclick="handleSignInClick()">Sign in</button>
     <button id="signout-button" onclick="handleSignOutClick()">Sign out</button>
   </body>
