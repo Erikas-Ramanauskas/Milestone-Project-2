@@ -76,7 +76,7 @@ let gameSettings = {
   hardHighestScore: 0,
 
   // volume sttings
-  volume: 0.5,
+  volume: 0.2,
 };
 
 const gameData = {
@@ -120,6 +120,7 @@ window.addEventListener(`resize`, () => {
   gameScreenDimentions();
   gameBoardAndScreenDimentions();
   setShapesContainerSize();
+  findDropBoxesCenters();
 });
 
 //-------------------------------------FUNCTIONS---------------------------
@@ -331,7 +332,7 @@ function resetGameWeek() {
 
   const weekNumber = Math.ceil(days / 7);
 
-  if (gameSettings.gameWeek + 1 == weekNumber) return;
+  if (gameSettings.gameWeek == weekNumber) return;
 
   gameSettings.gameWeek = weekNumber;
   gameSettings.easyWeekScore = 0;

@@ -78,6 +78,7 @@ h6 {
   display: flex;
   justify-content: center;
   align-items: center;
+  touch-action: none;
 }
 
 #game-screen {
@@ -165,6 +166,18 @@ h6 {
 .modal-header .nav-link:hover {
   border: 0.2rem solid var(--destroy-primary);
   color: var(--destroy-primary);
+}
+
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(255, 203, 154)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.custom-toggler.navbar-toggler {
+  border-color: var(--cream-light);
+}
+
+.navbar-toggler:focus {
+  box-shadow: -2px 0 var(--cream-light), 0 2px var(--cream-light), 2px 0 var(--cream-light), 0 -2px var(--cream-light);
 }
 
 .section {
