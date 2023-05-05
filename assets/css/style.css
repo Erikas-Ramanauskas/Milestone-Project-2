@@ -1,11 +1,15 @@
 @charset "utf-8";
 
+/* google fonts */
+
+@import url("https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Patrick+Hand&family=Roboto&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   border: 0;
   box-sizing: border-box !important;
-  font-family: "Gloria Hallelujah", cursive;
+  font-family: cursive;
 }
 
 /* colour variables */
@@ -37,10 +41,6 @@
   --destroy-border-left: #a37670ff;
 }
 
-/* google fonts */
-
-@import url("https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Patrick+Hand&family=Roboto&display=swap");
-
 body {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1166%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='rgba(36%2c 43%2c 40%2c 1)'%3e%3c/rect%3e%3cpath d='M -67.7476608901635%2c44 C 28.25%2c121.6 220.25%2c414 412.2523391098365%2c432 C 604.25%2c450 700.25%2c155.4 892.2523391098365%2c134 C 1084.25%2c112.6 1180.25%2c315.6 1372.2523391098366%2c325 C 1564.25%2c334.4 1838.7%2c184.6 1852.2523391098366%2c181 C 1865.8%2c177.4 1522.45%2c281.8 1440%2c307' stroke='rgba(102%2c 26%2c 17%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M -414.17367309722397%2c314 C -318.17%2c300 -126.17%2c249.6 65.82632690277606%2c244 C 257.83%2c238.4 353.83%2c329.8 545.826326902776%2c286 C 737.83%2c242.2 833.83%2c19 1025.8263269027761%2c25 C 1217.83%2c31 1422.99%2c283.4 1505.8263269027761%2c316 C 1588.66%2c348.6 1453.17%2c213.6 1440%2c188' stroke='rgba(102%2c 26%2c 17%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M -448.57386135045107%2c221 C -352.57%2c238.4 -160.57%2c333.8 31.426138649548925%2c308 C 223.43%2c282.2 319.43%2c83 511.42613864954893%2c92 C 703.43%2c101 799.43%2c331.2 991.4261386495489%2c353 C 1183.43%2c374.8 1381.71%2c196.8 1471.4261386495489%2c201 C 1561.14%2c205.2 1446.29%2c339.4 1440%2c374' stroke='rgba(102%2c 26%2c 17%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M -407.708757028881%2c213 C -311.71%2c266.2 -119.71%2c494.4 72.29124297111898%2c479 C 264.29%2c463.6 360.29%2c136.2 552.291242971119%2c136 C 744.29%2c135.8 840.29%2c466.2 1032.291242971119%2c478 C 1224.29%2c489.8 1430.75%2c189.2 1512.291242971119%2c195 C 1593.83%2c200.8 1454.46%2c444.6 1440%2c507' stroke='rgba(102%2c 26%2c 17%2c 1)' stroke-width='2'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1166'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
   background-size: cover;
@@ -67,7 +67,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Patrick Hand", cursive;
+  font-family: "Patrick Hand", Copperplate, Papyrus, fantasy;
   letter-spacing: 0.2rem;
   font-weight: 600;
 }
@@ -163,9 +163,23 @@ h6 {
   -o-transition: all 0.4s ease-in-out;
 }
 
+@media screen {
+}
+
+.modal-header {
+  border-bottom: 2px solid var(--cream-light);
+  color: var(--highlight-primary);
+}
+
 .modal-header .nav-link:hover {
   border: 0.2rem solid var(--destroy-primary);
   color: var(--destroy-primary);
+}
+
+@media only screen and (max-width: 390px) {
+  .modal-header {
+    flex-direction: column;
+  }
 }
 
 .custom-toggler .navbar-toggler-icon {
@@ -387,10 +401,6 @@ h6 {
   background-color: var(--primary-color);
 }
 
-.modal-header {
-  border-bottom: 2px solid var(--cream-light);
-}
-
 .modal-footer {
   border-top: 2px solid var(--cream-light);
   justify-content: space-between;
@@ -399,10 +409,6 @@ h6 {
 .current-mode-container {
   color: var(--highlight-primary);
   visibility: hidden;
-}
-
-.modal-header a {
-  color: var(--highlight-primary);
 }
 
 .readme-link {
@@ -416,8 +422,6 @@ h6 {
 .readme-link:hover {
   color: var(--destroy-primary);
 }
-
-/* -------------------------------------------------   Drag and d rop testing ---------------------------------------------*/
 
 .filled-box {
   background-color: var(--primary-color);
@@ -535,6 +539,18 @@ h6 {
   }
 }
 
+@media only screen and (max-width: 390px) and (orientation: landscape) {
+  .game-buttons p {
+    font-size: 0.6rem;
+  }
+}
+
+@media only screen and (max-width: 650px) and (orientation: portrait) {
+  .game-buttons p {
+    font-size: 0.6rem;
+  }
+}
+
 @media (orientation: portrait) {
   #game-controls {
     flex-direction: row;
@@ -595,4 +611,48 @@ h6 {
 .highscore-table th {
   padding: 1rem;
   padding-top: 0;
+}
+
+#menu-button {
+  font-weight: 600;
+  color: var(--destroy-primary);
+  background-color: var(--highlight-primary);
+  border-top: 0.5rem solid var(--hightlight-border-top);
+  border-right: 0.5rem solid var(--hightlight-border-right);
+  border-bottom: 0.5rem solid var(--hightlight-border-bottom);
+  border-left: 0.5rem solid var(--hightlight-border-left);
+  transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+}
+
+#menu-button:hover {
+  background-color: var(--primary-color);
+  border-top: 0.5rem solid var(--border-top);
+  border-right: 0.5rem solid var(--border-right);
+  border-bottom: 0.5rem solid var(--border-bottom);
+  border-left: 0.5rem solid var(--border-left);
+}
+
+.rotation-button {
+  color: white;
+  background-color: var(--highlight-primary);
+  border-top: 0.5rem solid var(--hightlight-border-top);
+  border-right: 0.5rem solid var(--hightlight-border-right);
+  border-bottom: 0.5rem solid var(--hightlight-border-bottom);
+  border-left: 0.5rem solid var(--hightlight-border-left);
+  transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+}
+
+.rotation-button:hover {
+  color: white;
+  background-color: var(--primary-color);
+  border-top: 0.5rem solid var(--border-top);
+  border-right: 0.5rem solid var(--border-right);
+  border-bottom: 0.5rem solid var(--border-bottom);
+  border-left: 0.5rem solid var(--border-left);
 }

@@ -3,9 +3,13 @@
 /**
  * @jest-environment jsdom
  */
-const $ = require("jquery");
 
-const { gameStart, gameSettings, setVissablesAndHidden, setGameVolume, setOldGameVolume } = require("../game-setup");
+const { gameStart, gameSettings } = require("../game-setup.js");
+
+test("use jsdom in this test file", () => {
+  const element = document.createElement("div");
+  expect(element).not.toBeNull();
+});
 
 beforeAll(() => {
   let fs = require("fs");

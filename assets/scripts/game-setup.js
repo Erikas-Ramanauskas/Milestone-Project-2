@@ -4,11 +4,12 @@
 // Additionly it will call all nececeraly global variables for other files
 
 // DOM elements
-const container = $(`#game-screen-container`);
-const gameScreen = $(`#game-screen`);
-const gameBoard = $(`#game-board`);
-const gameControls = $(`#game-controls`);
-const gameShapes = $(`#game-shapes`);
+const container = document.querySelector("#game-screen-container");
+const gameScreen = document.querySelector("#game-screen");
+const gameBoard = document.querySelector("#game-board");
+const shapeWindows = document.querySelectorAll(".shape-window");
+const gameControls = document.querySelector("#game-controls");
+const gameShapes = document.querySelector("#game-shapes");
 
 const currentScoreCount = document.querySelector(`#current-score-count`);
 const highScoreCount = document.querySelector(`#high-score-count`);
@@ -76,7 +77,7 @@ let gameSettings = {
   hardHighestScore: 0,
 
   // volume sttings
-  volume: 0.2,
+  volume: 0,
 };
 
 const gameData = {
@@ -89,7 +90,7 @@ let horizontalOrNot; //true for vertical, false for horizontal, checked on load 
 
 // Functions to call once the game loads
 window.addEventListener(`load`, () => {
-  horizontalOrNot = container.innerWidth() < container.innerHeight();
+  horizontalOrNot = container.clientWidth < container.clientHeight;
   gameScreenDimentions();
   gameBoardAndScreenDimentions();
   setShapesContainerSize();
@@ -116,7 +117,7 @@ window.addEventListener(`load`, () => {
 
 // Functions to call when screen resizes
 window.addEventListener(`resize`, () => {
-  horizontalOrNot = container.innerWidth() < container.innerHeight();
+  horizontalOrNot = container.clientWidth < container.clientHeight;
   gameScreenDimentions();
   gameBoardAndScreenDimentions();
   setShapesContainerSize();
@@ -207,53 +208,55 @@ function setOldGameVolume() {
 // setting screen dimentions and layout
 function gameScreenDimentions() {
   const viewRatio = 3 / 5.5;
-  let height;
-  let width;
+  let height, width;
 
   // Determines if height is bigger or with and decides witch way to set up 3x4 ratio.
   // after making this decition it check's for largest proportions to fit 3x4 ratio box
-  if (horizontalOrNot) {
-    if (container.innerWidth() / viewRatio < container.innerHeight()) {
-      width = `100%`;
-      height = `${container.innerWidth() / viewRatio}px`;
+
+  if (container.clientWidth < container.clientHeight) {
+    if (container.clientWidth / viewRatio < container.clientHeight) {
+      width = "100%";
+      height = `${container.clientWidth / viewRatio}px`;
     } else {
-      height = `100%`;
-      width = `${container.innerHeight() * viewRatio}px`;
+      height = "100%";
+      width = `${container.clientHeight * viewRatio}px`;
     }
   } else {
-    if (container.innerHeight() / viewRatio < container.innerWidth()) {
-      height = `100%`;
-      width = `${container.innerHeight() / viewRatio}px`;
+    if (container.clientHeight / viewRatio < container.clientWidth) {
+      height = "100%";
+      width = `${container.clientHeight / viewRatio}px`;
     } else {
-      width = `100%`;
-      height = `${container.innerWidth() * viewRatio}px`;
+      width = "100%";
+      height = `${container.clientWidth * viewRatio}px`;
     }
   }
-  gameScreen.css(`width`, width).css(`height`, height);
+
+  gameScreen.style.width = width;
+  gameScreen.style.height = height;
 }
 
 // board screen dimentions calculations for loading up and on screen size change
 function gameBoardAndScreenDimentions() {
-  const gameScreenWidth = gameScreen.innerWidth();
-  const gameScreenHeight = gameScreen.innerHeight();
+  const gameScreenWidth = gameScreen.clientWidth;
+  const gameScreenHeight = gameScreen.clientHeight;
   const maxDimension = Math.min(gameScreenWidth, gameScreenHeight);
 
-  gameBoard.css(`width`, maxDimension + `px`);
-  gameBoard.css(`height`, maxDimension + `px`);
-  gameBoard.css(`padding`, maxDimension / 18 + `px`);
+  gameBoard.style.width = maxDimension + "px";
+  gameBoard.style.height = maxDimension + "px";
+  gameBoard.style.padding = maxDimension / 18 + "px";
 
   if (horizontalOrNot) {
-    gameShapes.css(`width`, maxDimension + `px`);
-    gameShapes.css(`height`, maxDimension / 2 + `px`);
-    gameShapes.css(`padding`, maxDimension / 20 + `px`);
-    // seting layout of game board and pieces
-    gameScreen.css(`flex-direction`, `column`);
+    gameShapes.style.width = maxDimension + "px";
+    gameShapes.style.height = maxDimension / 2 + "px";
+    gameShapes.style.padding = maxDimension / 20 + "px";
+    // setting layout of game board and pieces
+    gameScreen.style.flexDirection = "column";
   } else {
-    gameShapes.css(`width`, maxDimension / 2 + `px`);
-    gameShapes.css(`padding`, maxDimension / 20 + `px`);
-    gameShapes.css(`height`, maxDimension + `px`);
-    // seting layout of game board and pieces
-    gameScreen.css(`flex-direction`, `row`);
+    gameShapes.style.width = maxDimension / 2 + "px";
+    gameShapes.style.padding = maxDimension / 20 + "px";
+    gameShapes.style.height = maxDimension + "px";
+    // setting layout of game board and pieces
+    gameScreen.style.flexDirection = "row";
   }
 }
 
@@ -266,46 +269,49 @@ function newGameBoardGrid() {
     const columnNumber = i % 9;
     const squareNumber = Math.floor(rowNumber / 3) * 3 + Math.floor(columnNumber / 3);
 
-    gameBoard.append(
-      `<div class="game-box grid-row-${rowNumber} grid-column-${columnNumber} grid-square-${squareNumber} empty-field"></div>`
-    );
+    const newGameBox = document.createElement("div");
+    newGameBox.className = `game-box grid-row-${rowNumber} grid-column-${columnNumber} grid-square-${squareNumber} empty-field`;
+
+    gameBoard.appendChild(newGameBox);
   }
 }
 
 // fills up board with old game data
 function oldGameBoardGrid(oldStorage) {
-  gameBoard.append(oldStorage.board);
+  gameBoard.innerHTML = oldStorage.board;
 }
 
 // -------------------------------------------------------------------------------------
 
 // Seting up the size and layout of game shapes windows as well as controll button window
 function setShapesContainerSize() {
-  let shapeAspectRatios;
-  let shapeDirection;
-  let iconsDirection;
-  let menuRatios;
+  let shapeAspectRatios, shapeDirection, iconsDirection, menuRatios;
 
   if (horizontalOrNot) {
-    // if screen is horizontal
-    shapeAspectRatios = (gameShapes.outerWidth() / 10) * 4;
-    shapeDirection = `row`;
-    menuRatios = gameShapes.outerWidth() / 6;
-    iconsDirection = [`width`, `height`];
+    shapeAspectRatios = (gameShapes.offsetWidth / 10) * 4;
+    shapeDirection = "row";
+    menuRatios = gameShapes.offsetWidth / 6;
+    iconsDirection = ["width", "height"];
   } else {
-    // if screen is vertical
-    shapeAspectRatios = (gameShapes.outerHeight() / 10) * 4;
-    shapeDirection = `column`;
-    menuRatios = gameShapes.outerHeight() / 6;
-    iconsDirection = [`height`, `width`];
+    shapeAspectRatios = (gameShapes.offsetHeight / 10) * 4;
+    shapeDirection = "column";
+    menuRatios = gameShapes.offsetHeight / 6;
+    iconsDirection = ["height", "width"];
   }
 
-  // sets css for all shape window figures
-  $(`.shape-window`).css(`width`, shapeAspectRatios).css(`height`, shapeAspectRatios);
-  gameShapes.css(`flex-direction`, shapeDirection);
+  // set css for all shape window figures
 
-  // Set CSS for game controls buttons
-  gameControls.css(iconsDirection[1], 2 * menuRatios + `px`).css(iconsDirection[0], 6 * menuRatios + `px`);
+  shapeWindows.forEach((shapeWindow) => {
+    shapeWindow.style.width = shapeAspectRatios + "px";
+    shapeWindow.style.height = shapeAspectRatios + "px";
+  });
+
+  gameShapes.style.flexDirection = shapeDirection;
+
+  // set CSS for game controls buttons
+
+  gameControls.style[iconsDirection[1]] = 2 * menuRatios + "px";
+  gameControls.style[iconsDirection[0]] = 6 * menuRatios + "px";
 }
 
 function clearGameBoardandShapes() {

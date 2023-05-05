@@ -43,7 +43,6 @@ const shapesArray = {
 };
 
 //-------------------------------------- Shapes formulas ------------------------------------------------------
-let shapeWindows = document.getElementsByClassName(`shape-window`);
 
 // random rounded number generator, *"barowed" from JS Course*
 const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
