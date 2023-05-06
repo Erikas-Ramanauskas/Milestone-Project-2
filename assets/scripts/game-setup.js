@@ -29,9 +29,9 @@ const dropAudio = document.getElementById("drop-audio");
 const destroyAudio = document.getElementById("destroy-audio");
 
 // ----------------------------------------Must be disabled in order for test to run ------------------------------------ //
-// const menuModal = new bootstrap.Modal(document.getElementById("staticBackdrop"), {
-//   keyboard: false,
-// });
+const menuModal = new bootstrap.Modal(document.getElementById("staticBackdrop"), {
+  keyboard: false,
+});
 // ----------------------------------------Must be disabled in order for test to run ------------------------------------ //
 
 // Three diferent shape dificulities are set for the start of the game, then adjusted as a game progresses
@@ -195,11 +195,11 @@ function setVissablesAndHidden(dificulty) {
 console.log(volumeInput);
 
 // ----------------------------------------Must be disabled in order for test to run ------------------------------------ //
-// // functions setting game sound
-// volumeInput.addEventListener("input", (event) => {
-//   gameSettings.volume = event.target.value / 200;
-//   setGameVolume();
-// });
+// functions setting game sound
+volumeInput.addEventListener("input", (event) => {
+  gameSettings.volume = event.target.value / 200;
+  setGameVolume();
+});
 // ----------------------------------------Must be disabled in order for test to run ------------------------------------ //
 
 function setGameVolume() {
