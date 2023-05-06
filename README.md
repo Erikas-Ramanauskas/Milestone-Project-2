@@ -28,13 +28,17 @@ The beuty of such a simple games that no matter your age or language game can pi
 * As a First Time Visitor, I want to be able to understand how to play the game.
 * As a First Time Visitor, I want to be able to choose what dificulity of the game i would like.
 * As a First Time Visitor, I want the pages to be responsive to be my device, no matter it's size.
-* As a First Time Visitor, I want to be able to read a rules of the game
+* As a First Time Visitor, I want to be able to read a rules of the game.
 ### Returning Visitor Goals
 * As a Returning Visitor, I want to be able to try my chance again at getting a higher score by being able to reload the game.
-* As a Returning Visitor, I want to see highscores and statistics of the game
+* As a Returning Visitor, I want to see highscores and statistics of the game.
+* As a Returning Visitor, I want to be able to find details of dificulity levels.
+* As a Returning Visitor, I want to be able to return to my previous game.
+* As a Returning Visitor, I want to be able to see a developer details and links to his portfolio.
 ### Frequent Visitor Goals
-* As a Frequent Visitor, I want to be rewarded for my achievements in the game
 * As a Frequent Visitor, I want to be able to give my feedback to the developer.
+* As a Frequent Visitor, I want to be able to keep improving my game results and view in best scores and games played by mode.
+* As a Frequent Visitor, I want to be able to see reach week a new result and top score to reach.
 
 <!-- Edit further -->
 
@@ -56,9 +60,78 @@ Orbitron is paired with Exo 2 font for the game content and for the buttons.
 - [Quote Generator wireframe (desktop)](./assets/images/ux/desktop-quotetweet.webp)
 
 ### Features
-Trekkies Games is highly interactive and encourages users to click on their choices to play a game.
+Trekkies Games is highly interactive and encourages users think about their strategies and plan their next move based on the shapes they are given.
 
-Trekkies Games has two main features: a quiz game on Voyager where fans can test their knowledge of the seven season show and famous Star Trek quotes generator with the option to share their favourite quote on Twitter. The game also allows for and encourages user feedback by having a button that clearly states, "send a feedback".
+| # | Feature | Desirability | Importance | Viability | Delivered |
+| --- | --- | --- | --- | --- | --- |
+| | Navigation | | | | |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Main page | 5 | 5 | 5 | ✅ |
+| 2 | Game page | 5 | 5 | 5 | ✅ |
+| 3 | Highscore page | 5 | 5 | 5 | ✅ |
+| 4 | ""Play!"" button changing to ""Start new game!"" | 5 | 5 | 3 | ❌ |
+| 5 | Game dificulities opens up as you press ""Play!"" or ""Start new game!"" | 5 | 3 | 4 | ✅ |
+| 6 | Within profile page giving player a choice of the tiles style | 4 | 3 | 3 | ❌ |
+| --- | --- |--- |--- |--- |--- |
+| | Visuals | | | | |
+| --- | --- |--- |--- |--- |--- |
+| 7 | Game boad layout changing depending on height and width and determening wich one is bigger. | 5 | 5 | 5 | ✅ |
+| 8 | Diferent styles for the tiles and the board | 4 | 3 | 3 | ✅ |
+| 9 | Animations on destroying the tiles | 5 | 4 | 4 | ❌ |
+| 10 | Animations on the score count once points achieved | 5 | 3 | 3 | ❌ |
+| 11 | Flashier animation when combo points achieved | 5 | 3 | 3 | ❌ |
+| 12 | Home page and hoghscores components apearing on scroll | 5 | 3 | 4 | ✅ |
+| --- | --- |--- |--- |--- |--- |
+| | Game feautures | | | | |
+| --- | --- |--- |--- |--- |--- |
+| 13 | Easy dificulity - ability to flip the shapes, chance to get extra shapes, guided highlight for match | 5 | 4 | 5 | ✅ |
+| 14 | Medium dificulity- Same as easy but no ability to flip or extra shapes | 5 | 4 | 5 | ❌ |
+| 15 | Hard dificulity- Same as mediuim but timed and no highlights | 5 | 4 | 5 | ❌ |
+| 16 | Insane dificulity- same as hard, but with added 25% of filled tiles becomes invisiable. | 5 | 3 | 4 | ❌ |
+| 17 | Point count 1x points for single break of 9 | 5 | 5 | 5 | ❌ |
+| 18 | Point count for combo of more than 9 tiles, every extra combo adds 0.5x, Example destroying 2 row or collumn will multiply points by 1.5x. For 3 combo 2x | 5 | 5 | 4 | ❌ |
+| 19 | Additional point multiplier Easy 1x, Medium 1.5x Hard 2x, Insane 3x | 5 | 4 | 4 | ❌ |
+| 20 | ""Game over"" message | 5 | 5 | 5 | ✅ |
+| 21 | Automatic detection of game over | 5 | 5 | 5 | ✅ |
+| 22 | Ability to flip tiles | 5 | 4 | 4 | ✅ |
+| 23 | Upon reaching certain score Unlocking ""Insane"" dificulity | 3 | 3 | 3 | ❌ |
+| --- | --- |--- |--- |--- |--- |
+| | Redesigned Game feutures | | | | |
+| --- | --- |--- |--- |--- |--- |
+| 24 | Shape turns have limited uses | 5 | 5 | 5 | ✅ |
+| 25 | Shape turns are rewarded for combinations | 5 | 5 | 5 | ✅ |
+| 26 | Each dificulity has less starting turn points | 5 | 5 | 5 | ✅ |
+| 27 | Each dificulity requires more combination points to reward | 5 | 5 | 5 | ✅ |
+| 28 | Reward multiplier 50% for combinations for all dificulities | 5 | 5 | 5 | ✅ |
+| 29 | Highlight of tiles when maching tiles found during drag | 5 | 5 | 5 | ✅ |
+| 30 | Highlight of tiles when 9 matching tiles are found | 5 | 5 | 5 | ✅ |
+| 31 | Additional 20% points for medium dificulity | 5 | 5 | 5 | ✅ |
+| 32 | Additional 40% points for hard dificulity | 5 | 5 | 5 | ✅ |
+| --- | --- |--- |--- |--- |--- |
+| | Highscores | | | | |
+| --- | --- |--- |--- |--- |--- |
+| 33 | Player name that player can change for them self | 4 | 3 | 4 | ❌ |
+| 34 | Top highscore overal showing highest score game type and score | 5 | 5 | 5 | ✅ |
+| 35 | Top highscore weekley | 4 | 5 | 5 | ✅ |
+| 36 | Top streek | 4 | 3 | 4 | ❌ |
+| 37 | Tiles destroyed | 4 | 3 | 4 | ❌ |
+| 38 | Individual top score for Easy game | 5 | 4 | 5 | ✅ |
+| 39 | Individual top score for Medium game | 5 | 4 | 5 | ✅ |
+| 40 | Individual top score for Hard game | 5 | 4 | 5 | ✅ |
+| 41 | Individual top score for insane game | 5 | 4 | 2 | ❌ |
+| 42 | Ability to share game results on social media | 5 | 3 | 2 | ❌ |
+| 43 | Ability to see other top highscores between other players | 5 | 3 | 2 | ❌ |
+| 44 | Ability to see top highscores between game modes | 5 | 3 | 2 | ❌ |
+| 45 | Ability to see top highscores between top and week charts | 5 | 3 | 2 | ❌ |
+| --- | --- |--- |--- |--- |--- |
+| | Home page and tutorial | | | | |
+| --- | --- |--- |--- |--- |--- |
+| 46 | Video showcasing the gameplay | 4 | 3 | 4 | ❌ |
+| 47 | Introduction to a game and points reward | 5 | 5 | 5 | ✅ |
+| 48 | Explanation of individual level dificulities | 5 | 5 | 5 | ✅ |
+| 49 | Footer with links to creator social media. | 5 | 5 | 5 | ✅ |
+
+
 
 
 ## Technologies Used
