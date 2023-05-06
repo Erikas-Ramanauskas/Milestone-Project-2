@@ -60,7 +60,7 @@ Orbitron is paired with Exo 2 font for the game content and for the buttons.
 - [Quote Generator wireframe (desktop)](./assets/images/ux/desktop-quotetweet.webp)
 
 ### Features
-Trekkies Games is highly interactive and encourages users think about their strategies and plan their next move based on the shapes they are given.
+Tedoku is highly interactive and encourages users think about their strategies and plan their next move based on the shapes they are given.
 
 | # | Feature | Desirability | Importance | Viability | Delivered |
 | --- | --- | --- | --- | --- | --- |
