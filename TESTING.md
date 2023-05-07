@@ -17,11 +17,12 @@ Visit the deployed site: [Tedoku](https://erikas-ramanauskas.github.io/Milestone
   * [Testing User Stories](#Testing-User-Stories)
   * [Full Testing](#Full-Testing)
 
-Testing was ongoing throughout the entire build. I utilised Chrome developer tools as well as different browsers to see effects and implemented changes as needed.
+
+## Testing
+Testing was carried out at every point in the development to check for issues with the code, responsiveness, design, interactivity and accessibility. The developer tools used primarily were Chrome DevTools, with the console playing a key factor in testing and debugging.
 
 Each page has been inspected using google chrome developer tools and lighthouse Firefox inspector tool to ensure that each page is fully responsive on a variety of different screen sizes and devices. I also physicaly tested the webiste on the Iphone 12, Ipad air, Macbook and Pc computers.
 
-- - -
 
 ## AUTOMATED TESTING
 
@@ -34,7 +35,6 @@ Each page has been inspected using google chrome developer tools and lighthouse 
 * [Game Page W3C HTML Validation](documentation/testing/login-user.png) - Pass
 * [Highscore Page W3C HTML Validation](documentation/testing/login-user.png) - Pass
 
-- - -
 
 ### JavaScript Validator
 
@@ -42,7 +42,7 @@ Each page has been inspected using google chrome developer tools and lighthouse 
 
 In order to validate a developer writen test some code unfortunately must be comented out due to asynchronus Javascript issues. As i started testing at first these errors were thrown in. 
 
-First was having issue with Jquery $ being an error and program not finding (i did not taken screenshot of this).I have specificaly changed all of the code from using Jquery to Vanila Javascript, but it did not solve the problem. However Mentor Gareth provided with [this](https://github.com/facebook/create-react-app/issues/2337) that solved first problem.
+First was having issue with Jquery $ being an error and program not finding jquery variables (i did not taken screenshot of this). I have specificaly changed all of the code from using Jquery to Vanila Javascript as i did not used much of Jquery during the programign process, but it did not solve the problem. However Mentor Gareth provided with [this](https://github.com/facebook/create-react-app/issues/2337) that solved first problem.
 
 The other one were by bootstrap not being found. So i moved from linking external bootrap and jquery to downloading both of libraries directly to the project and linking it up. However this did not solve the problem. Upon Using Tutor assistance, Alan sugested not to use the code at all. Which was part of my important code for game over functionality. So i decided to disable it for automated testing and bring back for actual functionality.
 
@@ -55,13 +55,14 @@ const menuModal = new bootstrap.Modal(document.getElementById("staticBackdrop"),
 ![Bootrap error]()
 
 
-The Last one is due to asynchronus javascript not finding id="volume" before the test is run and failing test imedietly. The decition was to coment it out during testing phase.
+The Last one is due to asynchronus javascript not finding id="volume" before the test is run and failing test imedietly. The decition was to coment it out during testing phase same as previosu problem and activate it once testing is done.
 
 /assets/scripts/game-setup.js line-198
 ````volumeInput.addEventListener("input", (event) => {
   gameSettings.volume = event.target.value / 200;
   setGameVolume(); 
-});````
+});
+````
 ![addEventListener error]()
 
 * [dropdown.js](documentation/testing/dropdownjs-validation.png)
@@ -122,18 +123,18 @@ Full testing was performed on the following devices:
 ## Website interaction testing
 
 | # | Feature | Expected Outcome | Testing Performed | Pass/Fail |
-| --- | --- | --- | --- | --- |
+| -- | --- | --- | --- | --- |
 | | Home page navigation | | | |
-| --- | --- | --- | --- | --- |
+| :---: | :--- | :---: | :---: | :---: |
 | 1 | Navigation- Main page | Redirected to Home page | Click home button | ✅ |
 | 2 | Navigation-Game page | Redirected to Game page | Click game button | ✅ |
 | 3 | Navigation- Highscore page | Redirected to Highscore Page | Click Homescore button | ✅ |
 | 4 | Footer- Read here button | Redirected to Read-me file of project | Click Read-here button | ✅ |
 | 5 | Footer- Github logo | Redirected to Github page | Click Hithub logo | ✅ |
 | 6 | Footer- Linked-In logo | Redirected to Linked-in page | Click Linked-in logo | ✅ |
-| --- | --- | --- | --- | --- |
+| -- | --- | --- | --- | --- |
 | | Game page navigation | | | |
-| --- | --- | --- | --- | --- |
+| :---: | :--- | :---: | :---: | :---: |
 | 7 | Menu Buton | Activate menu modal | Click menu button | ✅ |
 | 8 | Modal- Main page | Redirected to Home page | Click home button | ✅ |
 | 9 | Modal-Game page | Redirected to Game page | Click game button | ✅ |
@@ -146,18 +147,18 @@ Full testing was performed on the following devices:
 | 16 | Rotate anticloskvise button | Rotates both shapes anticloskvise | Click anticloskvise button | ✅ |
 | 17 | Modal- display game dificulity | Display game dificulity after game started | Start any game mode | ✅ |
 | 18 | Modal- display and control game volume | Change volume on mouse press and scroll | Press and scroll sideways on volume control | ✅ |
-| --- | --- | --- | --- | --- |
+| -- | --- | --- | --- | --- |
 | | Highscore page navigation | | | |
-| --- | --- | --- | --- | --- |
+| :---: | :--- | :---: | :---: | :---: |
 | 19 | Navigation- Main page | Redirected to Home page | Click home button | ✅ |
 | 20 | Navigation-Game page | Redirected to Game page | Click game button | ✅ |
 | 21 | Navigation- Highscore page | Redirected to Highscore Page | Click Homescore button | ✅ |
 | 22 | Footer- Read here button | Redirected to Read-me file of project | Click Read-here button | ✅ |
 | 23 | Footer- Github logo | Redirected to Github page | Click Hithub logo | ✅ |
 | 24 | Footer- Linked-In logo | Redirected to Linked-in page | Click Linked-in logo | ✅ |
-| --- | --- | --- | --- | --- |
+| -- | --- | --- | --- | --- |
 | | Game Functionalities | | | |
-| --- | --- | --- | --- | --- |
+| :---: | :--- | :---: | :---: | :---: |
 | 25 | Drag game shapes | Dragable game shapes | Click and hold on game shape and move mouse | ✅ |
 | 26 | Drop/drop Game Shape- outside game board | Game shape returns back to original location | Click shape, drag outside of game board and drop | ✅ |
 | 27 | Drop/drop Game Shape- inside game board | Game shape planted inside of game board | Click shape, drag inside of game board and drop | ✅ |
@@ -170,9 +171,9 @@ Full testing was performed on the following devices:
 | 34 | Gain aditional points for extra combinations over treshold | Rewarded additional rotation for every extra combination done above treshold | Drop shape above avialable space were more combinations are avialable is avialable in any mode | ✅ |
 | 35 | Play tile click sound on droping the shape | Sound is played when shape is droped | Click shape, drag inside of game board and drop | ✅ |
 | 36 | Play burn sound on droping the shape when destroying 9 squares or more | Play burn sound shape is droped | Click shape, drag inside of game board and drop with destruction | ✅ |
-| --- | --- | --- | --- | --- |
+| -- | --- | --- | --- | --- |
 | | Automatic game actions | | | |
-| --- | --- | --- | --- | --- |
+| :---: | :--- | :---: | :---: | :---: |
 | 37 | Create new 2 shapes when starting new game | 2 new shapes when new game started | Start new game by selecting easy/hard/medium | ✅ |
 | 38 | Replace old shape with new shape when one is droped | New shape is is created instead of old one | Drop the shape in game board | ✅ |
 | 39 | Game over detection and modal reactivation | Reactivates model when no more space for shapes left | Lose the game | ✅ |
@@ -182,17 +183,17 @@ Full testing was performed on the following devices:
 | 43 | Update total scores when weekley scores reaches total scores | Update total scores number | Earn points by cestroying tiles and reaching total points | ✅ |
 | 44 | Change a weakly/total scores when changing game modes | Update weekley/total scores number | change to diferent game mode | ✅ |
 | 45 | Update rotation point when Rotation buton used | Update rotation point number | Rotate shape | ✅ |
-| --- | --- | --- | --- | --- |
+| -- | --- | --- | --- | --- |
 | | Game reload | | | |
-| --- | --- | --- | --- | --- |
+| :---: | :--- | :---: | :---: | :---: |
 | 46 | Game board- Return to last game when page is loaded | Board filled with same squares like in the game last played | Load in Game page after starting the game | ✅ |
 | 47 | Shapes- Return to last game when page is loaded | Shapes filled with same squares like in the game last played | Load in Game page after starting the game | ✅ |
 | 48 | Score count- Return to last game when page is loaded | Score filled with same number like in the game last played | Load in Game page after starting the game | ✅ |
 | 49 | weakly score/best of the week- Return to last game when page is loaded | Weakly score/Total score filled with same number like in the game last played | Load in Game page after starting the game | ✅ |
 | 50 | Rotation points- Return to last game when page is loaded | Rotation points filled with same number like in the game last played | Load in Game page after starting the game | ✅ |
-| --- | --- | --- | --- | --- |
+| -- | --- | --- | --- | --- |
 | | Hishscores page | | | |
-| --- | --- | --- | --- | --- |
+| :---: | :--- | :---: | :---: | :---: |
 | 51 | Show easy/medium/hard games played total | easy/medium/hard games played total in separate colums | Load up Hishscores page | ✅ |
 | 52 | Show easy/medium/hard games weekley score | easy/medium/hard wekley score in separate colums | Load up Hishscores page | ✅ |
 | 53 | Show easy/medium/hard highest score | easy/medium/hard highest score in separate colums | Load up Hishscores page | ✅ |
@@ -201,15 +202,23 @@ Full testing was performed on the following devices:
 ## 3rd party testing during development
 * Performed by selected individuals who were awere of my development plan to give a feadback of user expirence.
 
-** My brother Kris - Advised on adding sound control for the game. Found opacity bug for OperaGX. Reported some weird mouse behaviour with pieces. 
-** Friend Algis - Advised on colours and few design details
-** Friend Lukas - Advised Adding aditionl 20% points for each game dificulity. Found Pieces not placing bug.
+** My brother Kris - Advised on adding sound control for the game sound. Found opacity bug for OperaGX. Reported some weird mouse behaviour with pieces. 
+** Friend Algis - Advised on colours and few design details. Moral support.
+** Friend Lukas - Advised Adding aditionl 20% points for each game dificulity. Found Pieces not placing bug. Set game records.
+** Friend Olegas - Js and React developer with multiple years of expirence. Shared multiple advices on how to solve the bugs and helped with a few google searches to test out certain behavours. Helped out with jest testing bugs mentioned previously by explaining asynchronus JS. Note that i made sure to avoid using his help to code midjority of functions and logic and only asked for help in critical scenarios.
 
 ## 3rd party Blind Testing
 * Perfomed at least 30 min testing by people who never seen the website/aplication and were given no prior information to what it is about.
 
-** Viktoria - Easy to use
-** 
+** All participants practicaly skipped reading the game rules and rushed to the game it self. It took them a few minutes to realise that the shape needs to be dragged and expectation to all of them was to either controol with buttons or just clisk once and have shape to fall were you click again. however after few minutes of game all have adjusted and did not gave a problem with drag and drop mechanics anymore. 
+
+With this information i have changed first game picture with a gif demonstrating drag and drop and short game idea. however i am not aware or skillfull enough to remove background from gif and it gives ctakes away some 
+
+** Viktoria - Easy to use, good accsesebility
+** Ingrida - Sturgled to find play button as navigation as the time was not sticky. Would like an easier version than easy and continous longer game.
+** Justas - Strugled to understand rotations at first as well as rotation points
+** Igor - initialy expected the shapes to move down as picked up in tetris and controled via keybord however after further gameplay in 5 minutes understood why the design is not like a copy of Tetris.
+** Parents - Gave a feedback about colours- easy on the eyes. Gave feadback about sound that more options could be added to add more sounds chosen by player (Added to future ideas). Figured out main game rules withing 5 minutes without knowing english.
 
 
 Back to [README.md](README.md)

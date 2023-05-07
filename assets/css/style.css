@@ -2,14 +2,14 @@
 
 /* google fonts */
 
-@import url("https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Patrick+Hand&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Short+Stack&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   border: 0;
   box-sizing: border-box !important;
-  font-family: "Patrick Hand", Copperplate, Papyrus, fantasy;
+  font-family: "Short Stack", cursive;
 }
 
 /* colour variables */
@@ -67,6 +67,7 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: "Patrick Hand", cursive;
   letter-spacing: 0.2rem;
   font-weight: 600;
 }
@@ -106,6 +107,13 @@ h6 {
 
 .navbar {
   background-color: transparent !important;
+}
+
+.navigation-container.sticky {
+  position: fixed;
+  opacity: 0.9;
+  margin-top: 2rem;
+  z-index: 300;
 }
 
 .navigation-container {

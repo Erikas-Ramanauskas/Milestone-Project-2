@@ -2,6 +2,27 @@
 
 //  main Js file for index.html page
 
+// sticky navigation
+const navbar = document.querySelector(".navigation-container");
+const header = document.querySelector(".header");
+const navHeight = navbar.getBoundingClientRect().height;
+
+const stickyNav = function (entries) {
+  const [entry] = entries;
+  // console.log(entry);
+
+  if (!entry.isIntersecting) navbar.classList.add("sticky");
+  else navbar.classList.remove("sticky");
+};
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHeight}px`,
+});
+
+headerObserver.observe(header);
+
 // reviel sections
 const allSections = document.querySelectorAll(".section");
 

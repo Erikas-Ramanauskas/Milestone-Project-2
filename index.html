@@ -25,60 +25,62 @@
   </head>
 
   <body>
-    <header>
-      <!-- Nav Start -->
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <button
-            class="navbar-toggler custom-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div
-            class="collapse navbar-collapse d-flex-lg justify-content-center navigation-container"
-            id="navbarSupportedContent"
-          >
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active mx-5" aria-current="page" href="index.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link mx-5" href="game.html">Play!</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link mx-5" href="highscores.html">HighScores</a>
-              </li>
-            </ul>
+    <header class="header">
+      <div class="navigation-container">
+        <!-- Nav Start -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid">
+            <button
+              class="navbar-toggler custom-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div
+              class="collapse navbar-collapse d-flex-lg justify-content-center navigation-container"
+              id="navbarSupportedContent"
+            >
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active mx-5" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mx-5" href="game.html">Play!</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mx-5" href="highscores.html">HighScores</a>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </nav>
-    </header>
-
-    <!-- Nav end -->
-    <div class="container mt-3 my-5">
-      <div class="row g-5">
-        <div class="col-lg-8 section hero-text1">
-          <div class="hero-text2 p-lg-4">
-            <h1 class="introduction pt-4 pb-1">What happens when SuDoKu and Tetris have babies?</h1>
-            <p>Let me introduce you to their oldest son TeDoKu</p>
+        </nav>
+      </div>
+      <!-- Nav end -->
+      <div class="container mt-3 my-5">
+        <div class="row g-5">
+          <div class="col-lg-8 section hero-text1">
+            <div class="hero-text2 p-lg-4">
+              <h1 class="introduction pt-4 pb-1">What happens when SuDoKu and Tetris have babies?</h1>
+              <p>Let me introduce you to their oldest son TeDoKu</p>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-4 section d-flex justify-content-center">
-          <img src="assets/images/hero-image.png" alt="Hero image" class="hero-image" />
+          <div class="col-lg-4 section d-flex justify-content-center">
+            <img src="assets/images/hero-image.webp" alt="Hero image" class="hero-image" />
+          </div>
         </div>
       </div>
-    </div>
+    </header>
+
     <main>
       <div class="container">
         <div class="row mb-5">
           <div class="col-lg-4 section order-3 order-lg-1">
-            <img src="assets/images/home-main.png" alt="Hero image" class="img-fluid" />
+            <img src="assets/images/home-main.gif" alt="Hero image" class="img-fluid" />
           </div>
           <!-- Added invisible comum to keep a space between other 2 -->
           <div class="col-lg-1 section order-2 order-lg-2"></div>
@@ -132,7 +134,7 @@
               <div class="card-body">
                 <h5 class="card-title">Fill in the row</h5>
               </div>
-              <img src="assets/images/row-deletion.png" class="card-img-top" alt="Mantas picture" />
+              <img src="assets/images/row-deletion.webp" alt="Filled row picture" />
             </div>
           </div>
           <div class="col section">
@@ -140,7 +142,7 @@
               <div class="card-body">
                 <h5 class="card-title">Fill in the column</h5>
               </div>
-              <img src="assets/images/column-deletion.png" class="card-img-top" alt="Mantas picture" />
+              <img src="assets/images/column-deletion.webp" alt="Filled Column picture" />
             </div>
           </div>
           <div class="col section">
@@ -148,7 +150,7 @@
               <div class="card-body">
                 <h5 class="card-title">Fill in the square</h5>
               </div>
-              <img src="assets/images/square-deletion.png" class="card-img-top" alt="Mantas picture" />
+              <img src="assets/images/square-deletion.webp" alt="Filled square picture" />
             </div>
           </div>
         </div>
@@ -162,7 +164,7 @@
                   Double combination of square and column <span class="invisible-text">.........</span>
                 </h5>
               </div>
-              <img src="assets/images/combination-1.png" class="card-img-top" alt="Mantas picture" />
+              <img src="assets/images/combination-1.webp" alt="Filled combination picture 1" />
             </div>
           </div>
           <div class="col section">
@@ -170,7 +172,7 @@
               <div class="card-body">
                 <h5 class="card-title">Triple combination of row, column, and square</h5>
               </div>
-              <img src="assets/images/combination-2.png" class="card-img-top" alt="Mantas picture" />
+              <img src="assets/images/combination-2.webp" alt="Filled combination picture 1" />
             </div>
           </div>
         </div>
@@ -182,7 +184,7 @@
               <div class="card-body">
                 <h5 class="card-title">Rotate shapes when things get spicy</h5>
               </div>
-              <img src="assets/images/rotation-1.png" class="card-img-top" alt="Mantas picture" />
+              <img src="assets/images/rotation-1.webp" alt="Rotation picture 1" />
             </div>
           </div>
           <div class="col section">
@@ -190,7 +192,7 @@
               <div class="card-body">
                 <h5 class="card-title">Earn rotation points by doing combinations</h5>
               </div>
-              <img src="assets/images/rotation-2.png" class="card-img-top" alt="Mantas picture" />
+              <img src="assets/images/rotation-2.webp" alt="Rotation picture 1" />
             </div>
           </div>
         </div>
