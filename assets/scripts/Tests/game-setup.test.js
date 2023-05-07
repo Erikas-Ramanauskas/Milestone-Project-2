@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-const addition = require("../game-setup");
+const { gameSettings } = require("../game-setup");
 
 beforeAll(() => {
   let fs = require("fs");
@@ -12,14 +12,11 @@ beforeAll(() => {
   document.close();
 });
 
-describe("Calculator", () => {
-  describe("Addition function", () => {
-    test("should return 42 for 20 + 22", () => {
-      console.log(document.querySelector(`#volume`));
-      expect(addition(20, 22)).toBe(42);
-    });
+console.log(gameSettings);
+
+describe("gameSettings contains correct keys", () => {
+  test("dificulty key exists", () => {
+    console.log(gameSettings);
+    expect("dificulty" in gameSettings).toBe(true);
   });
-  describe("Subtract function", () => {});
-  describe("Multiply function", () => {});
-  describe("Divide function", () => {});
 });
