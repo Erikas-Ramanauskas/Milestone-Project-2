@@ -42,24 +42,13 @@ JSHint was used to test JavaScript code quality.
 * W3C CSS Validator Test Results:
   - [Results](./assets/images/validation/css-validation.webp)
   - [Warning](./assets/images/validation/css-warnings.webp)
-* JSHint Linting Results:
-  - [main.js](./assets/images/validation/jshint-mainjs.webp)
-  - [quiz.js](./assets/images/validation/jshint-quizjs.webp)  
-  - [quote.js](./assets/images/validation/jshint-quotejs.webp)
 * Lighthouse Test Results:
-  - [Mobile - home page](./assets/images/validation/mobile-index.webp)
-  - [Mobile - quiz page](./assets/images/validation/mobile-quiz.webp) 
-  - [Mobile - quotes page](./assets/images/validation/mobile-quotes.webp)  
-  - [Mobile - 404 redirect page](./assets/images/validation/mobile-redirect.webp)
-  - [Desktop - home page](./assets/images/validation/desktop-index.webp)
-  - [Desktop - quiz page](./assets/images/validation/desktop-quiz.webp)
-  - [Desktop - home page](./assets/images/validation/desktop-quotes.webp)
-  - [Desktop - home page](./assets/images/validation/desktop-redirect.webp)
-* a11y Color Contrast Accessibility for the Visually Impaired Validator Results:
-  - [Home page](./assets/images/validation/a11y-index.webp)   
-  - [Quiz page](./assets/images/validation/a11y-quiz.webp)
-  - [Quotes page](./assets/images/validation/a11y-quotes.webp)
-  - [404 Redirect page](./assets/images/validation/a11-redirect.webp)
+  - [Mobile - home page](./assets/images/Mobile-lighthouse-home.png)
+  - [Mobile - game page](./assets/images/Mobile-lighthouse-game.png) 
+  - [Mobile - highscores page](./assets/images/Mobile-lighthouse-highscores.png)  
+  - [Desktop - home page](./assets/images/Desktop-lighthouse-home.png)
+  - [Desktop - game page](./assets/images/Desktop-lighthouse-game.png)
+  - [Desktop - highscores page](./assets/images/Desktop-lighthouse-highscores.png)
 
 ### JavaScript Validator
 

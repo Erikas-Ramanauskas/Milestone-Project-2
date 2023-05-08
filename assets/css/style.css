@@ -119,7 +119,6 @@ h6 {
 
 #game-board {
   background-color: var(--cream-dark);
-  margin: 0;
 
   border-radius: 7%;
   top: 0;
@@ -289,7 +288,7 @@ h6 {
 }
 
 .card-title {
-  size: 1.2rem;
+  font-size: 1.2rem;
   color: white;
   text-align: center;
   padding: 1rem;
