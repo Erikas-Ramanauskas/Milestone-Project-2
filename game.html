@@ -1,35 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" >
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
       content=" A mixed game between Sudoku and Tetris were you have to fill the tiles and Match the rows, columns and squares"
-    >
-    <meta name="keywords" content="Puzzle, Tetris, Sudoku" >
-    <meta name="author" content="Erikas-Ramanauskas" >
+    />
+    <meta name="keywords" content="Puzzle, Tetris, Sudoku" />
+    <meta name="author" content="Erikas-Ramanauskas" />
     <title>Tedoku- Easy to pick up puzzle game</title>
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" >
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png" >
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png" >
-    <link rel="manifest" href="assets/favicon/site.webmanifest" >
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="assets/favicon/site.webmanifest" />
 
     <!-- Botstrap link -->
-    <link rel="stylesheet" href="bootstrap-5.3.0-alpha3-dist/css/bootstrap.min.css" >
+    <link
+      rel="stylesheet"
+      href="bootstrap-5.3.0-alpha3-dist/css/bootstrap.min.css"
+    />
 
     <!-- Font Awesome link -->
-    <script defer src="https://kit.fontawesome.com/be71380b34.js" crossorigin="anonymous"></script>
+    <script
+      defer
+      src="https://kit.fontawesome.com/be71380b34.js"
+      crossorigin="anonymous"
+    ></script>
 
     <!-- standart Css -->
-    <link rel="stylesheet" href="assets/css/style.css" >
+    <link rel="stylesheet" href="assets/css/style.css" />
   </head>
 
   <body>
     <div class="loader">
-      <img src="assets/images/preloader.gif" alt="" >
+      <img src="assets/images/preloader.gif" alt="" />
     </div>
     <div id="full-screen">
       <!-- <div id="game-screen-body"> -->
@@ -62,7 +83,12 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <a class="nav-link" href="index.html">Home</a>
-                    <a class="nav-link active" aria-current="page" href="game.html">Play!</a>
+                    <a
+                      class="nav-link active"
+                      aria-current="page"
+                      href="game.html"
+                      >Play!</a
+                    >
                     <a class="nav-link" href="highscores.html">HighScores</a>
                   </div>
 
@@ -77,7 +103,9 @@
                     </button>
                     <div id="game-over-message">
                       <p>Oh No! you run out of space</p>
-                      <p>Your final score: <span id="game-over-score">0</span></p>
+                      <p>
+                        Your final score: <span id="game-over-score">0</span>
+                      </p>
                     </div>
 
                     <button
@@ -110,14 +138,26 @@
                       <p>Dificulity: <span id="current-game-mode"></span></p>
                     </div>
                     <div>
-                      <label for="volume"><i class="fa-solid fa-volume-high"></i> </label>
-                      <input type="range" id="volume" name="volume" min="0" max="100" value="0" >
+                      <label for="volume"
+                        ><i class="fa-solid fa-volume-high"></i>
+                      </label>
+                      <input
+                        type="range"
+                        id="volume"
+                        name="volume"
+                        min="0"
+                        max="100"
+                        value="0"
+                      />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div id="game-current-score" class="game-buttons highlighted-square2">
+            <div
+              id="game-current-score"
+              class="game-buttons highlighted-square2"
+            >
               <p>Score:</p>
               <p id="current-score-count">0</p>
             </div>
@@ -147,7 +187,10 @@
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <clipPath id="p.0">
-                    <path d="m0 0l447.76117 0l0 449.39633l-447.76117 0l0 -449.39633z" clip-rule="nonzero" />
+                    <path
+                      d="m0 0l447.76117 0l0 449.39633l-447.76117 0l0 -449.39633z"
+                      clip-rule="nonzero"
+                    />
                   </clipPath>
                   <g clip-path="url(#p.0)">
                     <path
@@ -206,9 +249,12 @@
                   stroke-miterlimit="10"
                   xmlns:xlink="http://www.w3.org/1999/xlink"
                   xmlns="http://www.w3.org/2000/svg"
-                />
+                >
                   <clipPath id="p.1">
-                    <path d="m0 0l447.76117 0l0 449.39633l-447.76117 0l0 -449.39633z" clip-rule="nonzero" >
+                    <path
+                      d="m0 0l447.76117 0l0 449.39633l-447.76117 0l0 -449.39633z"
+                      clip-rule="nonzero"
+                    />
                   </clipPath>
                   <g clip-path="url(#p.1)">
                     <path
@@ -265,15 +311,18 @@
 
     <!-- game audios -->
     <audio id="drop-audio">
-      <source src="assets/audio/drop-audio.mp3" type="audio/mpeg" >
+      <source src="assets/audio/drop-audio.mp3" type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
     <audio id="destroy-audio">
-      <source src="assets/audio/destroy-audio.mp3" type="audio/mpeg" >
+      <source src="assets/audio/destroy-audio.mp3" type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
 
-    <script src="assets/Jquery/jquery-3.6.4.js" crossorigin="anonymous"></script>
+    <script
+      src="assets/Jquery/jquery-3.6.4.js"
+      crossorigin="anonymous"
+    ></script>
 
     <script src="bootstrap-5.3.0-alpha3-dist/js/bootstrap.min.js"></script>
 
