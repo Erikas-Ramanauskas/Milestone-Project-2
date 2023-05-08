@@ -35,13 +35,12 @@ Lighthouse DevTool was also used to test for Performance, Accessibility, Best Pr
 JSHint was used to test JavaScript code quality.
 
 * W3C Markup Validator Test Results: 
-  - [Home page](./assets/images/validation/nuhtml-index.webp)
-  - [Quiz page](./assets/images/validation/nuhtml-quiz.webp)
-  - [Quotes page](./assets/images/validation/nuhtml-quotes.webp)
-  - [Quotes page](./assets/images/validation/nuhtml-redirect.webp)
+  - [Home page]()
+  - [Game page]()
+  - [Highscore page]()
 * W3C CSS Validator Test Results:
-  - [Results](./assets/images/validation/css-validation.webp)
-  - [Warning](./assets/images/validation/css-warnings.webp)
+  - [Results]()
+  - [Warning]()
 * Lighthouse Test Results:
   - [Mobile - home page](./assets/images/Mobile-lighthouse-home.png)
   - [Mobile - game page](./assets/images/Mobile-lighthouse-game.png) 

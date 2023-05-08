@@ -320,7 +320,7 @@ Before going in to individual smaller bugs one issue and soliution requires its 
 
  
  ![Mirror rearangment](./assets/readme-images/Shapes%20mirroring%20arrangement.webp) 
- ![Roration](./assets/readme-images/Shapes-rotation-arrangement.webp)
+ ![Rotation](./assets/readme-images/Shapes-rotation-arrangement.webp)
  
  - Finaly the array is rendered and added shape-window element and given a class of draggable * shape width that are prepared with different measurments to ensure shape always stays in the center.
  
@@ -333,6 +333,9 @@ Before going in to individual smaller bugs one issue and soliution requires its 
  - pointerDown runs functions that once clicked on the shape it records active shapes centers in to object, as well as ads new static dimentions instead of % (this creates bug mentioned earlier) to the shape and finaly alowing the shape to be draged. 
  
  - pointerMove mostly works with checking shapesBoxesCoordinates versus dropBoxesCenters to find an equal match and once all squares find its partner the highlight class is given to mark dropable locations for the shapes and deleted every time pointer move event is called again so it ensures that highlight class is not left over. (As I wrote this I think this could be a good idea for painting program or game that you draw or contol with mouse movement)
+ 
+ - Drag Center Concept
+ - ![Drag centers concept](./assets/images/dragable-squares-location-concept.png)
  
  - Additionaly highlightTiles() checks if player has matching squares of 9 or more and highlights in red that the shapes could be destroyed.
  
