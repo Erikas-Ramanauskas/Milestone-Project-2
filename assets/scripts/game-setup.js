@@ -28,11 +28,11 @@ const volumeInput = document.getElementById("volume");
 const dropAudio = document.getElementById("drop-audio");
 const destroyAudio = document.getElementById("destroy-audio");
 
-// ----------------------------------------Must be disabled in order for test to run ------------------------------------ //
-const menuModal = new bootstrap.Modal(document.getElementById("staticBackdrop"), {
-  keyboard: false,
-});
-// ----------------------------------------Must be disabled in order for test to run ------------------------------------ //
+// ----------------------------------------Must be disabled in order for automated test to run ------------------------------------ //
+// const menuModal = new bootstrap.Modal(document.getElementById("staticBackdrop"), {
+//   keyboard: false,
+// });
+// ----------------------------------------Must be disabled in order for automated test to run ------------------------------------ //
 
 // Three diferent shape dificulities are set for the start of the game, then adjusted as a game progresses
 // To set up game procentage, using thousands instead of hundreds to be more precice on procentages
@@ -192,15 +192,13 @@ function setVissablesAndHidden(dificulty) {
   resumeButton.style.display = `block`;
 }
 
-console.log(volumeInput);
-
-// ----------------------------------------Must be disabled in order for test to run ------------------------------------ //
+// ----------------------------------------Must be disabled in order for automated test to run ------------------------------------ //
 // functions setting game sound
-volumeInput.addEventListener("input", (event) => {
-  gameSettings.volume = event.target.value / 200;
-  setGameVolume();
-});
-// ----------------------------------------Must be disabled in order for test to run ------------------------------------ //
+// volumeInput.addEventListener("input", (event) => {
+//   gameSettings.volume = event.target.value / 200;
+//   setGameVolume();
+// });
+// ----------------------------------------Must be disabled in order for automated test to run ------------------------------------ //
 
 function setGameVolume() {
   dropAudio.volume = gameSettings.volume;
@@ -352,4 +350,13 @@ function resetGameWeek() {
   gameSettings.hardWeekScore = 0;
 }
 
-module.exports = { gameSettings };
+module.exports = {
+  gameSettings,
+  gameStart,
+  currentGameMode,
+  setVissablesAndHidden,
+  gameModeVisibility,
+  currentScoreCount,
+  highScoreCount,
+  rotationCount,
+};

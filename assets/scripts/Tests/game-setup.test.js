@@ -2,10 +2,16 @@
  * @jest-environment jsdom
  */
 
-const { gameSettings } = require("../game-setup");
+const {
+  gameSettings,
+  gameStart,
+  gameModeVisibility,
+  currentGameMode,
+  setVissablesAndHidden,
+} = require("../game-setup");
 const bootstrap = require(".../../../bootstrap-5.3.0-alpha3-dist/js/bootstrap");
 
-beforeAll(() => {
+beforeEach(() => {
   let fs = require("fs");
   let fileContents = fs.readFileSync("game.html", "UTF-8");
   document.open();
@@ -123,5 +129,15 @@ describe("gameSettings contains correct keys", () => {
   });
   test("volume key exists", () => {
     expect("volume" in gameSettings).toBe(true);
+  });
+});
+
+//
+
+describe("gameStart to change", () => {
+  console.log(gameModeVisibility);
+  test("gameSettings.dificulty to change to 2", () => {
+    gameStart(2);
+    expect("dificulty" in gameSettings).toEqual(2);
   });
 });
