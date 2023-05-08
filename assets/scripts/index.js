@@ -9,7 +9,6 @@ const navHeight = navbar.getBoundingClientRect().height;
 
 const stickyNav = function (entries) {
   const [entry] = entries;
-  // console.log(entry);
 
   if (!entry.isIntersecting) navbar.classList.add("sticky");
   else navbar.classList.remove("sticky");
@@ -40,4 +39,10 @@ const sectionsObserver = new IntersectionObserver(revealElements, {
 allSections.forEach((sec) => {
   sec.classList.add("section-hidden");
   sectionsObserver.observe(sec);
+});
+
+// Preloader fade out
+const loader = document.querySelector(".loader");
+window.addEventListener("load", () => {
+  loader.classList.add("loader-hidden");
 });

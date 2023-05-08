@@ -50,6 +50,35 @@ body {
   overflow-x: hidden;
 }
 
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--dark-color);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+}
+
+.loader img {
+  width: 50px;
+  height: 50px;
+}
+.loader-hidden {
+  animation: fade-out 0.5s forwards;
+}
+
+@keyframes fade-out {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    z-index: -2;
+  }
+}
+
 footer {
   background-color: var(--primary-color);
   color: white;
@@ -112,8 +141,8 @@ h6 {
 .navigation-container.sticky {
   position: fixed;
   opacity: 0.9;
-  margin-top: 2rem;
-  z-index: 300;
+  top: 0;
+  z-index: 100;
 }
 
 .navigation-container {

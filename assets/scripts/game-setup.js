@@ -10,6 +10,7 @@ const gameBoard = document.querySelector("#game-board");
 const shapeWindows = document.querySelectorAll(".shape-window");
 const gameControls = document.querySelector("#game-controls");
 const gameShapes = document.querySelector("#game-shapes");
+const loader = document.querySelector(".loader");
 
 const currentScoreCount = document.querySelector(`#current-score-count`);
 const highScoreCount = document.querySelector(`#high-score-count`);
@@ -29,9 +30,9 @@ const dropAudio = document.getElementById("drop-audio");
 const destroyAudio = document.getElementById("destroy-audio");
 
 // ----------------------------------------Must be disabled in order for automated test to run ------------------------------------ //
-// const menuModal = new bootstrap.Modal(document.getElementById("staticBackdrop"), {
-//   keyboard: false,
-// });
+const menuModal = new bootstrap.Modal(document.getElementById("staticBackdrop"), {
+  keyboard: false,
+});
 // ----------------------------------------Must be disabled in order for automated test to run ------------------------------------ //
 
 // Three diferent shape dificulities are set for the start of the game, then adjusted as a game progresses
@@ -96,6 +97,7 @@ window.addEventListener(`load`, () => {
   gameScreenDimentions();
   gameBoardAndScreenDimentions();
   setShapesContainerSize();
+  loader.classList.add("loader-hidden");
 
   // checks if player is visiting first time or if old info needs to be uploaded
   if (!getLocalStorage()) {
@@ -194,10 +196,10 @@ function setVissablesAndHidden(dificulty) {
 
 // ----------------------------------------Must be disabled in order for automated test to run ------------------------------------ //
 // functions setting game sound
-// volumeInput.addEventListener("input", (event) => {
-//   gameSettings.volume = event.target.value / 200;
-//   setGameVolume();
-// });
+volumeInput.addEventListener("input", (event) => {
+  gameSettings.volume = event.target.value / 200;
+  setGameVolume();
+});
 // ----------------------------------------Must be disabled in order for automated test to run ------------------------------------ //
 
 function setGameVolume() {
@@ -349,14 +351,3 @@ function resetGameWeek() {
   gameSettings.mediumWeekScore = 0;
   gameSettings.hardWeekScore = 0;
 }
-
-module.exports = {
-  gameSettings,
-  gameStart,
-  currentGameMode,
-  setVissablesAndHidden,
-  gameModeVisibility,
-  currentScoreCount,
-  highScoreCount,
-  rotationCount,
-};

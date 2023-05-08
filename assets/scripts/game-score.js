@@ -1,6 +1,6 @@
 "use strict";
 
-// Last file for game files group, this works with detecting sucsessfull shape drops, counting score, and seeting dificulty leves
+// Last file for game files group, this works with detecting sucsessfull shape drops, counting score, and seeting dificulty levels
 
 // I left variables for scores in game-setup file to keep all in one place it is being used in other files.
 
@@ -177,6 +177,7 @@ function trigerGameOverCheck() {
 }
 
 // the function checks if there are any more space for either of shapes to fit in. and returns either true or false
+
 function checkForGameOver(gameBoardArray, draggablesArray) {
   // if a match found it is changed to true and all loops ends as well as game continues
   let matchFound = false;
@@ -219,11 +220,12 @@ function checkForGameOver(gameBoardArray, draggablesArray) {
     if (matchFound) break;
   }
 
-  // if it goes though all of the loops without finding match false is returned
+  // if it goes though all of the loops without finding match false is returned indicating that no more space avialable
   return matchFound;
 }
 
 // this functions goal is to reduce entire matrix and delete unused rows or colums so the shape can be later checked against the board
+// Note that this function will break the previous fuctionality if the shapes with gap of row or column in the shape would be introduced.
 function reduceShapeMatrix(matrix) {
   const matrixLenght = matrix.length;
   let newMatrix = [...matrix];
@@ -306,6 +308,7 @@ function playAudio(sound) {
   }
 }
 
+// game scores update
 function gameChangeUpdate(baseScore) {
   // check if there is a combination and multiply score reward , updates data and pushes to html
   const dificulityAdjustedScore = (gameSettings.dificulty - 1) * 0.2 * baseScore + baseScore;
@@ -356,6 +359,7 @@ function gameChangeUpdate(baseScore) {
   renderGameScores();
 }
 
+// game scores update
 function renderGameScores() {
   currentScoreCount.innerHTML = Math.floor(gameSettings.currentScore);
   rotationCount.innerHTML = gameSettings.rotationScore;

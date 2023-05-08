@@ -8,10 +8,9 @@ Visit the deployed site: [Tedoku](https://erikas-ramanauskas.github.io/Milestone
 
 ## CONTENTS
 
-* [AUTOMATED TESTING](#AUTOMATED-TESTING)
+* [Testing](#Testing)
   * [W3C Validator](#W3C-Validator)
   * [JavaScript Validator](#JavaScript-Validator)
-  * [Python Validator](#Python-Validator)
   * [Lighthouse](#Lighthouse)
 * [MANUAL TESTING](#MANUAL-TESTING)
   * [Testing User Stories](#Testing-User-Stories)
@@ -196,9 +195,7 @@ Full testing was performed on the following devices:
 | 52 | Show easy/medium/hard games weekley score | easy/medium/hard wekley score in separate colums | Load up Hishscores page | ✅ |
 | 53 | Show easy/medium/hard highest score | easy/medium/hard highest score in separate colums | Load up Hishscores page | ✅ |
 
-## Credits to Mentor
 
-* Gareth was fenomenal in helping and advicing on my creativity plan and gave helpfull tips and inspiration with this project. Masive thank-you to him
 
 ## 3rd party testing during development
 * Performed by selected individuals who were awere of my development plan to give a feadback of user expirence.
