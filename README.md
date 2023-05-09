@@ -5,6 +5,8 @@ Tedoku is a mix between tetris and sudoku with drag and drop functionality. Fill
 
 ![Screenshot of Tedoku on multiple device](./assets/images/Responsive.webp)
 
+![GitHub contributors](https://img.shields.io/github/contributors/Erikas-Ramanauskas/Milestone-Project-2) ![GitHub last commit](https://img.shields.io/github/last-commit/Erikas-Ramanauskas/Milestone-Project-2) ![Languages](https://img.shields.io/github/languages/count/Erikas-Ramanauskas/Milestone-Project-2) ![GitHub forks](https://img.shields.io/github/forks/Erikas-Ramanauskas/Milestone-Project-2)
+
 ---
 **Table of Contents**
 * [Overview](#Overview)
@@ -412,3 +414,5 @@ Added my own twist to game rules and dificulity levels
 
 ## Copyrights
 [Erikas Ramanauskas, 2023](https://www.linkedin.com/in/erikas-ramanauskas)
+
+Visit [TSTING.md](TESTING.md)

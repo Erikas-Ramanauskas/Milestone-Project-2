@@ -9,6 +9,7 @@ Visit the deployed site: [Tedoku](https://erikas-ramanauskas.github.io/Milestone
 ## CONTENTS
 
 * [Testing](#Testing)
+* [AUTOMATED TESTING](#AUTOMATED-TESTING)
   * [W3C Validator](#W3C-Validator)
   * [JavaScript Validator](#JavaScript-Validator)
   * [Lighthouse](#Lighthouse)
@@ -25,23 +26,19 @@ Each page has been inspected using google chrome developer tools and lighthouse 
 
 ## AUTOMATED TESTING
 
-### W3C Validator
-
 ### Validation Results
 
-The W3C Markup Validator and the W3C CSS Validator were used to test and validate every all six pages of 
+* The W3C Markup Validator and the W3C CSS Validator were used to test and validate every all three pages of 
 the Tedoku interactive project to ensure that there were no syntax errors in the code. Chrome's 
 Lighthouse DevTool was also used to test for Performance, Accessibility, Best Practices and SEO. 
 JSHint was used to test JavaScript code quality.
 
-* W3C Markup Validator Test Results: 
-  - [Home page]()
-  - [Game page]()
-  - [Highscore page]()
-* W3C CSS Validator Test Results:
-  - [Results]()
-  - [Warning]()
-* Lighthouse Test Results:
+* The main erron on html Validator thowing info messages on *Trailing slash on void elements* due to /> close tag being added automaticaly by *prettier* and manualy removing it will be added next time the file is saved. 
+
+* Only one error is given is for the game page button gaving p tag that i used to write a text in and center it in the midle. 
+
+
+### Lighthouse Test Results:
   - [Mobile - home page](./assets/images/Mobile-lighthouse-home.png)
   - [Mobile - game page](./assets/images/Mobile-lighthouse-game.png) 
   - [Mobile - highscores page](./assets/images/Mobile-lighthouse-highscores.png)  
